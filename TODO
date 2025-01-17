@@ -1,0 +1,14 @@
+- [ ] Bulbasaur, Charmander, Squirtile
+- [ ] Base pokémon stats
+- [ ] Assign 2 base lvl 1 moves for each pokémon
+- [ ] UI for start, battle, change pokémon, win/lose
+- [ ] JavaFX
+- [ ] Implement all pokémons moves, following game type mechanics
+- [ ] Individual values and Effort Values [https://it.wikipedia.org/wiki/Modalit%C3%A0_di_gioco_di_Pok%C3%A9mon#Statistiche]
+  - [ ] Used the right way for stats calculation [https://www.dragonflycave.com/mechanics/stats]
+- [ ] NPCs
+- [ ] Pokémon's correct stats (eg. Keeping track of HP across battles, ecc)
+- [ ] Leaderboard page: top 10 best runs
+- [ ] Bot AI
+- [ ] Profile management
+- [ ] Save/load game

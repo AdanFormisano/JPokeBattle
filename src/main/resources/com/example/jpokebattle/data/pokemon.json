@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Bulbasaur",
+    "id": 1,
+    "type": ["Grass", "Poison"],
+    "ability": ["Overgrow", "Chlorophyll"],
+    "hp": 45,
+    "attack": 49,
+    "defense": 49,
+    "specialAttack": 65,
+    "specialDefense": 65,
+    "speed": 45
+  },
+  {
+    "name": "Ivysaur",
+    "id": 2,
+    "type": ["Grass", "Poison"],
+    "ability": ["Overgrow", "Chlorophyll"],
+    "hp": 60,
+    "attack": 62,
+    "defense": 63,
+    "specialAttack": 80,
+    "specialDefense": 80,
+    "speed": 60
+  },
+  {
+    "name": "Venusaur",
+    "id": 3,
+    "type": ["Grass", "Poison"],
+    "ability": ["Overgrow", "Chlorophyll"],
+    "hp": 80,
+    "attack": 82,
+    "defense": 83,
+    "specialAttack": 100,
+    "specialDefense": 100,
+    "speed": 80
+  },
+  {
+    "name": "Charmander",
+    "id": 4,
+    "type": ["Fire"],
+    "ability": ["Blaze"],
+    "hp": 39,
+    "attack": 52,
+    "defense": 43,
+    "specialAttack": 60,
+    "specialDefense": 50,
+    "speed": 65
+  },
+  {
+    "name": "Charmeleon",
+    "id": 5,
+    "type": ["Fire"],
+    "ability": ["Blaze"],
+    "hp": 58,
+    "attack": 64,
+    "defense": 58,
+    "specialAttack": 80,
+    "specialDefense": 65,
+    "speed": 80
+  },
+  {
+    "name": "Charizard",
+    "id": 6,
+    "type": ["Fire", "Flying"],
+    "ability": ["Blaze", "Solar Power"],
+    "hp": 78,
+    "attack": 84,
+    "defense": 78,
+    "specialAttack": 109,
+    "specialDefense": 85,
+    "speed": 100
+  },
+  {
+    "name": "Squirtle",
+    "id": 7,
+    "type": ["Water"],
+    "ability": ["Torrent"],
+    "hp": 44,
+    "attack": 48,
+    "defense": 65,
+    "specialAttack": 50,
+    "specialDefense": 64,
+    "speed": 43
+  },
+  {
+    "name": "Wartortle",
+    "id": 8,
+    "type": ["Water"],
+    "ability": ["Torrent"],
+    "hp": 59,
+    "attack": 63,
+    "defense": 80,
+    "specialAttack": 65,
+    "specialDefense": 80,
+    "speed": 58
+  },
+  {
+    "name": "Blastoise",
+    "id": 9,
+    "type": ["Water"],
+    "ability": ["Torrent"],
+    "hp": 79,
+    "attack": 83,
+    "defense": 100,
+    "specialAttack": 85,
+    "specialDefense": 105,
+    "speed": 78
+  }
+]
