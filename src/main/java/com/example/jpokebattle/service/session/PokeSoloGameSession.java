@@ -1,5 +1,7 @@
 package com.example.jpokebattle.service.session;
 
+import java.util.Arrays;
+
 public class PokeSoloGameSession implements PokeGameSession {
     SessionData sessionData = new SessionData();
 
@@ -17,5 +19,6 @@ public class PokeSoloGameSession implements PokeGameSession {
     @Override
     public void playGame() {
         System.out.println("Playing game");
+        System.out.println(Arrays.toString(sessionData.getPlayerPokemons()));
     }
 }

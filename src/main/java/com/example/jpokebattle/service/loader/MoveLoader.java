@@ -1,6 +1,6 @@
 package com.example.jpokebattle.service.loader;
 
-import com.example.jpokebattle.poke.Move;
+import com.example.jpokebattle.service.data.DataMove;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class MoveLoader {
     private final String jsonFilePath;
     private final ObjectMapper objectMapper;
-    private static List<Move> movesCache;
+    private static List<DataMove> movesCache;
     private static volatile boolean isCacheLoaded = false;
 
     public MoveLoader(String jsonFilePath) {
@@ -21,13 +21,13 @@ public class MoveLoader {
         this.objectMapper = new ObjectMapper();
     }
 
-    public List<Move> loadAllMoves() {
+    public List<DataMove> loadAllMoves() {
         if (!isCacheLoaded) {
             synchronized (MoveLoader.class) {
                 if (!isCacheLoaded) {
                     try {
-                        List<Move> loadedMoves = objectMapper.readValue(new File(this.jsonFilePath), new TypeReference<List<Move>>(){});
-                        movesCache = Collections.unmodifiableList(loadedMoves);
+                        List<DataMove> loadedDataMoves = objectMapper.readValue(new File(this.jsonFilePath), new TypeReference<List<DataMove>>(){});
+                        movesCache = Collections.unmodifiableList(loadedDataMoves);
                         isCacheLoaded = true;
                     } catch (IOException e) {
                         System.out.println("Error loading moves from JSON file: " + e.getMessage());
@@ -38,11 +38,11 @@ public class MoveLoader {
         return movesCache;
     }
 
-    public Move getMoveByName(String name) {
-        return this.loadAllMoves().stream().filter(move -> move.getName().equals(name)).findFirst().orElse(null);
+    public DataMove getMoveByName(String name) {
+        return this.loadAllMoves().stream().filter(dataMove -> dataMove.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public List<Move> getMoveByType(String type) {
-        return this.loadAllMoves().stream().filter(move -> move.getType().equals(type)).collect(Collectors.toList());
+    public List<DataMove> getMoveByType(String type) {
+        return this.loadAllMoves().stream().filter(dataMove -> dataMove.getType().equals(type)).collect(Collectors.toList());
     }
 }

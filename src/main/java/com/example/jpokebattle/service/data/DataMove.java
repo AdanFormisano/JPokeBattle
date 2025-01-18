@@ -1,8 +1,8 @@
-package com.example.jpokebattle.poke;
+package com.example.jpokebattle.service.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Move {
+public class DataMove {
     private final String name;
     private final String type;
     private final String category;
@@ -11,13 +11,13 @@ public class Move {
     private final int priority;
     private final int pp;
 
-    public Move(@JsonProperty("name") String name,
-                @JsonProperty("type") String type,
-                @JsonProperty("category") String category,
-                @JsonProperty("power") int power,
-                @JsonProperty("accuracy") float accuracy,
-                @JsonProperty("priority") int priority,
-                @JsonProperty("pp") int pp) {
+    public DataMove(@JsonProperty("name") String name,
+                    @JsonProperty("type") String type,
+                    @JsonProperty("category") String category,
+                    @JsonProperty("power") int power,
+                    @JsonProperty("accuracy") float accuracy,
+                    @JsonProperty("priority") int priority,
+                    @JsonProperty("pp") int pp) {
         this.name = name;
         this.type = type;
         this.category = category;

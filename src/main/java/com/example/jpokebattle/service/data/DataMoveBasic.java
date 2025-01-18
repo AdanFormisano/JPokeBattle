@@ -1,10 +1,10 @@
-package com.example.jpokebattle.poke;
+package com.example.jpokebattle.service.data;
 
-public class MoveBasic {
+public class DataMoveBasic {
     private int lvl;
     private String name;
 
-    public MoveBasic() {}
+    public DataMoveBasic() {}
 
     public int getLvl() { return this.lvl; }
     public String getName() { return this.name; }

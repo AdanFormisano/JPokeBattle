@@ -1,8 +1,8 @@
-package com.example.jpokebattle.poke;
+package com.example.jpokebattle.service.data;
 
 import java.util.List;
 
-public class Pokemon {
+public class DataPokemon {
     private int id;
     private String name;
     private List<String> type;
@@ -13,9 +13,9 @@ public class Pokemon {
     private int specialAttack;
     private int specialDefense;
     private int speed;
-    private List<MoveBasic> moves;
+    private List<DataMoveBasic> moves;
 
-    public Pokemon() {}
+    public DataPokemon() {}
 
     // Getters
     public int getId() { return this.id; }
@@ -28,7 +28,7 @@ public class Pokemon {
     public int getSpecialAttack() { return this.specialAttack; }
     public int getSpecialDefense() { return this.specialDefense; }
     public int getSpeed() { return this.speed; }
-    public List<MoveBasic> getMoves() { return this.moves; }
+    public List<DataMoveBasic> getMoves() { return this.moves; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -41,7 +41,7 @@ public class Pokemon {
     public void setSpecialAttack(int specialAttack) { this.specialAttack = specialAttack; }
     public void setSpecialDefense(int specialDefense) { this.specialDefense = specialDefense; }
     public void setSpeed(int speed) { this.speed = speed; }
-    public void setMoves(List<MoveBasic> moves) { this.moves = moves; }
+    public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
 
     @Override
     public String toString() {

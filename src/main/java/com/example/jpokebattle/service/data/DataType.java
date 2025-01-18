@@ -1,6 +1,6 @@
-package com.example.jpokebattle.poke;
+package com.example.jpokebattle.service.data;
 
-public enum Type {
+public enum DataType {
     NORMAL,
     FIGHTING,
     FLYING,

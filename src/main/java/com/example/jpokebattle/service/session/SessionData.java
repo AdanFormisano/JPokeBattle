@@ -1,6 +1,7 @@
 package com.example.jpokebattle.service.session;
 
-import com.example.jpokebattle.poke.Pokemon;
+import com.example.jpokebattle.game.Player;
+import com.example.jpokebattle.service.data.DataPokemon;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
@@ -9,9 +10,9 @@ import com.example.jpokebattle.service.loader.PokeLoader;
     * It contains the current player data, the current pokemon data, and the current move data
  */
 public class SessionData {
-//    private Player player;
-    private Pokemon[] playerPokemons = new Pokemon[6];
-    private Pokemon[] enemyPokemons = new Pokemon[6];
+    private Player player = new Player("Player", 0, 0);    // TODO: Implement input for player name
+    private DataPokemon[] playerDataPokemons = new DataPokemon[6];
+    private DataPokemon[] enemyDataPokemons = new DataPokemon[6];
 
     private int currentLvl = 1; // Current level of the session
     private final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
@@ -19,9 +20,9 @@ public class SessionData {
 
     public SessionData() {
         // For testing purposes the player and enemy pokemons are hardcoded
-        this.playerPokemons[0] = pl.getPokemonByName("Bulbasaur");
+        this.playerDataPokemons[0] = pl.getPokemonByName("Bulbasaur");
     }
 
-    public Pokemon[] getPlayerPokemons() { return playerPokemons; }
+    public DataPokemon[] getPlayerPokemons() { return playerDataPokemons; }
 
 }
