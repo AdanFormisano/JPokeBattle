@@ -4,7 +4,7 @@ public class MoveBasic {
     private int lvl;
     private String name;
 
-    public MoveBasic() {};
+    public MoveBasic() {}
 
     public int getLvl() { return this.lvl; }
     public String getName() { return this.name; }

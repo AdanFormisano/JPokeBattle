@@ -1,12 +1,6 @@
 package com.example.jpokebattle.poke;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Pokemon {
     private int id;
@@ -21,7 +15,7 @@ public class Pokemon {
     private int speed;
     private List<MoveBasic> moves;
 
-    public Pokemon() {};
+    public Pokemon() {}
 
     // Getters
     public int getId() { return this.id; }

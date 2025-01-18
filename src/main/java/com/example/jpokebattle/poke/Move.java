@@ -25,7 +25,7 @@ public class Move {
         this.accuracy = accuracy;
         this.priority = priority;
         this.pp = pp;
-    };
+    }
 
     // Getters
     public String getName() { return this.name; }

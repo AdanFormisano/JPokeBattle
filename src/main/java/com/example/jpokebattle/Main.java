@@ -1,7 +1,5 @@
 package com.example.jpokebattle;
 
-import com.example.jpokebattle.service.loader.MoveLoader;
-import com.example.jpokebattle.service.loader.PokeLoader;
 import com.example.jpokebattle.service.session.PokeSoloGameSession;
 
 public class Main {

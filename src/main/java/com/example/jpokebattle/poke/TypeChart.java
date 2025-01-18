@@ -1,6 +1,5 @@
 package com.example.jpokebattle.poke;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;

@@ -1,11 +1,8 @@
 package com.example.jpokebattle.service.session;
 
-import com.example.jpokebattle.poke.Move;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
-
-import java.util.List;
 
 /*
     * This class is used to store the data of the current session
