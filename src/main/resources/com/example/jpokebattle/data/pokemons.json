@@ -9,7 +9,20 @@
     "defense": 49,
     "specialAttack": 65,
     "specialDefense": 65,
-    "speed": 45
+    "speed": 45,
+    "moves": [
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 4, "name": "Growl"},
+      {"lvl": 7, "name": "Leech Seed"},
+      {"lvl": 10, "name": "Vine Whip"},
+      {"lvl": 15, "name": "Poison Powder"},
+      {"lvl": 15, "name": "Sleep Powder"},
+      {"lvl": 20, "name": "Razor Leaf"},
+      {"lvl": 25, "name": "Sweet Scent"},
+      {"lvl": 32, "name": "Growth"},
+      {"lvl": 39, "name": "Synthesis"},
+      {"lvl": 46, "name": "Solar Beam"}
+    ]
   },
   {
     "name": "Ivysaur",
@@ -21,7 +34,22 @@
     "defense": 63,
     "specialAttack": 80,
     "specialDefense": 80,
-    "speed": 60
+    "speed": 60,
+    "moves": [
+      {"lvl": "1", "name": "Tackle"},
+      {"lvl": "1", "name": "Growl"},
+      {"lvl": "1", "name": "Leech Seed"},
+      {"lvl": "4", "name": "Growl"},
+      {"lvl": "7", "name": "Leech Seed"},
+      {"lvl": "10", "name": "Vine Whip"},
+      {"lvl": "15", "name": "Poison Powder"},
+      {"lvl": "15", "name": "Sleep Powder"},
+      {"lvl": "22", "name": "Razor Leaf"},
+      {"lvl": "29", "name": "Sweet Scent"},
+      {"lvl": "38", "name": "Growth"},
+      {"lvl": "47", "name": "Synthesis"},
+      {"lvl": "56", "name": "Solar Beam"}
+    ]
   },
   {
     "name": "Venusaur",
@@ -33,7 +61,23 @@
     "defense": 83,
     "specialAttack": 100,
     "specialDefense": 100,
-    "speed": 80
+    "speed": 80,
+    "moves": [
+      {"lvl": "1", "name": "Tackle"},
+      {"lvl": "1", "name": "Growl"},
+      {"lvl": "1", "name": "Leech Seed"},
+      {"lvl": "1", "name": "Vine Whip"},
+      {"lvl": "4", "name": "Growl"},
+      {"lvl": "7", "name": "Leech Seed"},
+      {"lvl": "10", "name": "Vine Whip"},
+      {"lvl": "15", "name": "Poison Powder"},
+      {"lvl": "15", "name": "Sleep Powder"},
+      {"lvl": "22", "name": "Razor Leaf"},
+      {"lvl": "29", "name": "Sweet Scent"},
+      {"lvl": "41", "name": "Growth"},
+      {"lvl": "53", "name": "Synthesis"},
+      {"lvl": "65", "name": "Solar Beam"}
+    ]
   },
   {
     "name": "Charmander",
@@ -45,7 +89,8 @@
     "defense": 43,
     "specialAttack": 60,
     "specialDefense": 50,
-    "speed": 65
+    "speed": 65,
+    "moves": []
   },
   {
     "name": "Charmeleon",
@@ -57,7 +102,8 @@
     "defense": 58,
     "specialAttack": 80,
     "specialDefense": 65,
-    "speed": 80
+    "speed": 80,
+    "moves": []
   },
   {
     "name": "Charizard",
@@ -69,7 +115,8 @@
     "defense": 78,
     "specialAttack": 109,
     "specialDefense": 85,
-    "speed": 100
+    "speed": 100,
+    "moves": []
   },
   {
     "name": "Squirtle",
@@ -81,7 +128,8 @@
     "defense": 65,
     "specialAttack": 50,
     "specialDefense": 64,
-    "speed": 43
+    "speed": 43,
+    "moves": []
   },
   {
     "name": "Wartortle",
@@ -93,7 +141,8 @@
     "defense": 80,
     "specialAttack": 65,
     "specialDefense": 80,
-    "speed": 58
+    "speed": 58,
+    "moves": []
   },
   {
     "name": "Blastoise",
@@ -105,6 +154,7 @@
     "defense": 100,
     "specialAttack": 85,
     "specialDefense": 105,
-    "speed": 78
+    "speed": 78,
+    "moves": []
   }
 ]

@@ -1,7 +1,12 @@
 package com.example.jpokebattle.poke;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Pokemon {
     private int id;
@@ -14,21 +19,9 @@ public class Pokemon {
     private int specialAttack;
     private int specialDefense;
     private int speed;
+    private List<MoveBasic> moves;
 
     public Pokemon() {};
-
-    public Pokemon(int id, String name, List<String> type, List<String> ability, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.ability = ability;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        this.specialAttack = specialAttack;
-        this.specialDefense = specialDefense;
-        this.speed = speed;
-    }
 
     // Getters
     public int getId() { return this.id; }
@@ -41,6 +34,7 @@ public class Pokemon {
     public int getSpecialAttack() { return this.specialAttack; }
     public int getSpecialDefense() { return this.specialDefense; }
     public int getSpeed() { return this.speed; }
+    public List<MoveBasic> getMoves() { return this.moves; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -53,6 +47,7 @@ public class Pokemon {
     public void setSpecialAttack(int specialAttack) { this.specialAttack = specialAttack; }
     public void setSpecialDefense(int specialDefense) { this.specialDefense = specialDefense; }
     public void setSpeed(int speed) { this.speed = speed; }
+    public void setMoves(List<MoveBasic> moves) { this.moves = moves; }
 
     @Override
     public String toString() {
@@ -67,6 +62,7 @@ public class Pokemon {
                 ", specialAttack=" + specialAttack +
                 ", specialDefense=" + specialDefense +
                 ", speed=" + speed +
+                ", moves=" + moves +
                 '}';
     }
 }

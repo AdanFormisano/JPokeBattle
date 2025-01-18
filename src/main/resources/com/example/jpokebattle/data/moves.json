@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Tackle",
+    "type": "Normal",
+    "category": "Physical",
+    "power": 35,
+    "accuracy": 95,
+    "priority": 0,
+    "pp": 35
+  },
+  {
+    "name": "Growl",
+    "type": "Normal",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 40
+  },
+  {
+    "name": "Scratch",
+    "type": "Normal",
+    "category": "Physical",
+    "power": 40,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 35
+  },
+  {
+    "name": "Tail Whip",
+    "type": "Normal",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 30
+  },
+  {
+    "name": "Leech Seed",
+    "type": "Grass",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 90,
+    "priority": 0,
+    "pp": 10
+  },
+  {
+    "name": "Vine Whip",
+    "type": "Grass",
+    "category": "Special",
+    "power": 35,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 10
+  },
+  {
+    "name": "Poison Powder",
+    "type": "Poison",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 75,
+    "priority": 0,
+    "pp": 35
+  },
+  {
+    "name": "Sleep Powder",
+    "type": "Grass",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 75,
+    "priority": 0,
+    "pp": 15
+  },
+  {
+    "name": "Razor Leaf",
+    "type": "Grass",
+    "category": "Physical",
+    "power": 55,
+    "accuracy": 95,
+    "priority": 0,
+    "pp": 25
+  },
+  {
+    "name": "Sweet Scent",
+    "type": "Normal",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 20
+  },
+  {
+    "name": "Growth",
+    "type": "Normal",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "priority": 0,
+    "pp": 40
+  },
+  {
+    "name": "Synthesis",
+    "type": "Grass",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "priority": 0,
+    "pp": 5
+  },
+  {
+    "name": "SolarBeam",
+    "type": "Grass",
+    "category": "Special",
+    "power": 120,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 10
+  }
+]
