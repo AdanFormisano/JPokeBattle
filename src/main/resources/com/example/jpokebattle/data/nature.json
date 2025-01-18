@@ -1,0 +1,152 @@
+[
+  {
+    "id": 0,
+    "name": "Hardy",
+    "increasedStat": "attack",
+    "decreasedStat": "attack"
+  },
+  {
+    "id": 1,
+    "name": "Lonely",
+    "increasedStat": "attack",
+    "decreasedStat": "defense"
+  },
+  {
+    "id": 2,
+    "name": "Brave",
+    "increasedStat": "attack",
+    "decreasedStat": "speed"
+  },
+  {
+    "id": 3,
+    "name": "Adamant",
+    "increasedStat": "attack",
+    "decreasedStat": "specialAttack"
+  },
+  {
+    "id": 4,
+    "name": "Naughty",
+    "increasedStat": "attack",
+    "decreasedStat": "specialDefense"
+  },
+  {
+    "id": 5,
+    "name": "Bold",
+    "increasedStat": "defense",
+    "decreasedStat": "attack"
+  },
+  {
+    "id": 6,
+    "name": "Docile",
+    "increasedStat": "defense",
+    "decreasedStat": "defense"
+  },
+  {
+    "id": 7,
+    "name": "Relaxed",
+    "increasedStat": "defense",
+    "decreasedStat": "speed"
+  },
+  {
+    "id": 8,
+    "name": "Impish",
+    "increasedStat": "defense",
+    "decreasedStat": "specialAttack"
+  },
+  {
+    "id": 9,
+    "name": "Lax",
+    "increasedStat": "defense",
+    "decreasedStat": "specialDefense"
+  },
+  {
+    "id": 10,
+    "name": "Timid",
+    "increasedStat": "speed",
+    "decreasedStat": "attack"
+  },
+  {
+    "id": 11,
+    "name": "Hasty",
+    "increasedStat": "speed",
+    "decreasedStat": "defense"
+  },
+  {
+    "id": 12,
+    "name": "Serious",
+    "increasedStat": "speed",
+    "decreasedStat": "speed"
+  },
+  {
+    "id": 13,
+    "name": "Jolly",
+    "increasedStat": "speed",
+    "decreasedStat": "specialAttack"
+  },
+  {
+    "id": 14,
+    "name": "Naive",
+    "increasedStat": "speed",
+    "decreasedStat": "specialDefense"
+  },
+  {
+    "id": 15,
+    "name": "Modest",
+    "increasedStat": "specialAttack",
+    "decreasedStat": "attack"
+  },
+  {
+    "id": 16,
+    "name": "Mild",
+    "increasedStat": "specialAttack",
+    "decreasedStat": "defense"
+  },
+  {
+    "id": 17,
+    "name": "Quiet",
+    "increasedStat": "specialAttack",
+    "decreasedStat": "speed"
+  },
+  {
+    "id": 18,
+    "name": "Bashful",
+    "increasedStat": "specialAttack",
+    "decreasedStat": "specialAttack"
+  },
+  {
+    "id": 19,
+    "name": "Rash",
+    "increasedStat": "specialAttack",
+    "decreasedStat": "specialDefense"
+  },
+  {
+    "id": 20,
+    "name": "Calm",
+    "increasedStat": "specialDefense",
+    "decreasedStat": "attack"
+  },
+  {
+    "id": 21,
+    "name": "Gentle",
+    "increasedStat": "specialDefense",
+    "decreasedStat": "defense"
+  },
+  {
+    "id": 22,
+    "name": "Sassy",
+    "increasedStat": "specialDefense",
+    "decreasedStat": "speed"
+  },
+  {
+    "id": 23,
+    "name": "Careful",
+    "increasedStat": "specialDefense",
+    "decreasedStat": "specialAttack"
+  },
+  {
+    "id": 24,
+    "name": "Quirky",
+    "increasedStat": "specialDefense",
+    "decreasedStat": "specialDefense"
+  }
+]

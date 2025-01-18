@@ -5,8 +5,8 @@ import java.util.List;
 public class DataPokemon {
     private int id;
     private String name;
-    private List<String> type;
-    private List<String> ability;
+    private String[] type;
+    private String ability;
     private int hp;
     private int attack;
     private int defense;
@@ -20,8 +20,8 @@ public class DataPokemon {
     // Getters
     public int getId() { return this.id; }
     public String getName() { return this.name; }
-    public List<String> getType() { return this.type; }
-    public List<String> getAbility() { return this.ability; }
+    public String[] getType() { return this.type; }
+    public String getAbility() { return this.ability; }
     public int getHp() { return this.hp; }
     public int getAttack() { return this.attack; }
     public int getDefense() { return this.defense; }
@@ -33,8 +33,8 @@ public class DataPokemon {
     // Setters
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
-    public void setType(List<String> type) { this.type = type; }
-    public void setAbility(List<String> ability) { this.ability = ability; }
+    public void setType(String[] type) { this.type = type; }
+    public void setAbility(String ability) { this.ability = ability; }
     public void setHp(int hp) { this.hp = hp; }
     public void setAttack(int attack) { this.attack = attack; }
     public void setDefense(int defense) { this.defense = defense; }
@@ -48,7 +48,8 @@ public class DataPokemon {
         return "Pokemon{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + type[0] + '\'' +
+                ", type='" + type[1] + '\'' +
                 ", ability='" + ability + '\'' +
                 ", hp=" + hp +
                 ", attack=" + attack +
