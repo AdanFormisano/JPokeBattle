@@ -1,13 +1,19 @@
 package com.example.jpokebattle;
 
-import com.example.jpokebattle.service.PokeLoader;
+import com.example.jpokebattle.service.loader.MoveLoader;
+import com.example.jpokebattle.service.loader.PokeLoader;
+import com.example.jpokebattle.service.session.PokeSoloGameSession;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, world!");
 
-        PokeLoader pokeLoader = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemon.json");
-        pokeLoader.loadAllPokemons();
+        // Create a new game session
+        PokeSoloGameSession gameSession = new PokeSoloGameSession();
 
+        // Start the game
+        gameSession.startGame();
+        gameSession.playGame();
+        gameSession.endGame();
     }
 }
