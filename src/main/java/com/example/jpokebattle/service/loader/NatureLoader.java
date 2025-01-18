@@ -1,5 +1,6 @@
 package com.example.jpokebattle.service.loader;
 
+import com.example.jpokebattle.poke.Nature;
 import com.example.jpokebattle.service.data.DataNature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,11 +38,27 @@ public class NatureLoader {
         return natureCache;
     }
 
-    public DataNature getNatureById(int id) {
-        return this.loadAllNatures().stream().filter(dataNature -> dataNature.getId() == id).findFirst().orElse(null);
+    public Nature getNatureById(int id) {
+        DataNature dataNature = this.loadAllNatures().stream().filter(nature -> nature.getId() == id).findFirst().orElse(null);
+        if (dataNature == null) {
+            return null;
+        }
+        return new Nature(dataNature.getName(), dataNature.getIncreasedStat(), dataNature.getDecreasedStat());
     }
 
-    public DataNature getNatureByName(String name) {
-        return this.loadAllNatures().stream().filter(dataNature -> dataNature.getName().equals(name)).findFirst().orElse(null);
+    public Nature getNatureByName(String name) {
+        DataNature dataNature = this.loadAllNatures().stream().filter(nature -> nature.getName().equals(name)).findFirst().orElse(null);
+        if (dataNature == null) {
+            return null;
+        }
+        return new Nature(dataNature.getName(), dataNature.getIncreasedStat(), dataNature.getDecreasedStat());
+    }
+
+    public String[] getNatureDataById(int id) {
+        DataNature dataNature = this.loadAllNatures().stream().filter(nature -> nature.getId() == id).findFirst().orElse(null);
+        if (dataNature == null) {
+            return null;
+        }
+        return new String[] { dataNature.getName(), dataNature.getIncreasedStat(), dataNature.getDecreasedStat() };
     }
 }
