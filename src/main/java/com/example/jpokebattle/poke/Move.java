@@ -1,6 +1,6 @@
 package com.example.jpokebattle.poke;
 
-public class MoveSet {
+public class Move {
     private String name;
     private String type;
     private String category;
@@ -8,8 +8,9 @@ public class MoveSet {
     private float accuracy;
     private int priority;
     private int pp;
+    private int maxPP;
 
-    public MoveSet(String name, String type, String category, int power, float accuracy, int priority, int pp) {
+    public Move(String name, String type, String category, int power, float accuracy, int priority, int pp) {
         this.name = name;
         this.type = type;
         this.category = category;
@@ -17,6 +18,7 @@ public class MoveSet {
         this.accuracy = accuracy;
         this.priority = priority;
         this.pp = pp;
+        this.maxPP = pp;
     }
 
     // Getters
@@ -27,6 +29,7 @@ public class MoveSet {
     public float getAccuracy() { return this.accuracy; }
     public int getPriority() { return this.priority; }
     public int getPP() { return this.pp; }
+    public int getMaxPP() { return this.maxPP; }
 
     // Setter
     public void decreasePP() { this.pp--; }

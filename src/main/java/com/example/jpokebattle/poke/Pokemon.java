@@ -9,7 +9,7 @@ public class Pokemon {
     private final BaseStats baseStats;
     private final Stats stats;
     private final Nature nature = new Nature();
-    private MoveSet[] available_moves = { new MoveSet("Tackle", "Normal", "Physical", 35, 95, 0, 35) };
+    private Move[] moveSet = { new Move("Tackle", "Normal", "Physical", 35, 95, 0, 35) };
 
 //    public Pokemon(int id, String name, String[] type, String ability, int hp, int attack, int defense, int speed, int specialAttack, int specialDefense, AvailableMove[] available_moves) {
 //        this.id = id;
@@ -35,7 +35,7 @@ public class Pokemon {
     public String getName() { return name; }
     public String[] getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
-    public MoveSet[] getAvailableMoves() { return this.available_moves; }
+    public Move[] getMoveSet() { return this.moveSet; }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
 

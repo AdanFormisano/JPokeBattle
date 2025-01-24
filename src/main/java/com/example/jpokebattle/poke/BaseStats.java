@@ -1,7 +1,5 @@
 package com.example.jpokebattle.poke;
 
-import org.jetbrains.annotations.NotNull;
-
 public class BaseStats {
     private final int baseHP;
     private final int attack;
