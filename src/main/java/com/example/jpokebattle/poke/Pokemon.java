@@ -2,6 +2,9 @@ package com.example.jpokebattle.poke;
 
 import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.data.DataPokemon;
+import com.example.jpokebattle.service.data.DataType;
+
+import java.util.List;
 
 public class Pokemon {
     private final int id;
@@ -9,19 +12,8 @@ public class Pokemon {
     private final BaseStats baseStats;
     private final Stats stats;
     private final Nature nature = new Nature();
-    private Move[] moveSet = { new Move("Tackle", "Normal", "Physical", 35, 95, 0, 35) };
-
-//    public Pokemon(int id, String name, String[] type, String ability, int hp, int attack, int defense, int speed, int specialAttack, int specialDefense, AvailableMove[] available_moves) {
-//        this.id = id;
-//        this.name = name;
-//        baseStats = new BaseStats(hp, attack, defense, specialAttack, specialDefense, speed, ability, type);
-//
-//        if (available_moves.length > 4) {
-//            System.out.println("A Pokemon can only have 4 moves. The first 4 moves will be used.");
-//        } else {
-//            this.available_moves = available_moves;
-//        }
-//    }
+    private Move[] moveSet = { new Move("Tackle", "NORMAL", "Physical", 35, 95, 0, 35) };   // TODO: Implement move assigner
+    public boolean isFainted = false;
 
     public Pokemon (DataPokemon dataPokemon) {
         id = dataPokemon.getId();
@@ -33,7 +25,7 @@ public class Pokemon {
     // Getters
     public int getId() { return id; }
     public String getName() { return name; }
-    public String[] getType() { return baseStats.getType(); }
+    public List<DataType> getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
     public Move[] getMoveSet() { return this.moveSet; }
     public Nature getNature() { return this.nature; }

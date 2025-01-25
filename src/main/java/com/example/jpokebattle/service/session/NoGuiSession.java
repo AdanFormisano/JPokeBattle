@@ -1,5 +1,6 @@
 package com.example.jpokebattle.service.session;
 
+import com.example.jpokebattle.game.Battle;
 import com.example.jpokebattle.game.Player;
 
 import java.util.Scanner;
@@ -25,6 +26,8 @@ public class NoGuiSession implements PokeGameSession {
         Player player = new Player(playerName);
         sessionData.setPlayer(player);
         System.out.println("Hello, " + sessionData.player.getName() + "! Remember you Gotta catch'em all!");
+
+        // Assign pokemon to player
     }
 
     @Override
@@ -34,6 +37,6 @@ public class NoGuiSession implements PokeGameSession {
 
     @Override
     public void playGame() {
-
+        Battle battle = new Battle(sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
     }
 }

@@ -17,5 +17,5 @@ public enum DataType {
     PSYCHIC,
     ICE,
     DRAGON,
-    DARK,
+    DARK
 }

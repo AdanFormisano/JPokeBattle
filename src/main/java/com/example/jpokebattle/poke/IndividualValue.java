@@ -1,6 +1,6 @@
 package com.example.jpokebattle.poke;
 
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class IndividualValue {
     private final int hp;
@@ -10,10 +10,9 @@ public class IndividualValue {
     private final int specialDefense;
     private final int speed;
 
-    private static final Random random = new Random();
-
     public IndividualValue() {
         // Generate random value for each IV between 0 and 31
+        RandomGenerator random = RandomGenerator.getDefault();
         hp = random.nextInt(32);
         attack = random.nextInt(32);
         defense = random.nextInt(32);

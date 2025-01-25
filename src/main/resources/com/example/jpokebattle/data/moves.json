@@ -1,7 +1,7 @@
 [
   {
     "name": "Tackle",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Physical",
     "power": 35,
     "accuracy": 95,
@@ -10,7 +10,7 @@
   },
   {
     "name": "Growl",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Status",
     "power": 0,
     "accuracy": 100,
@@ -19,7 +19,7 @@
   },
   {
     "name": "Scratch",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Physical",
     "power": 40,
     "accuracy": 100,
@@ -28,7 +28,7 @@
   },
   {
     "name": "Tail Whip",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Status",
     "power": 0,
     "accuracy": 100,
@@ -37,7 +37,7 @@
   },
   {
     "name": "Leech Seed",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Status",
     "power": 0,
     "accuracy": 90,
@@ -46,7 +46,7 @@
   },
   {
     "name": "Vine Whip",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Special",
     "power": 35,
     "accuracy": 100,
@@ -55,7 +55,7 @@
   },
   {
     "name": "Poison Powder",
-    "type": "Poison",
+    "type": "POISON",
     "category": "Status",
     "power": 0,
     "accuracy": 75,
@@ -64,7 +64,7 @@
   },
   {
     "name": "Sleep Powder",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Status",
     "power": 0,
     "accuracy": 75,
@@ -73,7 +73,7 @@
   },
   {
     "name": "Razor Leaf",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Physical",
     "power": 55,
     "accuracy": 95,
@@ -82,7 +82,7 @@
   },
   {
     "name": "Sweet Scent",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Status",
     "power": 0,
     "accuracy": 100,
@@ -91,7 +91,7 @@
   },
   {
     "name": "Growth",
-    "type": "Normal",
+    "type": "NORMAL",
     "category": "Status",
     "power": 0,
     "accuracy": 0,
@@ -100,7 +100,7 @@
   },
   {
     "name": "Synthesis",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Status",
     "power": 0,
     "accuracy": 0,
@@ -109,7 +109,7 @@
   },
   {
     "name": "SolarBeam",
-    "type": "Grass",
+    "type": "GRASS",
     "category": "Special",
     "power": 120,
     "accuracy": 100,

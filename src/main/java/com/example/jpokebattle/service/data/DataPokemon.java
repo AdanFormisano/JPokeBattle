@@ -5,7 +5,7 @@ import java.util.List;
 public class DataPokemon {
     private int id;
     private String name;
-    private String[] type;
+    private List<DataType> type;
     private String ability;
     private int hp;
     private int attack;
@@ -20,7 +20,7 @@ public class DataPokemon {
     // Getters
     public int getId() { return this.id; }
     public String getName() { return this.name; }
-    public String[] getType() { return this.type; }
+    public List<DataType> getType() { return this.type; }
     public String getAbility() { return this.ability; }
     public int getHp() { return this.hp; }
     public int getAttack() { return this.attack; }
@@ -33,7 +33,7 @@ public class DataPokemon {
     // Setters
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
-    public void setType(String[] type) { this.type = type; }
+    public void setType(List<DataType> type) { this.type = type; }
     public void setAbility(String ability) { this.ability = ability; }
     public void setHp(int hp) { this.hp = hp; }
     public void setAttack(int attack) { this.attack = attack; }
@@ -48,8 +48,8 @@ public class DataPokemon {
         return "Pokemon{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type='" + type[0] + '\'' +
-                ", type='" + type[1] + '\'' +
+                ", type='" + type.get(0) + '\'' +
+                ", type='" + type.get(1) + '\'' +
                 ", ability='" + ability + '\'' +
                 ", hp=" + hp +
                 ", attack=" + attack +

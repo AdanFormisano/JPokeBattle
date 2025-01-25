@@ -21,6 +21,9 @@ public class Stats {
         this.nature = nature;
 
         calculateAllStats();
+
+        System.out.printf("IVs: %s\n", IV.toString());
+        System.out.printf("Max HP: %.0f\n", maxHP);
     }
 
     // Getters
@@ -31,6 +34,7 @@ public class Stats {
     public double getSpeed() { return speed; }
     public double getMaxHP() { return maxHP; }
     public double getCurrentHP() { return currentHP; }
+    public int getLevel() { return level; }
 
     // Setters
     public void increaseLevel() { this.level++; }
@@ -122,8 +126,8 @@ public class Stats {
 
     private double calculateMaxHP() {
         int hp = baseStats.getBaseHP();
-
-        return Math.floor((double) ((2 * hp + IV.getHp() + EV) * level) / 100 + level + 10);
+        double maxHP = Math.floor((double) ((2 * hp + IV.getHp() + EV) * level) / 100 + level + 10);
+        return maxHP;
     }
 
     private double calculateStat(int baseStat, int IV, int EV, int level, double natureMultiplier) {

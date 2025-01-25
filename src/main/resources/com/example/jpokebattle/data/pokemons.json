@@ -2,7 +2,7 @@
   {
     "name": "Bulbasaur",
     "id": 1,
-    "type": ["Grass", "Poison"],
+    "type": ["GRASS", "POISON"],
     "ability": "Overgrow",
     "hp": 45,
     "attack": 49,
@@ -27,7 +27,7 @@
   {
     "name": "Ivysaur",
     "id": 2,
-    "type": ["Grass", "Poison"],
+    "type": ["GRASS", "POISON"],
     "ability": "Overgrow",
     "hp": 60,
     "attack": 62,
@@ -54,7 +54,7 @@
   {
     "name": "Venusaur",
     "id": 3,
-    "type": ["Grass", "Poison"],
+    "type": ["GRASS", "POISON"],
     "ability": "Overgrow",
     "hp": 80,
     "attack": 82,
@@ -82,7 +82,7 @@
   {
     "name": "Charmander",
     "id": 4,
-    "type": ["Fire"],
+    "type": ["FIRE"],
     "ability": "Blaze",
     "hp": 39,
     "attack": 52,
@@ -95,7 +95,7 @@
   {
     "name": "Charmeleon",
     "id": 5,
-    "type": ["Fire"],
+    "type": ["FIRE"],
     "ability": "Blaze",
     "hp": 58,
     "attack": 64,
@@ -108,7 +108,7 @@
   {
     "name": "Charizard",
     "id": 6,
-    "type": ["Fire", "Flying"],
+    "type": ["FIRE", "FLYING"],
     "ability": "Blaze",
     "hp": 78,
     "attack": 84,
@@ -121,7 +121,7 @@
   {
     "name": "Squirtle",
     "id": 7,
-    "type": ["Water"],
+    "type": ["WATER"],
     "ability": "Torrent",
     "hp": 44,
     "attack": 48,
@@ -134,7 +134,7 @@
   {
     "name": "Wartortle",
     "id": 8,
-    "type": ["Water"],
+    "type": ["WATER"],
     "ability": "Torrent",
     "hp": 59,
     "attack": 63,
@@ -147,7 +147,7 @@
   {
     "name": "Blastoise",
     "id": 9,
-    "type": ["Water"],
+    "type": ["WATER"],
     "ability": "Torrent",
     "hp": 79,
     "attack": 83,

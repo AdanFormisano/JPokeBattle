@@ -1,8 +1,10 @@
 package com.example.jpokebattle.poke;
 
+import com.example.jpokebattle.service.data.DataType;
+
 public class Move {
     private String name;
-    private String type;
+    private DataType type;
     private String category;
     private int power;
     private float accuracy;
@@ -12,7 +14,7 @@ public class Move {
 
     public Move(String name, String type, String category, int power, float accuracy, int priority, int pp) {
         this.name = name;
-        this.type = type;
+        this.type = DataType.valueOf(type);
         this.category = category;
         this.power = power;
         this.accuracy = accuracy;
@@ -23,7 +25,7 @@ public class Move {
 
     // Getters
     public String getName() { return this.name; }
-    public String getType() { return this.type; }
+    public DataType getType() { return this.type; }
     public String getCategory() { return this.category; }
     public int getPower() { return this.power; }
     public float getAccuracy() { return this.accuracy; }

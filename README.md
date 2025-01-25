@@ -1,7 +1,9 @@
 # JPokeBattle
 Project for the course _Metodologie di Programmazione_.
 
-Project Outline - https://docs.google.com/document/d/1R-P1Ls2Gattsm8uXU2dtBUSISje8JBVm81pcPh9sG14/edit?tab=t.0
+## Links
+[Project Outline](doc/progetto%20MDP%20A-L%2023_24.pdf)\
+[Course Website](https://classroom.google.com/u/1/c/NjY0NjY3MDQzNDE4)
 
 # Project structure
 The project is divided into two main packages:
