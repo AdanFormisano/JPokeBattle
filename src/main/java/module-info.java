@@ -11,4 +11,13 @@ module com.example.jpokebattle {
 
     opens com.example.jpokebattle.service.data to com.fasterxml.jackson.databind;
     exports com.example.jpokebattle.service.data;
+
+    opens com.example.jpokebattle.service.loader to com.fasterxml.jackson.databind;
+    exports com.example.jpokebattle.service.loader;
+
+    opens com.example.jpokebattle.poke to com.fasterxml.jackson.databind;
+    exports com.example.jpokebattle.poke;
+
+    opens com.example.jpokebattle.service to com.fasterxml.jackson.databind;
+    exports com.example.jpokebattle.service;
 }

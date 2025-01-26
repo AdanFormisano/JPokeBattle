@@ -1,5 +1,7 @@
 package com.example.jpokebattle.service.data;
 
+import com.example.jpokebattle.poke.EffortValue;
+
 import java.util.List;
 
 public class DataPokemon {
@@ -13,6 +15,7 @@ public class DataPokemon {
     private int specialAttack;
     private int specialDefense;
     private int speed;
+    private EffortValue effortValue;
     private List<DataMoveBasic> moves;
 
     public DataPokemon() {}
@@ -28,6 +31,7 @@ public class DataPokemon {
     public int getSpecialAttack() { return this.specialAttack; }
     public int getSpecialDefense() { return this.specialDefense; }
     public int getSpeed() { return this.speed; }
+    public EffortValue getEffortValue() { return this.effortValue; }
     public List<DataMoveBasic> getMoves() { return this.moves; }
 
     // Setters
@@ -41,6 +45,7 @@ public class DataPokemon {
     public void setSpecialAttack(int specialAttack) { this.specialAttack = specialAttack; }
     public void setSpecialDefense(int specialDefense) { this.specialDefense = specialDefense; }
     public void setSpeed(int speed) { this.speed = speed; }
+    public void setEffortValue(EffortValue effortValue) { this.effortValue = effortValue; }
     public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
 
     @Override

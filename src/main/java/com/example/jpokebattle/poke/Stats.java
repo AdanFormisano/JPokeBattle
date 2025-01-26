@@ -13,7 +13,7 @@ public class Stats {
     private double maxHP;
     private double currentHP;
     private final IndividualValue IV = new IndividualValue();
-    private final int EV = 1;
+    private final EffortValue EV = new EffortValue();
     private int level = 1;
 
     public Stats(BaseStats baseStats, Nature nature) {
@@ -64,11 +64,11 @@ public class Stats {
         int attack = baseStats.getAttack();
 
         if (nature.getIncreasedStat().equals("Attack")) {
-            return calculateStat(attack, IV.getAttack(), EV, level, 1.1);
+            return calculateStat(attack, IV.getAttack(), EV.getAttack(), level, 1.1);
         } else if (nature.getDecreasedStat().equals("Attack")) {
-            return calculateStat(attack, IV.getAttack(), EV, level, 0.9);
+            return calculateStat(attack, IV.getAttack(), EV.getAttack(), level, 0.9);
         } else {
-            return calculateStat(attack, IV.getAttack(), EV, level, 1);
+            return calculateStat(attack, IV.getAttack(), EV.getAttack(), level, 1);
         }
     }
 
@@ -77,11 +77,11 @@ public class Stats {
         int defense = baseStats.getAttack();
 
         if (nature.getIncreasedStat().equals("Defense")) {
-            return calculateStat(defense, IV.getDefense(), EV, level, 1.1);
+            return calculateStat(defense, IV.getDefense(), EV.getDefense(), level, 1.1);
         } else if (nature.getDecreasedStat().equals("Defense")) {
-            return calculateStat(defense, IV.getDefense(), EV, level, 0.9);
+            return calculateStat(defense, IV.getDefense(), EV.getDefense(), level, 0.9);
         } else {
-            return calculateStat(defense, IV.getDefense(), EV, level, 1);
+            return calculateStat(defense, IV.getDefense(), EV.getDefense(), level, 1);
         }
     }
 
@@ -90,11 +90,11 @@ public class Stats {
         int specialAttack = baseStats.getSpecialAttack();
 
         if (nature.getIncreasedStat().equals("Special Attack")) {
-            return calculateStat(specialAttack, IV.getSpecialAttack(), EV, level, 1.1);
+            return calculateStat(specialAttack, IV.getSpecialAttack(), EV.getSpecialAttack(), level, 1.1);
         } else if (nature.getDecreasedStat().equals("Special Attack")) {
-            return calculateStat(specialAttack, IV.getSpecialAttack(), EV, level, 0.9);
+            return calculateStat(specialAttack, IV.getSpecialAttack(), EV.getSpecialAttack(), level, 0.9);
         } else {
-            return calculateStat(specialAttack, IV.getSpecialAttack(), EV, level, 1);
+            return calculateStat(specialAttack, IV.getSpecialAttack(), EV.getSpecialAttack(), level, 1);
         }
     }
 
@@ -103,11 +103,11 @@ public class Stats {
         int specialDefense = baseStats.getSpecialDefense();
 
         if (nature.getIncreasedStat().equals("Special Defense")) {
-            return calculateStat(specialDefense, IV.getSpecialDefense(), EV, level, 1.1);
+            return calculateStat(specialDefense, IV.getSpecialDefense(), EV.getSpecialDefense(), level, 1.1);
         } else if (nature.getDecreasedStat().equals("Special Defense")) {
-            return calculateStat(specialDefense, IV.getSpecialDefense(), EV, level, 0.9);
+            return calculateStat(specialDefense, IV.getSpecialDefense(), EV.getSpecialDefense(), level, 0.9);
         } else {
-            return calculateStat(specialDefense, IV.getSpecialDefense(), EV, level, 1);
+            return calculateStat(specialDefense, IV.getSpecialDefense(), EV.getSpecialDefense(), level, 1);
         }
     }
 
@@ -116,17 +116,17 @@ public class Stats {
         int speed = baseStats.getSpeed();
 
         if (nature.getIncreasedStat().equals("Speed")) {
-            return calculateStat(speed, IV.getSpeed(), EV, level, 1.1);
+            return calculateStat(speed, IV.getSpeed(), EV.getSpeed(), level, 1.1);
         } else if (nature.getDecreasedStat().equals("Speed")) {
-            return calculateStat(speed, IV.getSpeed(), EV, level, 0.9);
+            return calculateStat(speed, IV.getSpeed(), EV.getSpeed(), level, 0.9);
         } else {
-            return calculateStat(speed, IV.getSpeed(), EV, level, 1);
+            return calculateStat(speed, IV.getSpeed(), EV.getSpeed(), level, 1);
         }
     }
 
     private double calculateMaxHP() {
         int hp = baseStats.getBaseHP();
-        double maxHP = Math.floor((double) ((2 * hp + IV.getHp() + EV) * level) / 100 + level + 10);
+        double maxHP = Math.floor((double) ((2 * hp + IV.getHp() + EV.getHP()) * level) / 100 + level + 10);
         return maxHP;
     }
 
