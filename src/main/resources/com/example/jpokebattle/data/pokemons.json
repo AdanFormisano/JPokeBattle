@@ -43,20 +43,28 @@
     "specialAttack": 80,
     "specialDefense": 80,
     "speed": 60,
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 1,
+      "specialDefense": 1,
+      "speed": 0
+    },
     "moves": [
-      {"lvl": "1", "name": "Tackle"},
-      {"lvl": "1", "name": "Growl"},
-      {"lvl": "1", "name": "Leech Seed"},
-      {"lvl": "4", "name": "Growl"},
-      {"lvl": "7", "name": "Leech Seed"},
-      {"lvl": "10", "name": "Vine Whip"},
-      {"lvl": "15", "name": "Poison Powder"},
-      {"lvl": "15", "name": "Sleep Powder"},
-      {"lvl": "22", "name": "Razor Leaf"},
-      {"lvl": "29", "name": "Sweet Scent"},
-      {"lvl": "38", "name": "Growth"},
-      {"lvl": "47", "name": "Synthesis"},
-      {"lvl": "56", "name": "Solar Beam"}
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 1, "name": "Growl"},
+      {"lvl": 1, "name": "Leech Seed"},
+      {"lvl": 4, "name": "Growl"},
+      {"lvl": 7, "name": "Leech Seed"},
+      {"lvl": 10, "name": "Vine Whip"},
+      {"lvl": 15, "name": "Poison Powder"},
+      {"lvl": 15, "name": "Sleep Powder"},
+      {"lvl": 22, "name": "Razor Leaf"},
+      {"lvl": 29, "name": "Sweet Scent"},
+      {"lvl": 38, "name": "Growth"},
+      {"lvl": 47, "name": "Synthesis"},
+      {"lvl": 56, "name": "Solar Beam"}
     ]
   },
   {
@@ -70,21 +78,29 @@
     "specialAttack": 100,
     "specialDefense": 100,
     "speed": 80,
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 2,
+      "specialDefense": 1,
+      "speed": 0
+    },
     "moves": [
-      {"lvl": "1", "name": "Tackle"},
-      {"lvl": "1", "name": "Growl"},
-      {"lvl": "1", "name": "Leech Seed"},
-      {"lvl": "1", "name": "Vine Whip"},
-      {"lvl": "4", "name": "Growl"},
-      {"lvl": "7", "name": "Leech Seed"},
-      {"lvl": "10", "name": "Vine Whip"},
-      {"lvl": "15", "name": "Poison Powder"},
-      {"lvl": "15", "name": "Sleep Powder"},
-      {"lvl": "22", "name": "Razor Leaf"},
-      {"lvl": "29", "name": "Sweet Scent"},
-      {"lvl": "41", "name": "Growth"},
-      {"lvl": "53", "name": "Synthesis"},
-      {"lvl": "65", "name": "Solar Beam"}
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 1, "name": "Growl"},
+      {"lvl": 1, "name": "Leech Seed"},
+      {"lvl": 1, "name": "Vine Whip"},
+      {"lvl": 4, "name": "Growl"},
+      {"lvl": 7, "name": "Leech Seed"},
+      {"lvl": 10, "name": "Vine Whip"},
+      {"lvl": 15, "name": "Poison Powder"},
+      {"lvl": 15, "name": "Sleep Powder"},
+      {"lvl": 22, "name": "Razor Leaf"},
+      {"lvl": 29, "name": "Sweet Scent"},
+      {"lvl": 41, "name": "Growth"},
+      {"lvl": 53, "name": "Synthesis"},
+      {"lvl": 65, "name": "Solar Beam"}
     ]
   },
   {
@@ -98,7 +114,26 @@
     "specialAttack": 60,
     "specialDefense": 50,
     "speed": 65,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 0,
+      "specialDefense": 0,
+      "speed": 1
+    },
+    "moves": [
+      {"lvl": 1, "name": "Scratch"},
+      {"lvl": 1, "name": "Growl"},
+      {"lvl": 7, "name": "Ember"},
+      {"lvl": 13, "name": "Smoke Screen"},
+      {"lvl": 19, "name": "Rage"},
+      {"lvl": 25, "name": "Scary Face"},
+      {"lvl": 31, "name": "Flamethrower"},
+      {"lvl": 37, "name": "Slash"},
+      {"lvl": 43, "name": "Dragon Rage"},
+      {"lvl": 49, "name": "Fire Spin"}
+    ]
   },
   {
     "name": "Charmeleon",
@@ -111,7 +146,27 @@
     "specialAttack": 80,
     "specialDefense": 65,
     "speed": 80,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 1,
+      "specialDefense": 0,
+      "speed": 1
+    },
+    "moves": [
+      {"lvl": 1, "name": "Scratch"},
+      {"lvl": 1, "name": "Growl"},
+      {"lvl": 1, "name": "Ember"},
+      {"lvl": 7, "name": "Ember"},
+      {"lvl": 13, "name": "Smoke Screen"},
+      {"lvl": 20, "name": "Rage"},
+      {"lvl": 27, "name": "Scary Face"},
+      {"lvl": 34, "name": "Flamethrower"},
+      {"lvl": 41, "name": "Slash"},
+      {"lvl": 48, "name": "Dragon Rage"},
+      {"lvl": 55, "name": "Fire Spin"}
+    ]
   },
   {
     "name": "Charizard",
@@ -124,7 +179,29 @@
     "specialAttack": 109,
     "specialDefense": 85,
     "speed": 100,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 3,
+      "specialDefense": 0,
+      "speed": 0
+    },
+    "moves": [
+      {"lvl": 1, "name": "Scratch"},
+      {"lvl": 1, "name": "Growl"},
+      {"lvl": 1, "name": "Ember"},
+      {"lvl": 1, "name": "Smoke Screen"},
+      {"lvl": 7, "name": "Ember"},
+      {"lvl": 13, "name": "Smoke Screen"},
+      {"lvl": 20, "name": "Rage"},
+      {"lvl": 27, "name": "Scary Face"},
+      {"lvl": 34, "name": "Flamethrower"},
+      {"lvl": 36, "name": "Wing Attack"},
+      {"lvl": 44, "name": "Slash"},
+      {"lvl": 54, "name": "Dragon Rage"},
+      {"lvl": 64, "name": "Fire Spin"}
+    ]
   },
   {
     "name": "Squirtle",
@@ -137,7 +214,27 @@
     "specialAttack": 50,
     "specialDefense": 64,
     "speed": 43,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 1,
+      "specialAttack": 0,
+      "specialDefense": 0,
+      "speed": 0
+    },
+    "moves": [
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 4, "name": "Tail Whip"},
+      {"lvl": 7, "name": "Bubble"},
+      {"lvl": 10, "name": "Withdraw"},
+      {"lvl": 13, "name": "Water Gun"},
+      {"lvl": 18, "name": "Bite"},
+      {"lvl": 23, "name": "Rapid Spin"},
+      {"lvl": 28, "name": "Protect"},
+      {"lvl": 33, "name": "Rain Dance"},
+      {"lvl": 40, "name": "Skull Bash"},
+      {"lvl": 47, "name": "Hydro Pump"}
+    ]
   },
   {
     "name": "Wartortle",
@@ -150,7 +247,29 @@
     "specialAttack": 65,
     "specialDefense": 80,
     "speed": 58,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 1,
+      "specialAttack": 0,
+      "specialDefense": 1,
+      "speed": 0
+    },
+    "moves": [
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 1, "name": "Tail Whip"},
+      {"lvl": 1, "name": "Bubble"},
+      {"lvl": 4, "name": "Tail Whip"},
+      {"lvl": 7, "name": "Bubble"},
+      {"lvl": 10, "name": "Withdraw"},
+      {"lvl": 13, "name": "Water Gun"},
+      {"lvl": 19, "name": "Bite"},
+      {"lvl": 25, "name": "Rapid Spin"},
+      {"lvl": 31, "name": "Protect"},
+      {"lvl": 37, "name": "Rain Dance"},
+      {"lvl": 45, "name": "Skull Bash"},
+      {"lvl": 53, "name": "Hydro Pump"}
+    ]
   },
   {
     "name": "Blastoise",
@@ -163,6 +282,29 @@
     "specialAttack": 85,
     "specialDefense": 105,
     "speed": 78,
-    "moves": []
+    "effortValue": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "specialAttack": 0,
+      "specialDefense": 3,
+      "speed": 0
+    },
+    "moves": [
+      {"lvl": 1, "name": "Tackle"},
+      {"lvl": 1, "name": "Tail Whip"},
+      {"lvl": 1, "name": "Bubble"},
+      {"lvl": 1, "name": "Withdraw"},
+      {"lvl": 4, "name": "Tail Whip"},
+      {"lvl": 7, "name": "Bubble"},
+      {"lvl": 10, "name": "Withdraw"},
+      {"lvl": 13, "name": "Water Gun"},
+      {"lvl": 19, "name": "Bite"},
+      {"lvl": 25, "name": "Rapid Spin"},
+      {"lvl": 31, "name": "Protect"},
+      {"lvl": 42, "name": "Rain Dance"},
+      {"lvl": 55, "name": "Skull Bash"},
+      {"lvl": 68, "name": "Hydro Pump"}
+    ]
   }
 ]

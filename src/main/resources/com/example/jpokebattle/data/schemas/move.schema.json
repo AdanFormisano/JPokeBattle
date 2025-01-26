@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["name", "type", "category", "power", "accuracy", "priority", "pp"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the move"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST", "STEEL", "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK"],
+        "description": "Type of the move"
+      },
+      "category": {
+        "type": "string",
+        "enum": ["Status", "Physical", "Special"],
+        "description": "Category of the move"
+      },
+      "power": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Base power of the move"
+      },
+      "accuracy": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100,
+        "description": "Accuracy percentage of the move"
+      },
+      "priority": {
+        "type": "integer",
+        "description": "Priority level of the move"
+      },
+      "pp": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Power Points (PP) of the move"
+      }
+    }
+  }
+}

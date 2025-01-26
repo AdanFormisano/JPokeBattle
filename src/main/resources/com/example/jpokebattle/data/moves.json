@@ -115,5 +115,158 @@
     "accuracy": 100,
     "priority": 0,
     "pp": 10
+  },
+  {
+    "name": "Ember",
+    "type": "FIRE",
+    "category": "Special",
+    "power": 40,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 25
+  },
+  {
+    "name": "Smoke Screen",
+    "type": "NORMAL",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 20
+  },
+  {
+      "name": "Rage",
+      "type": "NORMAL",
+      "category": "Physical",
+      "power": 20,
+      "accuracy": 100,
+      "priority": 0,
+      "pp": 20
+  },
+  {
+      "name": "Scary Face",
+      "type": "NORMAL",
+      "category": "Status",
+      "power": 0,
+      "accuracy": 90,
+      "priority": 0,
+      "pp": 10
+  },
+  {
+    "name": "Flamethrower",
+    "type": "FIRE",
+    "category": "Special",
+    "power": 95,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 15
+  },
+  {
+    "name": "Slash",
+    "type": "NORMAL",
+    "category": "Physical",
+    "power": 70,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 20
+  },
+  {
+    "name": "Dragon Rage",
+    "type": "DRAGON",
+    "category": "Special",
+    "power": 0,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 10
+  },
+  {
+    "name": "Fire Spin",
+    "type": "FIRE",
+    "category": "Special",
+    "power": 15,
+    "accuracy": 85,
+    "priority": 0,
+    "pp": 15
+  },
+  {
+    "name": "Water Gun",
+    "type": "WATER",
+    "category": "Special",
+    "power": 40,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 25
+  },
+  {
+    "name": "Withdraw",
+    "type": "WATER",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "priority": 0,
+    "pp": 40
+  },
+  {
+    "name": "Bubble",
+    "type": "WATER",
+    "category": "Special",
+    "power": 20,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 30
+  },
+  {
+    "name": "Bite",
+    "type": "DARK",
+    "category": "Physical",
+    "power": 60,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 25
+  },
+  {
+    "name": "Rapid Spin",
+    "type": "NORMAL",
+    "category": "Physical",
+    "power": 20,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 40
+  },
+  {
+    "name": "Protect",
+    "type": "NORMAL",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "priority": 3,
+    "pp": 10
+  },
+  {
+    "name": "Rain Dance",
+    "type": "WATER",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "priority": 0,
+    "pp": 5
+  },
+  {
+    "name": "Skull Bash",
+    "type": "NORMAL",
+    "category": "Physical",
+    "power": 100,
+    "accuracy": 100,
+    "priority": 0,
+    "pp": 15
+  },
+  {
+    "name": "Hydro Pump",
+    "type": "WATER",
+    "category": "Special",
+    "power": 120,
+    "accuracy": 80,
+    "priority": 0,
+    "pp": 5
   }
 ]
