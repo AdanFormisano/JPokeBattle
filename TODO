@@ -1,15 +1,37 @@
-- [ ] Bulbasaur, Charmander, Squirtile
-- [ ] Base pokémon stats
-- [ ] Assign 2 base lvl 1 moves for each pokémon
-- [ ] UI for start, battle, change pokémon, win/lose
-- [ ] JavaFX
-- [ ] Implement all pokémons moves, following game type mechanics
-- [ ] Individual values and Effort Values [https://it.wikipedia.org/wiki/Modalit%C3%A0_di_gioco_di_Pok%C3%A9mon#Statistiche]
-  - [ ] Used the right way for stats calculation [https://www.dragonflycave.com/mechanics/stats]
-- [ ] NPCs
-- [ ] Pokémon's correct stats (eg. Keeping track of HP across battles, ecc)
-- [ ] Leaderboard page: top 10 best runs
-- [ ] Bot AI
-- [ ] Profile management
-- [ ] Save/load game
- - ☐ Manage "Drangon Rage" move: deals 40 HP damage flat
+Minimum:
+  ☐ Assign 2 lvl 1 moves to each pokemon
+    ☐ Moves assignments based on levels
+  ☐ Implement UI for:
+    ☐ Start
+    ☐ Battle
+    ☐ Pokemon switch
+    ☐ Win
+    ☐ Lose
+  ☐ Series of random NPCs until first lost battle (Roguelike)
+
+  ✔ Bulbasaur, Charmander, Squirtile @done (25-01-26 20:04)
+  ✔ Base pokémon stats @done (25-01-26 20:05)
+
+Tipical:
+  ☐ Implement ALL moves for chosen Pokemons
+  ☐ Pokemon's persistence across battles
+  ☐ Implement a top 10 leaderboard for the most won battles in a single run
+    ☐ Also UI for it
+
+Extra:
+  Evolution Set:
+    ☐ Implement evolutions and level increase
+    ☐ Implement learining new moves
+      ☐  Implement a move effect factory
+       ☐ Json contains details for each move and it's effect
+       ☐ Factory builds the effects
+
+    ✔ Implement IV and EV @done (25-01-27 00:06)
+  Multimedia Set:
+    ☐ Implement animations
+    ☐ Implement audio
+    ☐ Implement other graphical effects (?)
+  Bot Set:
+    ☐ Implement Bot AI
+  TUI Set:
+    ☐ No GUI mode
