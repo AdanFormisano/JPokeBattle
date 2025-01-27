@@ -10,6 +10,7 @@
     "specialAttack": 65,
     "specialDefense": 65,
     "speed": 45,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -43,6 +44,7 @@
     "specialAttack": 80,
     "specialDefense": 80,
     "speed": 60,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -78,6 +80,7 @@
     "specialAttack": 100,
     "specialDefense": 100,
     "speed": 80,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -114,6 +117,7 @@
     "specialAttack": 60,
     "specialDefense": 50,
     "speed": 65,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -146,6 +150,7 @@
     "specialAttack": 80,
     "specialDefense": 65,
     "speed": 80,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -179,6 +184,7 @@
     "specialAttack": 109,
     "specialDefense": 85,
     "speed": 100,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -214,6 +220,7 @@
     "specialAttack": 50,
     "specialDefense": 64,
     "speed": 43,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -247,6 +254,7 @@
     "specialAttack": 65,
     "specialDefense": 80,
     "speed": 58,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,
@@ -282,6 +290,7 @@
     "specialAttack": 85,
     "specialDefense": 105,
     "speed": 78,
+    "levelingRate": "MEDIUM_SLOW",
     "effortValue": {
       "hp": 0,
       "attack": 0,

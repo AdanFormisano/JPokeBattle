@@ -14,6 +14,7 @@ Minimum:
 
 Tipical:
   ☐ Implement ALL moves for chosen Pokemons
+    ☐ Implement Abilities
   ☐ Pokemon's persistence across battles
   ☐ Implement a top 10 leaderboard for the most won battles in a single run
     ☐ Also UI for it
@@ -21,6 +22,7 @@ Tipical:
 Extra:
   Evolution Set:
     ☐ Implement evolutions and level increase
+      ☐ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level)
     ☐ Implement learining new moves
       ☐  Implement a move effect factory
        ☐ Json contains details for each move and it's effect

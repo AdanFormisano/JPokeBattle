@@ -17,6 +17,7 @@ public class DataPokemon {
     private int speed;
     private EffortValue effortValue;
     private List<DataMoveBasic> moves;
+    private String levelingRate;
 
     public DataPokemon() {}
 
@@ -33,6 +34,7 @@ public class DataPokemon {
     public int getSpeed() { return this.speed; }
     public EffortValue getEffortValue() { return this.effortValue; }
     public List<DataMoveBasic> getMoves() { return this.moves; }
+    public String getLevelingRate() { return this.levelingRate; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -47,6 +49,7 @@ public class DataPokemon {
     public void setSpeed(int speed) { this.speed = speed; }
     public void setEffortValue(EffortValue effortValue) { this.effortValue = effortValue; }
     public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
+    public void setLevelingRate(String levelingRate) { this.levelingRate = levelingRate; }
 
     @Override
     public String toString() {
@@ -63,6 +66,7 @@ public class DataPokemon {
                 ", specialDefense=" + specialDefense +
                 ", speed=" + speed +
                 ", moves=" + moves +
+                ", levelingRate=" + levelingRate +
                 '}';
     }
 }

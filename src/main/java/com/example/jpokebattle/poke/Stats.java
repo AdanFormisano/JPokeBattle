@@ -1,6 +1,7 @@
 package com.example.jpokebattle.poke;
 
 import com.example.jpokebattle.service.PositiveInt;
+import com.example.jpokebattle.service.data.ExpPattern;
 
 public class Stats {
     private final Nature nature;
@@ -15,14 +16,17 @@ public class Stats {
     private final IndividualValue IV = new IndividualValue();
     private final EffortValue EV = new EffortValue();
     private int level = 1;
+    private final ExpPattern expPattern;
+    private int currentExp = 0;
 
-    public Stats(BaseStats baseStats, Nature nature) {
+    public Stats(BaseStats baseStats, Nature nature, String expPattern) {
         this.baseStats = baseStats;
         this.nature = nature;
+        this.expPattern = ExpPattern.valueOf(expPattern);
 
         calculateAllStats();
 
-        System.out.printf("IVs: %s\n", IV.toString());
+        System.out.printf("IVs: %s\n", IV);
         System.out.printf("Max HP: %.0f\n", maxHP);
     }
 
@@ -35,15 +39,24 @@ public class Stats {
     public double getMaxHP() { return maxHP; }
     public double getCurrentHP() { return currentHP; }
     public int getLevel() { return level; }
+    public int getCurrentExp() { return currentExp; }
+    public int getExpToNextLevel() { return expPattern.getRequiredExp(level + 1) - currentExp;}
 
     // Setters
     public void increaseLevel() { this.level++; }
-    public void increaseMaxHp(PositiveInt increase) { maxHP += increase.doubleValue(); }
+    public void increaseCurrentHP(PositiveInt increase) { currentHP += increase.doubleValue(); }
     public void increaseAttack(PositiveInt increase) { attack += increase.doubleValue(); }
     public void increaseDefense(PositiveInt increase) { defense += increase.doubleValue(); }
     public void increaseSpecialAttack(PositiveInt increase) { specialAttack += increase.doubleValue(); }
     public void increaseSpecialDefense(PositiveInt increase) { specialDefense += increase.doubleValue(); }
     public void increaseSpeed(PositiveInt increase) { speed += increase.doubleValue(); }
+    public void increaseCurrentExp(PositiveInt increase) {
+        // Need to check if level up
+        currentExp += increase.intValue();
+        if (currentExp >= expPattern.getRequiredExp(level + 1)) {
+            increaseLevel();
+        }
+    }
 
     public void decreaseCurrentHP(double decrease) {
         currentHP -= decrease;
@@ -126,8 +139,7 @@ public class Stats {
 
     private double calculateMaxHP() {
         int hp = baseStats.getBaseHP();
-        double maxHP = Math.floor((double) ((2 * hp + IV.getHp() + EV.getHP()) * level) / 100 + level + 10);
-        return maxHP;
+        return Math.floor((double) ((2 * hp + IV.getHp() + EV.getHP()) * level) / 100 + level + 10);
     }
 
     private double calculateStat(int baseStat, int IV, int EV, int level, double natureMultiplier) {

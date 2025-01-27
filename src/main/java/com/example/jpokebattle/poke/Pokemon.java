@@ -19,7 +19,7 @@ public class Pokemon {
         id = dataPokemon.getId();
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
-        stats = new Stats(baseStats, nature);
+        stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate());
     }
 
     // Getters
@@ -33,5 +33,5 @@ public class Pokemon {
 
     // Game methods
     public void takeDamage(double damageTaken) { stats.decreaseCurrentHP(damageTaken); }
-    public void heal(int healAmount) { stats.increaseMaxHp(new PositiveInt(healAmount)); }
+    public void heal(int healAmount) { stats.increaseCurrentHP(new PositiveInt(healAmount)); }
 }

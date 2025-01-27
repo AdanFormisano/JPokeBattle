@@ -10,6 +10,6 @@ public class PositiveInt {
         this.value = value;
     }
 
-    public int getValue() { return this.value; }
     public double doubleValue() { return this.value; }
+    public int intValue() { return this.value; }
 }
