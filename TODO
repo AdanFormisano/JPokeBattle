@@ -22,7 +22,8 @@ Tipical:
 Extra:
   Evolution Set:
     ☐ Implement evolutions and level increase
-      ☐ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level)
+      ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
+      ☐ When levelup check if new moves need to be learned
     ☐ Implement learining new moves
       ☐  Implement a move effect factory
        ☐ Json contains details for each move and it's effect

@@ -20,8 +20,6 @@ public class DataPokemon {
     private String levelingRate;
     private int expYield;
 
-    public DataPokemon() {}
-
     // Getters
     public int getId() { return this.id; }
     public String getName() { return this.name; }

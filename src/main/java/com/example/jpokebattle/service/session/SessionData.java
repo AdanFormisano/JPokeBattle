@@ -2,6 +2,7 @@ package com.example.jpokebattle.service.session;
 
 import com.example.jpokebattle.game.Player;
 import com.example.jpokebattle.game.Trainer;
+import com.example.jpokebattle.poke.EffortValue;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
@@ -24,13 +25,16 @@ public class SessionData {
 
     private int currentLvl = 1; // Current level of the session
     private final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
-    private final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
+    public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
     SessionData() {
         // For testing purposes the player and enemy pokemons are hardcoded
         playerPokemons = new ArrayList<>(List.of(
                 new Pokemon(pl.getPokemonByName("Bulbasaur")
                 )));
+        // Increase the EV of the first pokemon to almost assure a first turn win
+        playerPokemons.getFirst().getStats().gainEV(new EffortValue(0, 1, 0, 1, 1, 0));
+
         enemyPokemons = new ArrayList<>(List.of(
                 new Pokemon(pl.getPokemonByName("Charmander")
                 )));

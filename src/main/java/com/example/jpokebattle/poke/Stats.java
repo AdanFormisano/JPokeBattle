@@ -40,6 +40,7 @@ public class Stats {
     public double getSpeed() { return speed; }
     public double getMaxHP() { return maxHP; }
     public double getCurrentHP() { return currentHP; }
+    public EffortValue getEV() { return EV; }
     public int getLevel() { return level; }
     public double getCurrentExp() { return currentExp; }
     public double getExpToNextLevel() { return expPattern.getRequiredExp(level + 1) - currentExp;}
@@ -58,6 +59,9 @@ public class Stats {
         double expGained = (double) (baseExpYield * enemyLvl) / 7 * (isWild ? 1 : 1.5);
         currentExp += expGained;
         return expGained;
+    }
+    public void gainEV(EffortValue ev) {
+        EV.add(ev);
     }
 
     public void decreaseCurrentHP(double decrease) {

@@ -1,8 +1,10 @@
 package com.example.jpokebattle.game;
 
+import com.example.jpokebattle.poke.EffortValue;
 import com.example.jpokebattle.poke.Move;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.data.DataTypeChart;
+import com.example.jpokebattle.service.loader.PokeLoader;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -18,8 +20,10 @@ public class Battle {
     private Pokemon currentEnemyPokemon;
     private final Scanner scanner;
     private final RandomGenerator randGen = RandomGenerator.getDefault();
+    private final PokeLoader pl;
 
-    public Battle(Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons) {
+    public Battle(PokeLoader pl, Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons) {
+        this.pl = pl;
         this.player = player;
         this.trainer = trainer;
         this.playerPokemons = playerPokemons;
@@ -231,7 +235,10 @@ public class Battle {
         if (currentEnemyPokemon.getStats().getCurrentHP() <= 0) {
             try {
                 System.out.println(currentEnemyPokemon.getName() + " fainted!");
+
                 giveExp(currentPlayerPokemon,currentEnemyPokemon);
+                giveEV(currentPlayerPokemon,currentEnemyPokemon);
+
                 enemyPokemons.remove(currentEnemyPokemon);
                 currentEnemyPokemon = enemyPokemons.getFirst();
             } catch (NoSuchElementException e) {
@@ -253,5 +260,12 @@ public class Battle {
             System.out.printf("%s is now level: %d%n", gainingPokemon.getName(), gainingPokemon.getStats().getLevel());
         }
         System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExp());
+    }
+
+    private void giveEV(Pokemon gainingPokemon, Pokemon faintedPokemon) {
+        EffortValue gainedEV = pl.getPokemonByName(faintedPokemon.getName()).getEffortValue();
+        gainingPokemon.getStats().gainEV(gainedEV);
+        System.out.printf("%s gained %s EVs!%n", gainingPokemon.getName(), gainedEV);   // TODO: Maybe format the print as "HP: +1, Attack: +2, Defense: +0, Special Attack: +1, Special Defense: +1, Speed: +0"
+        System.out.printf("Current EVs: %s%n", gainingPokemon.getStats().getEV());
     }
 }

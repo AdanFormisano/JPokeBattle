@@ -1,20 +1,22 @@
 package com.example.jpokebattle.poke;
 
 public class EffortValue {
-    private int hp;
-    private int attack;
-    private int defense;
-    private int specialAttack;
-    private int specialDefense;
-    private int speed;
+    private int hp = 0;
+    private int attack = 0;
+    private int defense = 0;
+    private int specialAttack = 0;
+    private int specialDefense = 0;
+    private int speed = 0;
 
-    public EffortValue() {
-        this.hp = 0;
-        this.attack = 0;
-        this.defense = 0;
-        this.specialAttack = 0;
-        this.specialDefense = 0;
-        this.speed = 0;
+    public EffortValue() {}
+
+    public EffortValue(int hp, int attack, int defense, int specialAttack, int specialDefense, int speed) {
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.specialAttack = specialAttack;
+        this.specialDefense = specialDefense;
+        this.speed = speed;
     }
 
     public void increaseHP(int increase) { hp += increase; }
@@ -23,6 +25,14 @@ public class EffortValue {
     public void increaseSpecialAttack(int increase) { specialAttack += increase; }
     public void increaseSpecialDefense(int increase) { specialDefense += increase; }
     public void increaseSpeed(int increase) { speed += increase; }
+    public void add(EffortValue ev) {
+        hp += ev.hp;
+        attack += ev.attack;
+        defense += ev.defense;
+        specialAttack += ev.specialAttack;
+        specialDefense += ev.specialDefense;
+        speed += ev.speed;
+    }
 
     public int getHP() { return hp; }
     public int getAttack() { return attack; }

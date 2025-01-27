@@ -37,6 +37,6 @@ public class NoGuiSession implements PokeGameSession {
 
     @Override
     public void playGame() {
-        Battle battle = new Battle(sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
+        Battle battle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
     }
 }

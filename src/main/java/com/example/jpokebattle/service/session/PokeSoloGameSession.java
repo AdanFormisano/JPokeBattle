@@ -22,6 +22,6 @@ public class PokeSoloGameSession implements PokeGameSession {
     public void playGame() {
         System.out.println("Playing game");
 
-        Battle battle = new Battle(sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
+        Battle battle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
     }
 }
