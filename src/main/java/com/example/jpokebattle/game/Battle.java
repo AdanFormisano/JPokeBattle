@@ -246,11 +246,12 @@ public class Battle {
         int enemyLvl = faintedPokemon.getStats().getLevel();
         boolean isWild = true; // For now, all enemy pokemon are wild
         var gainedExp = gainingPokemon.getStats().gainExp(enemyLvl, baseExpYield, isWild);
-        System.out.printf("%s gained %f EXP! [%f/%f]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getExpToNextLevel());
 
         if (gainedExp > gainingPokemon.getStats().getExpToNextLevel()) {
             gainingPokemon.getStats().increaseLevel();
             System.out.println(gainingPokemon.getName() + " has leveled up!");
+            System.out.printf("%s is now level: %d%n", gainingPokemon.getName(), gainingPokemon.getStats().getLevel());
         }
+        System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExp());
     }
 }

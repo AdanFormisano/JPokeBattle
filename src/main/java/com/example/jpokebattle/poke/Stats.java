@@ -43,6 +43,7 @@ public class Stats {
     public int getLevel() { return level; }
     public double getCurrentExp() { return currentExp; }
     public double getExpToNextLevel() { return expPattern.getRequiredExp(level + 1) - currentExp;}
+    public int getTotalExp() { return expPattern.getRequiredExp(level + 1); }
     public int getExpYield() { return expYield; }
 
     // Setters
