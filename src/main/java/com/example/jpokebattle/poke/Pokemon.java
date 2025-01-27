@@ -19,7 +19,7 @@ public class Pokemon {
         id = dataPokemon.getId();
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
-        stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate());
+        stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate(), dataPokemon.getExpYield());
     }
 
     // Getters

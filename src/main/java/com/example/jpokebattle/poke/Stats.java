@@ -17,12 +17,14 @@ public class Stats {
     private final EffortValue EV = new EffortValue();
     private int level = 1;
     private final ExpPattern expPattern;
-    private int currentExp = 0;
+    private double currentExp = 0;
+    private final int expYield;
 
-    public Stats(BaseStats baseStats, Nature nature, String expPattern) {
+    public Stats(BaseStats baseStats, Nature nature, String expPattern, int expYield) {
         this.baseStats = baseStats;
         this.nature = nature;
         this.expPattern = ExpPattern.valueOf(expPattern);
+        this.expYield = expYield;
 
         calculateAllStats();
 
@@ -39,8 +41,9 @@ public class Stats {
     public double getMaxHP() { return maxHP; }
     public double getCurrentHP() { return currentHP; }
     public int getLevel() { return level; }
-    public int getCurrentExp() { return currentExp; }
-    public int getExpToNextLevel() { return expPattern.getRequiredExp(level + 1) - currentExp;}
+    public double getCurrentExp() { return currentExp; }
+    public double getExpToNextLevel() { return expPattern.getRequiredExp(level + 1) - currentExp;}
+    public int getExpYield() { return expYield; }
 
     // Setters
     public void increaseLevel() { this.level++; }
@@ -50,12 +53,10 @@ public class Stats {
     public void increaseSpecialAttack(PositiveInt increase) { specialAttack += increase.doubleValue(); }
     public void increaseSpecialDefense(PositiveInt increase) { specialDefense += increase.doubleValue(); }
     public void increaseSpeed(PositiveInt increase) { speed += increase.doubleValue(); }
-    public void increaseCurrentExp(PositiveInt increase) {
-        // Need to check if level up
-        currentExp += increase.intValue();
-        if (currentExp >= expPattern.getRequiredExp(level + 1)) {
-            increaseLevel();
-        }
+    public double gainExp(int enemyLvl, int baseExpYield, boolean isWild) {
+        double expGained = (double) (baseExpYield * enemyLvl) / 7 * (isWild ? 1 : 1.5);
+        currentExp += expGained;
+        return expGained;
     }
 
     public void decreaseCurrentHP(double decrease) {

@@ -231,12 +231,26 @@ public class Battle {
         if (currentEnemyPokemon.getStats().getCurrentHP() <= 0) {
             try {
                 System.out.println(currentEnemyPokemon.getName() + " fainted!");
+                giveExp(currentPlayerPokemon,currentEnemyPokemon);
                 enemyPokemons.remove(currentEnemyPokemon);
                 currentEnemyPokemon = enemyPokemons.getFirst();
             } catch (NoSuchElementException e) {
                 System.out.println("Trainer has no more Pokemon left!");
                 currentEnemyPokemon = null;
             }
+        }
+    }
+
+    private void giveExp(Pokemon gainingPokemon, Pokemon faintedPokemon) {
+        int baseExpYield = faintedPokemon.getStats().getExpYield();
+        int enemyLvl = faintedPokemon.getStats().getLevel();
+        boolean isWild = true; // For now, all enemy pokemon are wild
+        var gainedExp = gainingPokemon.getStats().gainExp(enemyLvl, baseExpYield, isWild);
+        System.out.printf("%s gained %f EXP! [%f/%f]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getExpToNextLevel());
+
+        if (gainedExp > gainingPokemon.getStats().getExpToNextLevel()) {
+            gainingPokemon.getStats().increaseLevel();
+            System.out.println(gainingPokemon.getName() + " has leveled up!");
         }
     }
 }
