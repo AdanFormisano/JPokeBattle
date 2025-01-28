@@ -10,7 +10,7 @@ public class NoGuiSession implements PokeGameSession {
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void startGame() {
+    public void startSession() {
         // Init Session data
         System.out.println("   __     ______   ______     __  __     ______     ______     ______     ______   ______   __         ______    \n" +
                 "  /\\ \\   /\\  == \\ /\\  __ \\   /\\ \\/ /    /\\  ___\\   /\\  == \\   /\\  __ \\   /\\__  _\\ /\\__  _\\ /\\ \\       /\\  ___\\   \n" +
@@ -31,12 +31,13 @@ public class NoGuiSession implements PokeGameSession {
     }
 
     @Override
-    public void endGame() {
+    public void endSession() {
 
     }
 
     @Override
-    public void playGame() {
-        Battle battle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
+    public void playSession() {
+        SessionGame sessionGame = new SessionGame(sessionData);
+        sessionGame.run();
     }
 }

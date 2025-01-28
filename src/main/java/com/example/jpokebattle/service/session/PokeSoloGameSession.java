@@ -8,18 +8,18 @@ public class PokeSoloGameSession implements PokeGameSession {
     SessionData sessionData = new SessionData();
 
     @Override
-    public void startGame() {
+    public void startSession() {
         // Init Session data
         System.out.println("Starting game");
     }
 
     @Override
-    public void endGame() {
+    public void endSession() {
         System.out.println("Ending game");
     }
 
     @Override
-    public void playGame() {
+    public void playSession() {
         System.out.println("Playing game");
 
         Battle battle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);

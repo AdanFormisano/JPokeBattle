@@ -19,11 +19,10 @@ import java.util.List;
 
 public class SessionData {
     public Player player;
-    public Trainer trainer = new Trainer("Trainer", 0);
+    public Trainer trainer;
     public List<Pokemon> playerPokemons;
     public List<Pokemon> enemyPokemons;
 
-    private int currentLvl = 1; // Current level of the session
     private final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 

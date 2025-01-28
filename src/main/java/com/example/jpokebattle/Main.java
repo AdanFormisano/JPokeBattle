@@ -1,7 +1,6 @@
 package com.example.jpokebattle;
 
 import com.example.jpokebattle.service.session.NoGuiSession;
-import com.example.jpokebattle.service.session.PokeSoloGameSession;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +10,8 @@ public class Main {
         NoGuiSession gameSession = new NoGuiSession();
 
         // Start the game
-        gameSession.startGame();
-        gameSession.playGame();
-        gameSession.endGame();
+        gameSession.startSession();
+        gameSession.playSession();
+        gameSession.endSession();
     }
 }

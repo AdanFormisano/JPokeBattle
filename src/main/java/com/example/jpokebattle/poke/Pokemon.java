@@ -28,6 +28,17 @@ public class Pokemon {
         checkNewMoves();
     }
 
+    public Pokemon(DataPokemon dataPokemon, int lvl) {
+        id = dataPokemon.getId();
+        name = dataPokemon.getName();
+        baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
+        stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate(), dataPokemon.getExpYield());
+        while (stats.getLevel() < lvl) {
+            stats.increaseLevel();
+        }
+        checkNewMoves();
+    }
+
     // Getters
     public int getId() { return id; }
     public String getName() { return name; }
@@ -50,7 +61,8 @@ public class Pokemon {
                 break;
             } else{
                 DataMove dataMove = ml.getMoveByName(dataMoveBasic.getName());
-                if (dataMove != null && moveList.size() < 4) {
+
+                if (moveList.size() < 4 && moveList.stream().noneMatch(move -> move.getName().equals(dataMove.getName()))) {
                     moveList.add(new Move(dataMove.getName(), dataMove.getType(), dataMove.getCategory(), dataMove.getPower(), dataMove.getAccuracy(), dataMove.getPriority(), dataMove.getPp()));
                     System.out.println("Pokemon " + name + " learned " + dataMoveBasic.getName());
                 } else if (moveList.size() >= 4) {
