@@ -1,6 +1,6 @@
 Minimum:
   ☐ Assign 2 lvl 1 moves to each pokemon
-    ☐ Moves assignments based on levels
+    ✔ Moves assignments based on levels @done (25-01-28 18:01)
   ☐ Implement UI for:
     ☐ Start
     ☐ Battle
@@ -14,16 +14,16 @@ Minimum:
 
 Tipical:
   ☐ Implement ALL moves for chosen Pokemons
-    ☐ Implement Abilities
-  ☐ Pokemon's persistence across battles
+  ☐ Implement Abilities
   ☐ Implement a top 10 leaderboard for the most won battles in a single run
     ☐ Also UI for it
 
+  ✔ Pokemon's persistence across battles @done (25-01-28 18:01)
 Extra:
   Evolution Set:
     ☐ Implement evolutions and level increase
       ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
-      ☐ When levelup check if new moves need to be learned
+      ✔ When levelup check if new moves need to be learned @done (25-01-28 18:00)
     ☐ Implement learining new moves
       ☐  Implement a move effect factory
        ☐ Json contains details for each move and it's effect
