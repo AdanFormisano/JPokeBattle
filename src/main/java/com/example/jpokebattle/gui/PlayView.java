@@ -23,14 +23,8 @@ public class PlayView extends HBox {
     }
 
     private void setupUI() {
-//        Button backButton = new Button("Back to Menu");
-//        backButton.setOnAction(e -> sceneController.showMenu());
-
         ScrollPane scrollPane = new ScrollPane();
-
         VBox statsContainer = new VBox();
-        VBox playingViews = new VBox();
-
         statsContainer.setPrefWidth(200);
 
         scrollPane.setContent(statsContainer);
@@ -54,12 +48,23 @@ public class PlayView extends HBox {
         statsContainer.getChildren().addAll(statsPlayer, separator, statsOpponent);
 
         // Set up playing view
+        VBox playingViews = new VBox();
+//        playingViews.setPrefWidth(700);
+        playingViews.setPrefHeight(600);
+        HBox.setHgrow(playingViews, Priority.ALWAYS);
         ArenaView arenaView = new ArenaView(sceneController, sessionData);
         arenaView.setStyle("-fx-border-color: transparent gray gray transparent; " +
                 "-fx-border-width: 1;");
-        // DynamicView dynamicView = new DynamicView(sceneController, sessionData);
-        // OptionsView optionsView = new OptionsView(sceneController, sessionData);
-        playingViews.getChildren().addAll(arenaView);
+
+        HBox dynamicAndOptionsContainer = new HBox();
+        DynamicView dynamicView = new DynamicView(sceneController, sessionData);
+        OptionsView optionsView = new OptionsView(sceneController, sessionData);
+
+        VBox.setVgrow(arenaView, Priority.ALWAYS);
+        VBox.setVgrow(dynamicAndOptionsContainer, Priority.ALWAYS);
+
+        dynamicAndOptionsContainer.getChildren().addAll(dynamicView, optionsView);
+        playingViews.getChildren().addAll(arenaView, dynamicAndOptionsContainer);
 
         getChildren().addAll(scrollPane, playingViews);
     }

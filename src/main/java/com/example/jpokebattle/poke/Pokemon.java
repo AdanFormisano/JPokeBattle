@@ -44,7 +44,7 @@ public class Pokemon {
     public String getName() { return name; }
     public List<DataType> getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
-    public List<Move> getMoveSet() { return this.moveList; }
+    public List<Move> getMoveList() { return this.moveList; }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
 

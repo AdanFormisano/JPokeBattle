@@ -31,7 +31,7 @@ public class SessionData {
     public SessionData() {
         // For testing purposes the player and enemy pokemon are hardcoded
         playerPokemons = new ArrayList<>(List.of(
-                new Pokemon(pl.getPokemonByName("Bulbasaur")
+                new Pokemon(pl.getPokemonByName("Charmander")
                 )));
         // Increase the EV of the first pokemon to almost assure a first turn win
         playerPokemons.getFirst().getStats().gainEV(new EffortValue(0, 1, 0, 1, 1, 0));

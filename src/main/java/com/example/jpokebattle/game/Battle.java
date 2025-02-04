@@ -81,13 +81,13 @@ public class Battle {
         if (player) {
             int choice = getMoveChoice();
 
-            Move chosenMove = currentPlayerPokemon.getMoveSet().get(choice);
+            Move chosenMove = currentPlayerPokemon.getMoveList().get(choice);
             chosenMove.decreasePP();
             System.out.println(currentPlayerPokemon.getName() + " has chosen " + chosenMove.getName());
             return chosenMove;
         } else {
            // For now, the enemy will always use the first move
-            Move chosenMove = currentEnemyPokemon.getMoveSet().getFirst();
+            Move chosenMove = currentEnemyPokemon.getMoveList().getFirst();
             chosenMove.decreasePP();
             System.out.println(currentEnemyPokemon.getName() + " has chosen " + chosenMove.getName());
             return chosenMove;
@@ -97,12 +97,12 @@ public class Battle {
     private int getMoveChoice() {
         // Print available moves
         System.out.println("Please select a move:");
-        for (int i = 0; i < currentPlayerPokemon.getMoveSet().size(); i++) {
+        for (int i = 0; i < currentPlayerPokemon.getMoveList().size(); i++) {
             System.out.printf("%d. %s (PP: %d/%d)%n",
                     i + 1,
-                    currentPlayerPokemon.getMoveSet().get(i).getName(),
-                    currentPlayerPokemon.getMoveSet().get(i).getPP(),
-                    currentPlayerPokemon.getMoveSet().get(i).getMaxPP());
+                    currentPlayerPokemon.getMoveList().get(i).getName(),
+                    currentPlayerPokemon.getMoveList().get(i).getPP(),
+                    currentPlayerPokemon.getMoveList().get(i).getMaxPP());
         }
 
         // Get user input
@@ -111,10 +111,10 @@ public class Battle {
                 String input = scanner.nextLine();
                 int choice = Integer.parseInt(input);
 
-                if (choice >= 1 && choice <= currentPlayerPokemon.getMoveSet().size()) {
+                if (choice >= 1 && choice <= currentPlayerPokemon.getMoveList().size()) {
                     return choice - 1;
                 }
-                System.out.println("Please enter a valid number between 1 and " + currentPlayerPokemon.getMoveSet().size());
+                System.out.println("Please enter a valid number between 1 and " + currentPlayerPokemon.getMoveList().size());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
             }
