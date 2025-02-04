@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     private Stage primaryStage;
     private SceneController sceneController;
-    private SessionData sessionData = new SessionData();
+    private SessionData sessionData = new SessionData(this.getParameters() == null);
 
     @Override
     public void start(Stage primaryStage) throws Exception {

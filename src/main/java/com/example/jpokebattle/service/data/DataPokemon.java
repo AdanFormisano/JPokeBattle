@@ -19,6 +19,8 @@ public class DataPokemon {
     private List<DataMoveBasic> moves;
     private String levelingRate;
     private int expYield;
+    private String spriteFrontPath;
+    private String spriteBackPath;
 
     // Getters
     public int getId() { return this.id; }
@@ -35,6 +37,8 @@ public class DataPokemon {
     public List<DataMoveBasic> getMoves() { return this.moves; }
     public String getLevelingRate() { return this.levelingRate; }
     public int getExpYield() { return this.expYield; }
+    public String getSpriteFrontPath() { return spriteFrontPath; }
+    public String getSpriteBackPath() { return this.spriteBackPath; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -51,6 +55,8 @@ public class DataPokemon {
     public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
     public void setLevelingRate(String levelingRate) { this.levelingRate = levelingRate; }
     public void setExpYield(int expYield) { this.expYield = expYield; }
+    public void setSpriteFrontPath(String spritePath) { this.spriteFrontPath = spritePath; }
+    public void setSpriteBackPath(String backSpritePath) { this.spriteBackPath = backSpritePath; }
 
     @Override
     public String toString() {

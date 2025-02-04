@@ -7,6 +7,7 @@ import com.example.jpokebattle.service.data.DataPokemon;
 import com.example.jpokebattle.service.data.DataType;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +20,26 @@ public class Pokemon {
     private final Nature nature = new Nature();
     private List<Move> moveList = new ArrayList<>();
     public boolean isFainted = false;
+    public Image spriteFront;
+    public Image spriteBack;
 
-    public Pokemon (DataPokemon dataPokemon) {
+    public Pokemon (DataPokemon dataPokemon, boolean isGUI) {
         id = dataPokemon.getId();
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
         stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate(), dataPokemon.getExpYield());
         checkNewMoves();
+
+        // Load sprites
+        if (isGUI) {
+            System.out.printf("Loading sprites from %s%n", "src/main/resources/assets/Sprite/" + name + ".png");
+            System.out.printf("Loading sprites from %s%n", "src/main/resources/assets/BackSprite/" + name + "_back.png");
+            spriteFront = new Image("file:" + dataPokemon.getSpriteFrontPath(), 128, 128, true, false);
+            spriteBack = new Image("file:" + dataPokemon.getSpriteBackPath(), 128, 128, true, false);
+        }
     }
 
-    public Pokemon(DataPokemon dataPokemon, int lvl) {
+    public Pokemon(DataPokemon dataPokemon, int lvl, boolean isGUI) {
         id = dataPokemon.getId();
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
@@ -37,6 +48,13 @@ public class Pokemon {
             stats.increaseLevel();
         }
         checkNewMoves();
+        // Load sprites
+        if (isGUI) {
+            System.out.printf("Loading sprites from %s%n", "src/main/resources/assets/Sprite/" + name + ".png");
+            System.out.printf("Loading sprites from %s%n", "src/main/resources/assets/BackSprite/" + name + "_back.png");
+            spriteFront = new Image("file:" + dataPokemon.getSpriteFrontPath(), 128, 128, true, false);
+            spriteBack = new Image("file:" + dataPokemon.getSpriteBackPath(), 128, 128, true, false);
+        }
     }
 
     // Getters
@@ -47,6 +65,8 @@ public class Pokemon {
     public List<Move> getMoveList() { return this.moveList; }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
+    public Image getSpriteFront() { return spriteFront; }
+    public Image getSpriteBack() { return spriteBack; }
 
     // Game methods
     public void takeDamage(double damageTaken) { stats.decreaseCurrentHP(damageTaken); }

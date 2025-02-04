@@ -33,7 +33,7 @@ public class SessionGame {
 
         // Randomly generate the trainer's pokemon
         sessionData.enemyPokemons = new ArrayList<>(List.of(
-                new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel)
+                new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI)
         ));
     }
 }

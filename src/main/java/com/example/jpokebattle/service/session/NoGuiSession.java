@@ -3,11 +3,16 @@ package com.example.jpokebattle.service.session;
 import com.example.jpokebattle.game.Battle;
 import com.example.jpokebattle.game.Player;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class NoGuiSession implements PokeGameSession {
-    SessionData sessionData = new SessionData();
+    SessionData sessionData;
     Scanner scanner = new Scanner(System.in);
+
+    public NoGuiSession() {
+        sessionData = new SessionData(false);
+    }
 
     @Override
     public void startSession() {
