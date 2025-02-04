@@ -25,6 +25,7 @@ public class PlayView extends HBox {
     private void setupUI() {
 //        Button backButton = new Button("Back to Menu");
 //        backButton.setOnAction(e -> sceneController.showMenu());
+
         ScrollPane scrollPane = new ScrollPane();
 
         VBox statsContainer = new VBox();
@@ -36,6 +37,8 @@ public class PlayView extends HBox {
         scrollPane.setFitToWidth(true);
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
 
+
+        // Set up stats container and view
         VBox.setVgrow(statsContainer, Priority.ALWAYS);
         statsContainer.setPadding(new Insets(10));
         statsContainer.setStyle("-fx-border-color: transparent gray transparent transparent; " +
@@ -46,10 +49,17 @@ public class PlayView extends HBox {
         Separator separator = new Separator();
         VBox.setVgrow(statsPlayer, Priority.ALWAYS);
         VBox.setVgrow(statsOpponent, Priority.ALWAYS);
-
         separator.setPadding(new Insets(10, 0, 10, 0));
 
         statsContainer.getChildren().addAll(statsPlayer, separator, statsOpponent);
+
+        // Set up playing view
+        ArenaView arenaView = new ArenaView(sceneController, sessionData);
+        arenaView.setStyle("-fx-border-color: transparent gray gray transparent; " +
+                "-fx-border-width: 1;");
+        // DynamicView dynamicView = new DynamicView(sceneController, sessionData);
+        // OptionsView optionsView = new OptionsView(sceneController, sessionData);
+        playingViews.getChildren().addAll(arenaView);
 
         getChildren().addAll(scrollPane, playingViews);
     }
