@@ -1,5 +1,6 @@
 package com.example.jpokebattle.service.session;
 
+import com.example.jpokebattle.game.Battle;
 import com.example.jpokebattle.game.Player;
 import com.example.jpokebattle.game.Trainer;
 import com.example.jpokebattle.poke.EffortValue;
@@ -22,17 +23,19 @@ public class SessionData {
     public Trainer trainer;
     public List<Pokemon> playerPokemons;
     public List<Pokemon> enemyPokemons;
+    public Pokemon currentPlayerPokemon;
 
     private final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
-    SessionData() {
-        // For testing purposes the player and enemy pokemons are hardcoded
+    public SessionData() {
+        // For testing purposes the player and enemy pokemon are hardcoded
         playerPokemons = new ArrayList<>(List.of(
                 new Pokemon(pl.getPokemonByName("Bulbasaur")
                 )));
         // Increase the EV of the first pokemon to almost assure a first turn win
         playerPokemons.getFirst().getStats().gainEV(new EffortValue(0, 1, 0, 1, 1, 0));
+        currentPlayerPokemon = playerPokemons.getFirst();
 
         enemyPokemons = new ArrayList<>(List.of(
                 new Pokemon(pl.getPokemonByName("Charmander")

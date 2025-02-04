@@ -1,6 +1,6 @@
 package com.example.jpokebattle;
 
-import com.example.jpokebattle.gui.MainUI;
+import com.example.jpokebattle.gui.MainApp;
 import com.example.jpokebattle.service.session.NoGuiSession;
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
             gameSession.endSession();
             return;
         } else {
-            MainUI.launch(MainUI.class, args);
+            MainApp.launch(MainApp.class, args);
         }
     }
 }
