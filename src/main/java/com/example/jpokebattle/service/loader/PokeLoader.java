@@ -4,6 +4,7 @@ import com.example.jpokebattle.service.data.DataPokemon;
 import com.example.jpokebattle.service.data.DataType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,5 +56,22 @@ public class PokeLoader {
 
     public DataPokemon getRandomPokemon() {
         return this.loadAllPokemons().get((int) random.nextInt(this.loadAllPokemons().size()));
+    }
+
+    /**
+     * Get the image of a pokemon by its name
+     * @param name The name of the pokemon, CASE SENSITIVE
+     *             (e.g. "Bulbasaur", "Charmander", "Squirtle")
+     * @param isFront Whether the image is the front image or the back image
+     * @return The image of the pokemon
+     */
+    public Image getPokemonImage(String name, boolean isFront) {
+        String path = "file:src/main/resources/assets";
+        if (isFront) {
+            path += "/Sprite/" + name + ".png";
+        } else {
+            path += "/BackSprite/" + name + "_back.png";
+        }
+        return new Image(path, 124, 124, true, false);
     }
 }

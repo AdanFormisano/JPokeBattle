@@ -23,19 +23,10 @@ public class SessionData {
     public Pokemon currentPlayerPokemon;
     public boolean isGUI = true;
 
-    private final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
+    public final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
     public SessionData(boolean isGUI) {
-
-        // For testing purposes the player and enemy pokemon are hardcoded
-        playerPokemons = new ArrayList<>(List.of(
-                new Pokemon(pl.getPokemonByName("Bulbasaur"), isGUI)
-                ));
-        // Increase the EV of the first pokemon to almost assure a first turn win
-        playerPokemons.getFirst().getStats().gainEV(new EffortValue(0, 1, 0, 1, 1, 0));
-        currentPlayerPokemon = playerPokemons.getFirst();
-
         enemyPokemons = new ArrayList<>(List.of(
                 new Pokemon(pl.getPokemonByName("Charmander"), isGUI)
                 ));
@@ -45,4 +36,15 @@ public class SessionData {
         this.player = player;
     }
 
+    public void giveStartingPokemon(String name) {
+        // For testing purposes the player and enemy pokemon are hardcoded
+        playerPokemons = new ArrayList<>(List.of(
+                new Pokemon(pl.getPokemonByName(name), isGUI)
+        ));
+        // Increase the EV of the first pokemon to almost assure a first turn win
+        playerPokemons.getFirst().getStats().gainEV(new EffortValue(1, 1, 1, 1, 1, 1));
+        currentPlayerPokemon = playerPokemons.getFirst();
+
+        System.out.println("You have received a " + name + "!");
+    }
 }
