@@ -66,6 +66,17 @@ public class DynamicView extends VBox {
             Text moveDescription = new Text("Lorem Ipsum");
 
             moveContainer.getChildren().addAll(leftContainer, rightContainer);
+
+            this.setOnMouseEntered(e -> {
+                // Change background color
+                setStyle("-fx-background-color: lightgray; -fx-border-color: transparent gray transparent transparent; -fx-border-width: 1;");
+            });
+
+            this.setOnMouseExited(e -> {
+                // Change background color
+                setStyle("-fx-border-color: transparent gray transparent transparent; -fx-border-width: 1;");
+            });
+
             getChildren().addAll(moveContainer, moveDescription);
         }
     }

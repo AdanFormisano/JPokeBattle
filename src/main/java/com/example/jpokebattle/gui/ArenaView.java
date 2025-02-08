@@ -15,7 +15,7 @@ public class ArenaView extends VBox {
         this.sessionData = sessionData;
         setMaxHeight(USE_COMPUTED_SIZE);
         setMinHeight(USE_COMPUTED_SIZE);
-        setPrefHeight(410);
+        setPrefHeight(300);
         setMaxWidth(USE_COMPUTED_SIZE);
         setupUI();
     }
