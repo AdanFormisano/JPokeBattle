@@ -51,7 +51,7 @@ public class PlayView extends HBox {
 //        playingViews.setPrefWidth(700);
         playingViews.setPrefHeight(600);
         HBox.setHgrow(playingViews, Priority.ALWAYS);
-        ArenaView arenaView = new ArenaView(sceneController, sessionData);
+        ArenaView arenaView = new ArenaView(sceneController);
         arenaView.setStyle("-fx-border-color: transparent gray gray transparent; " +
                 "-fx-border-width: 1;");
 

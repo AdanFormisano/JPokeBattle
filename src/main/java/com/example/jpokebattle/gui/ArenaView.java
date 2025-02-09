@@ -1,6 +1,8 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.service.session.SessionData;
+import com.example.jpokebattle.service.session.SessionGame;
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -10,13 +12,16 @@ public class ArenaView extends VBox {
     PlayerBox playerBox;
     OpponentBox opponentBox;
     SessionData sessionData;
+    SessionGame sessionGame;
 
-    public ArenaView(SceneController sceneController, SessionData sessionData) {
-        this.sessionData = sessionData;
+    public ArenaView(SceneController sceneController) {
+        this.sessionData = sceneController.sessionData;
+        this.sessionGame = sceneController.sessionGame;
         setMaxHeight(USE_COMPUTED_SIZE);
         setMinHeight(USE_COMPUTED_SIZE);
         setPrefHeight(300);
         setMaxWidth(USE_COMPUTED_SIZE);
+        setPrefWidth(700);
         setupUI();
     }
 
@@ -39,8 +44,12 @@ public class ArenaView extends VBox {
             setMinHeight(USE_COMPUTED_SIZE);
 
             ImageView playerPokemon = new ImageView(sessionData.currentPlayerPokemon.getSpriteBack());
+            HBox pokeView = new HBox();
+            pokeView.setPrefWidth(700);
+            pokeView.setAlignment(Pos.BOTTOM_LEFT);
+            pokeView.getChildren().add(playerPokemon);
 
-            getChildren().addAll(playerText, playerPokemon);
+            getChildren().addAll(playerText, pokeView);
         }
     }
 
@@ -55,9 +64,13 @@ public class ArenaView extends VBox {
             setMaxHeight(USE_COMPUTED_SIZE);
             setMinHeight(USE_COMPUTED_SIZE);
 
-//            ImageView opponentPokemon = new ImageView(sessionData.curr.getSpriteBack());
+            ImageView opponentPokemon = new ImageView(SessionGame.currentBattle.getCurrentEnemyPokemon().getSpriteFront());
+            HBox pokeView = new HBox();
+            pokeView.setPrefWidth(700);
+            pokeView.setAlignment(Pos.BOTTOM_RIGHT);
+            pokeView.getChildren().add(opponentPokemon);
 
-            getChildren().addAll(opponentText);
+            getChildren().addAll(opponentText, pokeView);
         }
     }
 }

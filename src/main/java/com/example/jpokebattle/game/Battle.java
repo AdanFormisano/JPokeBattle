@@ -36,7 +36,9 @@ public class Battle {
         BattleIntro();
     }
 
-
+    public Pokemon getCurrentEnemyPokemon() {
+        return currentEnemyPokemon;
+    }
 
     private void BattleIntro() {
         System.out.printf("Trainer sent %s!%n", currentEnemyPokemon.getName());
