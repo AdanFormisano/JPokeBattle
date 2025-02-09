@@ -1,7 +1,7 @@
 package com.example.jpokebattle;
 
-import com.example.jpokebattle.service.session.NoGuiSession;
 import com.example.jpokebattle.gui.MainApp;
+import com.example.jpokebattle.service.session.NoGuiSession;
 
 public class Main {
     public static void main(String[] args) {

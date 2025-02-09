@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class MenuView extends VBox {
-    private SceneController sceneController;
+    private final SceneController sceneController;
 
     public MenuView(SceneController sceneController) {
         this.sceneController = sceneController;

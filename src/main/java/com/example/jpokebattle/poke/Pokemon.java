@@ -63,6 +63,8 @@ public class Pokemon {
     public List<DataType> getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
     public List<Move> getMoveList() { return this.moveList; }
+    public Move getMove(int index) { return moveList.get(index); }
+    public Move getMove(String moveName) { return moveList.stream().filter(move -> move.getName().equals(moveName)).findFirst().orElse(null); }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
     public Image getSpriteFront() { return spriteFront; }

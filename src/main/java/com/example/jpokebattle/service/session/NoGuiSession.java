@@ -1,9 +1,7 @@
 package com.example.jpokebattle.service.session;
 
-import com.example.jpokebattle.game.Battle;
 import com.example.jpokebattle.game.Player;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class NoGuiSession implements PokeGameSession {
@@ -43,6 +41,6 @@ public class NoGuiSession implements PokeGameSession {
     @Override
     public void playSession() {
         SessionGame sessionGame = new SessionGame(sessionData);
-        sessionGame.run();
+//        sessionGame.run();
     }
 }

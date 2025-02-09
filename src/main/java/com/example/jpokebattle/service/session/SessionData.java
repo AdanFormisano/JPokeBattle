@@ -27,9 +27,7 @@ public class SessionData {
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
     public SessionData(boolean isGUI) {
-        enemyPokemons = new ArrayList<>(List.of(
-                new Pokemon(pl.getPokemonByName("Charmander"), isGUI)
-                ));
+        this.isGUI = isGUI;
     }
 
     public void setPlayer(Player player) {

@@ -1,22 +1,14 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.poke.Stats;
 import com.example.jpokebattle.service.session.SessionData;
-import javafx.beans.Observable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
-import java.util.List;
 
 public class StatsView extends VBox {
     private SceneController sceneController;

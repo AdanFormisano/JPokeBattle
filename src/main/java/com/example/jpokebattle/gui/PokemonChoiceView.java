@@ -1,6 +1,8 @@
 package com.example.jpokebattle.gui;
 
+import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.service.session.SessionData;
+import com.example.jpokebattle.service.session.SessionGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,13 +11,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PokemonChoiceView extends VBox {
-    SessionData sessionData;
-    SceneController sc;
+import java.util.function.Consumer;
 
-    public PokemonChoiceView(SceneController sceneController, SessionData sessionData) {
-        this.sessionData = sessionData;
-        this.sc = sceneController;
+public class PokemonChoiceView extends VBox {
+    private SessionData sessionData;
+    private SessionGame sessionGame;
+    private Consumer<String> onPokemonSelected;
+
+    public PokemonChoiceView(Consumer<String> onPokemonSelected, GameController gameController) {
+        this.onPokemonSelected = onPokemonSelected;
+        this.sessionData = gameController.getSessionData();
+        this.sessionGame = gameController.getSessionGame();
         setupUI();
     }
 
@@ -57,8 +63,7 @@ public class PokemonChoiceView extends VBox {
             Button chooseButton = new Button("Choose");
             setMargin(chooseButton, new Insets(30, 0, 0, 0));
             chooseButton.setOnAction(e -> {
-                sessionData.giveStartingPokemon(name);
-                sc.showBattle();
+                onPokemonSelected.accept(name);
             });
 
             // Show the pokemon name with some spacing from the image

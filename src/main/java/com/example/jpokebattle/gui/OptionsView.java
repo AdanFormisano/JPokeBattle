@@ -1,9 +1,8 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.service.session.SessionData;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 
 public class OptionsView extends VBox {
     SceneController sceneController;

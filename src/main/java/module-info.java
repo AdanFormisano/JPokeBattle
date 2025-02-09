@@ -15,6 +15,9 @@ module com.example.jpokebattle {
     opens com.example.jpokebattle.service.session;
     exports com.example.jpokebattle.service.session;
 
+    opens com.example.jpokebattle.game;
+    exports com.example.jpokebattle.game;
+
     opens com.example.jpokebattle.service.data to com.fasterxml.jackson.databind;
     exports com.example.jpokebattle.service.data;
 

@@ -1,24 +1,23 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.service.session.SessionData;
+import com.example.jpokebattle.service.session.SessionGame;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class PlayView extends HBox {
     private SceneController sceneController;
     private SessionData sessionData;
+    private SessionGame sessionGame;
 
-    public PlayView(SceneController sceneController, SessionData sessionData) {
+    public PlayView(SceneController sceneController) {
         this.sceneController = sceneController;
-        this.sessionData = sessionData;
+        this.sessionData = sceneController.sessionData;
+        this.sessionGame = sceneController.sessionGame;
         setupUI();
     }
 

@@ -5,10 +5,13 @@ import com.example.jpokebattle.poke.Move;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.data.DataTypeChart;
 import com.example.jpokebattle.service.loader.PokeLoader;
+import javafx.util.Pair;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.random.RandomGenerator;
 
 public class Battle {
@@ -18,7 +21,6 @@ public class Battle {
     private final List<Pokemon> enemyPokemons;
     private Pokemon currentPlayerPokemon;
     private Pokemon currentEnemyPokemon;
-    private final Scanner scanner;
     private final RandomGenerator randGen = RandomGenerator.getDefault();
     private final PokeLoader pl;
 
@@ -30,17 +32,17 @@ public class Battle {
         this.enemyPokemons = enemyPokemons;
         currentPlayerPokemon = playerPokemons.getFirst();
         currentEnemyPokemon = enemyPokemons.getFirst();
-        this.scanner = new Scanner(System.in);
 
         BattleIntro();
-        BattleLoop();
     }
+
+
 
     private void BattleIntro() {
         System.out.printf("Trainer sent %s!%n", currentEnemyPokemon.getName());
     }
 
-    class PlayingMoves {
+    private static class PlayingMoves {
         Move move1;
         Move move2;
         Pokemon pokemon1;
@@ -54,140 +56,128 @@ public class Battle {
         }
     }
 
-    private void BattleLoop() {
-        // For testing purposes, the battle will end when there are no more pokemon
-        while (!playerPokemons.isEmpty() && !enemyPokemons.isEmpty()) {
+    private static class ChosenMove {
+        Pokemon pokemon;
+        Move move;
+        boolean isPlayer;
+        boolean doesHit = true;
 
-            // Moves selected
-            PlayingMoves playingMoves = new PlayingMoves(selectMove(true), selectMove(false), currentPlayerPokemon, currentEnemyPokemon);
-            // Order of moves checked
-            checkMovesOrder(playingMoves);
-            // Check if it hits
-            AccuracyCheck doesHit = checkAccuracy(playingMoves);
-            // Calculate & Apply damage
-            applyDamage(playingMoves, doesHit);
-            // Check if any pokemon fainted
-            checkFaintedPokemon();
-        }
-
-        if (enemyPokemons.isEmpty()) {
-            System.out.println("You have defeated the enemy!");
-        } else {
-            System.out.println("You have been defeated!");
+        public ChosenMove(Pokemon currentPlayerPokemon, Move move, boolean isPlayer) {
+            this.pokemon = currentPlayerPokemon;
+            this.move = move;
+            this.isPlayer = isPlayer;
         }
     }
 
-    private Move selectMove(boolean player) {
-        if (player) {
-            int choice = getMoveChoice();
+    public void playTurn(String playerMoveName) {
+        List<ChosenMove> chosenMoves = List.of(
+                new ChosenMove(currentPlayerPokemon, currentPlayerPokemon.getMove(playerMoveName), true),
+                new ChosenMove(currentEnemyPokemon, currentEnemyPokemon.getMoveList().getFirst(), false));
 
-            Move chosenMove = currentPlayerPokemon.getMoveList().get(choice);
-            chosenMove.decreasePP();
-            System.out.println(currentPlayerPokemon.getName() + " has chosen " + chosenMove.getName());
-            return chosenMove;
-        } else {
-           // For now, the enemy will always use the first move
-            Move chosenMove = currentEnemyPokemon.getMoveList().getFirst();
-            chosenMove.decreasePP();
-            System.out.println(currentEnemyPokemon.getName() + " has chosen " + chosenMove.getName());
-            return chosenMove;
-        }
+        orderMoves(chosenMoves);
+        checkAccuracy(chosenMoves);
+        applyDamage(chosenMoves);
+        checkFaintedPokemon();
     }
 
-    private int getMoveChoice() {
-        // Print available moves
-        System.out.println("Please select a move:");
-        for (int i = 0; i < currentPlayerPokemon.getMoveList().size(); i++) {
-            System.out.printf("%d. %s (PP: %d/%d)%n",
-                    i + 1,
-                    currentPlayerPokemon.getMoveList().get(i).getName(),
-                    currentPlayerPokemon.getMoveList().get(i).getPP(),
-                    currentPlayerPokemon.getMoveList().get(i).getMaxPP());
-        }
+//
+//    private void BattleLoop() {
+//        // For testing purposes, the battle will end when there are no more pokemon
+//        while (!playerPokemons.isEmpty() && !enemyPokemons.isEmpty()) {
+//
+//            // Moves selected
+//            PlayingMoves playingMoves = new PlayingMoves(selectMove(true), selectMove(false), currentPlayerPokemon, currentEnemyPokemon);
+//            // Order of moves checked
+//            checkMovesOrder(playingMoves);
+//            // Check if it hits
+//            AccuracyCheck doesHit = checkAccuracy(playingMoves);
+//            // Calculate & Apply damage
+//            applyDamage(playingMoves, doesHit);
+//            // Check if any pokemon fainted
+//            checkFaintedPokemon();
+//        }
+//
+//        if (enemyPokemons.isEmpty()) {
+//            System.out.println("You have defeated the enemy!");
+//        } else {
+//            System.out.println("You have been defeated!");
+//        }
+//    }
+//
+//    private Move selectMove(boolean player) {
+//        if (player) {
+//            int choice = getMoveChoice();
+//
+//            Move chosenMove = currentPlayerPokemon.getMoveList().get(choice);
+//            chosenMove.decreasePP();
+//            System.out.println(currentPlayerPokemon.getName() + " has chosen " + chosenMove.getName());
+//            return chosenMove;
+//        } else {
+//           // For now, the enemy will always use the first move
+//            Move chosenMove = currentEnemyPokemon.getMoveList().getFirst();
+//            chosenMove.decreasePP();
+//            System.out.println(currentEnemyPokemon.getName() + " has chosen " + chosenMove.getName());
+//            return chosenMove;
+//        }
+//    }
+//
+//    private int getMoveChoice() {
+//        // Print available moves
+//        System.out.println("Please select a move:");
+//        for (int i = 0; i < currentPlayerPokemon.getMoveList().size(); i++) {
+//            System.out.printf("%d. %s (PP: %d/%d)%n",
+//                    i + 1,
+//                    currentPlayerPokemon.getMoveList().get(i).getName(),
+//                    currentPlayerPokemon.getMoveList().get(i).getPP(),
+//                    currentPlayerPokemon.getMoveList().get(i).getMaxPP());
+//        }
+//
+//        // Get user input
+//        while (true) {
+//            try {
+//                String input = scanner.nextLine();
+//                int choice = Integer.parseInt(input);
+//
+//                if (choice >= 1 && choice <= currentPlayerPokemon.getMoveList().size()) {
+//                    return choice - 1;
+//                }
+//                System.out.println("Please enter a valid number between 1 and " + currentPlayerPokemon.getMoveList().size());
+//            } catch (NumberFormatException e) {
+//                System.out.println("Invalid input. Please enter a number.");
+//            }
+//        }
+//    }
 
-        // Get user input
-        while (true) {
-            try {
-                String input = scanner.nextLine();
-                int choice = Integer.parseInt(input);
-
-                if (choice >= 1 && choice <= currentPlayerPokemon.getMoveList().size()) {
-                    return choice - 1;
-                }
-                System.out.println("Please enter a valid number between 1 and " + currentPlayerPokemon.getMoveList().size());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number.");
-            }
-        }
-    }
-
-    /**
-     * Check the playing order of the chosen moves.
-     * @param   playingMoves    a {@code PlayingMoves} object containing the two moves and the two Pokemon.
-     */
-    private void checkMovesOrder(PlayingMoves playingMoves) {
-        if (playingMoves.move1.getPriority() < playingMoves.move2.getPriority()) {
-            Move tmpMove1 = playingMoves.move1;
-            playingMoves.move1 = playingMoves.move2;
-            playingMoves.move2 = tmpMove1;
-        } else if (playingMoves.move1.getPriority() == playingMoves.move2.getPriority()) {
+    private void orderMoves (List<ChosenMove> chosenMoves) {
+        if (chosenMoves.get(0).move.getPriority() < chosenMoves.get(1).move.getPriority()) {
+            Collections.swap(chosenMoves, 0, 1);
+        } else if (chosenMoves.get(0).move.getPriority() == chosenMoves.get(1).move.getPriority()) {
             // If the moves have the same priority, check the speed of the pokemon
-            if (playingMoves.pokemon1.getStats().getSpeed() < playingMoves.pokemon2.getStats().getSpeed()) {
-                Move tmpMove1 = playingMoves.move1;
-                playingMoves.move1 = playingMoves.move2;
-                playingMoves.move2 = tmpMove1;
+            if (chosenMoves.get(0).pokemon.getStats().getSpeed() < chosenMoves.get(1).pokemon.getStats().getSpeed()) {
+                Collections.swap(chosenMoves, 0, 1);
             }
         }
     }
 
-    static class AccuracyCheck {
-        boolean move1;
-        boolean move2;
-
-        AccuracyCheck(boolean move1Hit, boolean move2Hit) {
-            this.move1 = move1Hit;
-            this.move2 = move2Hit;
+    private void checkAccuracy(List<ChosenMove> chosenMoves) {
+        for (ChosenMove chosenMove : chosenMoves) {
+            if (chosenMove.move.getAccuracy() < 100) {
+                double random = Math.random();
+                if (random > chosenMove.move.getAccuracy() / 100) {
+                    System.out.println(chosenMove.pokemon.getName() + " missed the attack!");
+                    System.out.printf("Random: %f, Accuracy: %f%n", random, chosenMove.move.getAccuracy() / 100);
+                    chosenMove.doesHit = false;
+                }
+            }
         }
     }
 
-    private AccuracyCheck checkAccuracy(PlayingMoves playingMoves) {
-        AccuracyCheck accuracyCheck = new AccuracyCheck(true, true);
-        if (playingMoves.move1.getAccuracy() < 100) {
-            double random = Math.random();
-            if (random > playingMoves.move1.getAccuracy() / 100) {
-                System.out.println(playingMoves.pokemon1.getName() + " missed the attack!");
-                System.out.printf("Random: %f, Accuracy: %f%n", random, playingMoves.move1.getAccuracy() / 100);
-                accuracyCheck.move1 = false;
-            }
-        }
-        if (playingMoves.move2.getAccuracy() < 100) {
-            double random = Math.random();
-            if (random > playingMoves.move2.getAccuracy() / 100) {
-                System.out.println(playingMoves.pokemon2.getName() + " missed the attack!");
-                System.out.printf("Random: %f, Accuracy: %f%n", random, playingMoves.move2.getAccuracy() / 100);
-                accuracyCheck.move2 = false;
-            }
-        }
-        return accuracyCheck;
-    }
-
-    private void applyDamage(PlayingMoves playingMoves, AccuracyCheck doesHit) {
-        if (doesHit.move1) {
-            double damage = calculateDamage(playingMoves.move1, playingMoves.pokemon1, playingMoves.pokemon2);
-            playingMoves.pokemon2.takeDamage(damage);
-            System.out.printf("%s took %f damage! [%f/%f]%n", playingMoves.pokemon2.getName(), damage, playingMoves.pokemon2.getStats().getCurrentHP(), playingMoves.pokemon2.getStats().getMaxHP());
-
-            if (playingMoves.pokemon2.getStats().getCurrentHP() <= 0) {
-                playingMoves.pokemon2.isFainted = true;
-                return;
-            }
-        }
-        if (doesHit.move2) {
-            double damage = calculateDamage(playingMoves.move2, playingMoves.pokemon2, playingMoves.pokemon1);
-            playingMoves.pokemon1.takeDamage(damage);
-            System.out.printf("%s took %f damage! [%f/%f]%n", playingMoves.pokemon1.getName(), damage, playingMoves.pokemon1.getStats().getCurrentHP(), playingMoves.pokemon1.getStats().getMaxHP());
-            if (playingMoves.pokemon1.getStats().getCurrentHP() <= 0) {
-                playingMoves.pokemon1.isFainted = true;
+    private void applyDamage(List<ChosenMove> chosenMoves) {
+        for (ChosenMove chosenMove : chosenMoves) {
+            if (chosenMove.doesHit) {
+                double damage = calculateDamage(chosenMove.move, chosenMove.pokemon, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon);
+                chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon.takeDamage(damage);
+                System.out.printf("%s dealt %f damage to %s!%n", chosenMove.pokemon.getName(), damage, chosenMove.isPlayer ? chosenMoves.get(1).pokemon.getName() : chosenMoves.get(0).pokemon.getName());
             }
         }
     }

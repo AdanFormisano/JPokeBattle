@@ -77,6 +77,13 @@ public class DynamicView extends VBox {
                 setStyle("-fx-border-color: transparent gray transparent transparent; -fx-border-width: 1;");
             });
 
+            this.setOnMouseClicked(e -> {
+                // Change background color
+                setStyle("-fx-background-color: #efc595; -fx-border-color: transparent gray transparent transparent; -fx-border-width: 1;");
+
+                sceneController.choseMove(move.getName());
+            });
+
             getChildren().addAll(moveContainer, moveDescription);
         }
     }
