@@ -9,7 +9,6 @@ module com.example.jpokebattle {
     opens com.example.jpokebattle to javafx.fxml;
     exports com.example.jpokebattle;
 
-    opens com.example.jpokebattle.gui to javafx.fxml;
     exports com.example.jpokebattle.gui;
 
     opens com.example.jpokebattle.service.session;
@@ -29,4 +28,5 @@ module com.example.jpokebattle {
 
     opens com.example.jpokebattle.service to com.fasterxml.jackson.databind;
     exports com.example.jpokebattle.service;
+    opens com.example.jpokebattle.gui to com.fasterxml.jackson.databind, javafx.fxml;
 }
