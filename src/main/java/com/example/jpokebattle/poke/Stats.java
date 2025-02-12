@@ -15,7 +15,7 @@ public class Stats {
     private final ExpPattern expPattern;
     private final int expYield;
 
-    private final IntegerProperty level = new SimpleIntegerProperty();
+    private final IntegerProperty level = new SimpleIntegerProperty(1);
     private final DoubleProperty exp = new SimpleDoubleProperty();
     private final DoubleProperty currentExp = new SimpleDoubleProperty();
     private final DoubleProperty currentHP = new SimpleDoubleProperty();

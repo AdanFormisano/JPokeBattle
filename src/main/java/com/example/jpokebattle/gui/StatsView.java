@@ -12,6 +12,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.util.Objects;
+
 public class StatsView extends VBox {
     private SceneController sceneController;
     private SessionData sessionData;
@@ -45,7 +47,7 @@ public class StatsView extends VBox {
 
     private void setupUIPlayer() {
         Text name = new Text(sessionData.currentPlayerPokemon.getName());
-
+        getChildren().add(name);
         // Get the stats object from your Pokemon
         Stats stats = sessionData.currentPlayerPokemon.getStats();
 
@@ -55,8 +57,14 @@ public class StatsView extends VBox {
     }
 
     private void setupUIOpponent() {
-        Text name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName());
+        Text name;
+        if (Objects.equals(SessionGame.currentBattle.getCurrentEnemyPokemon().getName(), SessionGame.currentBattle.getCurrentPlayerPokemon().getName())) {
+            name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName() + " (Enemy)");
+        } else {
+            name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName());
+        }
         getChildren().add(name);
+
         // Get the stats object from your Pokemon
         Stats stats = SessionGame.currentBattle.getCurrentEnemyPokemon().getStats();
 
@@ -66,7 +74,7 @@ public class StatsView extends VBox {
 
     private void createBindings(Stats stats) {
         StringBinding hpBinding = (StringBinding) Bindings.concat(
-                stats.currentHPProperty().asString("%.0f"),
+                stats.currentHPProperty().asString("%.1f"),
                 "/", stats.maxHPProperty().asString("%.0f")
         );
 

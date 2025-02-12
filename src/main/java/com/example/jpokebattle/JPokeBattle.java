@@ -3,7 +3,7 @@ package com.example.jpokebattle;
 import com.example.jpokebattle.gui.MainApp;
 import com.example.jpokebattle.service.session.NoGuiSession;
 
-public class Main {
+public class JPokeBattle {
     public static void main(String[] args) {
 
         // Create a new nogui session

@@ -5,13 +5,8 @@ import com.example.jpokebattle.poke.Move;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.data.DataTypeChart;
 import com.example.jpokebattle.service.loader.PokeLoader;
-import javafx.util.Pair;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.*;
 import java.util.random.RandomGenerator;
 
 public class Battle {
@@ -36,9 +31,8 @@ public class Battle {
         BattleIntro();
     }
 
-    public Pokemon getCurrentEnemyPokemon() {
-        return currentEnemyPokemon;
-    }
+    public Pokemon getCurrentPlayerPokemon() { return currentPlayerPokemon; }
+    public Pokemon getCurrentEnemyPokemon() { return currentEnemyPokemon; }
 
     private void BattleIntro() {
         System.out.printf("Trainer sent %s!%n", currentEnemyPokemon.getName());
@@ -72,9 +66,10 @@ public class Battle {
     }
 
     public void playTurn(String playerMoveName) {
-        List<ChosenMove> chosenMoves = List.of(
+        List<ChosenMove> chosenMoves = new ArrayList<>(Arrays.asList(
                 new ChosenMove(currentPlayerPokemon, currentPlayerPokemon.getMove(playerMoveName), true),
-                new ChosenMove(currentEnemyPokemon, currentEnemyPokemon.getMoveList().getFirst(), false));
+                new ChosenMove(currentEnemyPokemon, currentEnemyPokemon.getMoveList().getFirst(), false)
+        ));
 
         orderMoves(chosenMoves);
         checkAccuracy(chosenMoves);

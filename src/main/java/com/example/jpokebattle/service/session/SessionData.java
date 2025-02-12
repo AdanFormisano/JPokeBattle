@@ -2,7 +2,6 @@ package com.example.jpokebattle.service.session;
 
 import com.example.jpokebattle.game.Player;
 import com.example.jpokebattle.game.Trainer;
-import com.example.jpokebattle.poke.EffortValue;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
@@ -40,7 +39,7 @@ public class SessionData {
                 new Pokemon(pl.getPokemonByName(name), isGUI)
         ));
         // Increase the EV of the first pokemon to almost assure a first turn win
-        playerPokemons.getFirst().getStats().gainEV(1, 1, 1, 1, 1, 1);
+        playerPokemons.getFirst().getStats().gainEV(2, 2, 2, 2, 2, 2);
         currentPlayerPokemon = playerPokemons.getFirst();
 
         System.out.println("You have received a " + name + "!");

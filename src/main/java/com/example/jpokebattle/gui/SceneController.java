@@ -8,8 +8,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.function.Consumer;
-
 public class SceneController {
     private Stage stage;
     private Scene menuScene;
