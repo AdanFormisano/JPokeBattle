@@ -39,7 +39,7 @@ public class SessionData {
         // Increase the EV of the first pokemon to almost assure a first turn win
         playerPokemons.getFirst().getStats().gainEV(2, 2, 2, 2, 2, 2);
         currentPlayerPokemon = playerPokemons.getFirst();
-//        currentPlayerPokemon.getStats().setLevel(10);   // DEBUG: Used to win first fight
+        currentPlayerPokemon.getStats().setLevel(10);   // DEBUG: Used to win first fight
 
         System.out.println("You have received a " + name + "!");
     }

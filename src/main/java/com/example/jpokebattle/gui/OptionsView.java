@@ -1,12 +1,10 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.game.SessionData;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class OptionsView extends VBox {
     SceneController sceneController;
-    SessionData sessionData;
 
     public OptionsView(SceneController sceneController) {
         this.sceneController = sceneController;
@@ -29,7 +27,8 @@ public class OptionsView extends VBox {
         });
 
         Button toNextLevel = new Button("Next Level");
-        toNextLevel.setDisable(true);   // TODO: Implement next level functionality
+        toNextLevel.disableProperty().bind(sceneController.canNextLevelProperty().not());
+        toNextLevel.setOnAction(e -> sceneController.loadNextLevel());
 
         Button backButton = new Button("Menu");
         backButton.setOnAction(e -> sceneController.showMenu());

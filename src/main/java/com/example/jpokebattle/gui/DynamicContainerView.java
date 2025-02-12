@@ -40,6 +40,9 @@ public class DynamicContainerView extends VBox {
                     getChildren().add(new PokeFaintedView(sceneController.faintedInfoProperty()));
                     System.out.println("PokemonFaintedView added");
                     break;
+                case BATTLE_WIN:
+                    getChildren().add(new WinView(gc.currentLevel, sceneController.canNextLevelProperty()));
+                    break;
             }
         });
     }

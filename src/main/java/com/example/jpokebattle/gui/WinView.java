@@ -1,23 +1,19 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.game.GameController;
-import javafx.scene.layout.HBox;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class WinView extends VBox {
-    SceneController sceneController;
-    GameController gc = GameController.getInstance();
 
-    public WinView(SceneController sceneController) {
-        this.sceneController = sceneController;
-        setupUI();
-    }
+    public WinView(int level, BooleanProperty canNextLevelProperty) {
+        Label message = new Label("You passed level " + level + "!");
+        Label message2 = new Label("You can now proceed to the next level.");
 
-    private void setupUI() {
-        HBox opponentDefeated = new HBox();
-        HBox winText = new HBox();
+        canNextLevelProperty.set(true);
 
-//        Text opponentDefeatedText = new Text("You have defeated " + gc.battleOutcomes.get(gc.currentLevel - 1).player + "!");
+        setPrefWidth(200);
+        getChildren().addAll(message, message2);
     }
 }

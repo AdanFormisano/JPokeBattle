@@ -18,7 +18,9 @@
         private Scene menuScene;
         private Scene playScene;
         private final ObjectProperty<DynamicViewStatus> dynamicViewStatus = new SimpleObjectProperty<>(DynamicViewStatus.BATTLE);
-        private final ObjectProperty<FaintedInfo> faintedInfo = new SimpleObjectProperty<>();
+        private final ObjectProperty<InfoFainted> faintedInfo = new SimpleObjectProperty<>();
+        private final ObjectProperty<InfoWin> winInfo = new SimpleObjectProperty<>();
+        private final BooleanProperty canNextLevel = new SimpleBooleanProperty(false);
 
         private final GameController gc = GameController.getInstance();
 
@@ -33,16 +35,22 @@
         public DynamicViewStatus getDynamicViewStatus() { return dynamicViewStatus.get(); }
         public void setDynamicViewStatus(DynamicViewStatus status) { dynamicViewStatus.set(status); }
 
-        public ObjectProperty<FaintedInfo> faintedInfoProperty() { return faintedInfo; }
+        public BooleanProperty canNextLevelProperty() { return canNextLevel; }
+        public boolean canNextLevel() { return canNextLevel.get(); }
+        public void setCanNextLevel(boolean canNextLevel) { this.canNextLevel.set(canNextLevel); }
+
+        public ObjectProperty<InfoFainted> faintedInfoProperty() { return faintedInfo; }
+        public InfoFainted getFaintedInfo() { return faintedInfo.get(); }
 
         public void showMenu() {
             stage.setScene(menuScene);
         }
 
         public void showBattle() {
-            if (playScene == null) {
-                playScene = new Scene(new PlayView(this), 900, 600);
+            if (playScene != null) {
+                ((PlayView) playScene.getRoot()).getChildren().clear();
             }
+            playScene = new Scene(new PlayView(this), 900, 600);
             stage.setScene(playScene);
         }
 
@@ -52,7 +60,7 @@
         }
 
         public void showWinScreen() {
-            stage.setScene(new Scene(new WinView(this), 900, 600));
+            dynamicViewStatus.set(DynamicViewStatus.BATTLE_WIN);
         }
 
         public void showLoseScreen() {
@@ -68,12 +76,17 @@
         }
 
         public void showPokemonFainted(boolean isPlayer, Pokemon pokemon) {
-            faintedInfo.set(new FaintedInfo(pokemon, isPlayer));
+            faintedInfo.set(new InfoFainted(pokemon, isPlayer));
             dynamicViewStatus.set(DynamicViewStatus.POKEMON_FAINTED);
             System.out.println("Pokemon fainted set");
         }
 
         public void choseMove(String moveName) {
             gc.onMoveSelected(moveName);
+        }
+
+        public void loadNextLevel() {
+            gc.generateBattle();
+            showBattle();
         }
     }

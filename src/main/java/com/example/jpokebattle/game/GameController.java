@@ -48,7 +48,7 @@ public class GameController implements BattleEventListener {
 
     public void generateBattle() {
         generateLevel();
-        sessionData.enemyPokemons.add(new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI));
+//        sessionData.enemyPokemons.add(new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI));
         BattleOutcome outcome = new BattleOutcome(currentLevel, List.copyOf(sessionData.playerPokemons), List.copyOf(sessionData.enemyPokemons));
         battleOutcomes.add(outcome);
         currentBattle = new Battle(this, sessionData.pl, sessionData.player, sessionData.trainer,

@@ -6,11 +6,11 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class FaintedInfo {
+public class InfoFainted {
     private final ObjectProperty<Pokemon> faintedPokemon = new SimpleObjectProperty<>();
     private final BooleanProperty isPlayer = new SimpleBooleanProperty();
 
-    public FaintedInfo(Pokemon pokemon, boolean isPlayer) {
+    public InfoFainted(Pokemon pokemon, boolean isPlayer) {
         faintedPokemon.set(pokemon);
         this.isPlayer.set(isPlayer);
     }
