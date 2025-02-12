@@ -143,14 +143,16 @@ public class Battle {
     private void checkFaintedPokemon() {
         if (currentPlayerPokemon.getStats().getCurrentHP() <= 0) {
             System.out.println(currentPlayerPokemon.getName() + " fainted!");
-            outcome.addPlayerPokemon(currentPlayerPokemon);     // Save the fainted pokemon for future references
 
             notifyPokemonFainted(true, currentPlayerPokemon);
 
             if (playerPokemons.size() == 1) {
                 outcome.setPlayerWon(false);
-                notifyBattleEnd(outcome);
+                outcome.setCurrentPlayerPokemon(currentPlayerPokemon);
+                outcome.setCurrentOpponentPokemon(currentEnemyPokemon);
                 playerPokemons.remove(currentPlayerPokemon);
+                notifyBattleEnd(outcome);
+                System.out.println("You have no more Pokemon left!");
                 return;
             } else {
                 playerPokemons.remove(currentPlayerPokemon);
@@ -164,14 +166,15 @@ public class Battle {
             giveExp(currentPlayerPokemon, currentEnemyPokemon);
             giveEV(currentPlayerPokemon, currentEnemyPokemon);
 
-            outcome.addEnemyPokemon(currentEnemyPokemon);     // Save the fainted pokemon for future references
             notifyPokemonFainted(false, currentEnemyPokemon);
 
             if (enemyPokemons.size() == 1) {
                 outcome.setPlayerWon(true);
+                outcome.setCurrentPlayerPokemon(currentPlayerPokemon);
+                outcome.setCurrentOpponentPokemon(currentEnemyPokemon);
                 notifyBattleEnd(outcome);
-            } else {
                 System.out.println("Trainer has no more Pokemon left!");
+            } else {
                 enemyPokemons.remove(currentEnemyPokemon);
                 currentEnemyPokemon = enemyPokemons.getFirst();
             }

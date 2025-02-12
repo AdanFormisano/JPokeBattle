@@ -1,9 +1,9 @@
 package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.Pokemon;
-import com.example.jpokebattle.service.session.SessionData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameController implements BattleEventListener {
@@ -48,8 +48,11 @@ public class GameController implements BattleEventListener {
 
     public void generateBattle() {
         generateLevel();
+        sessionData.enemyPokemons.add(new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI));
+        BattleOutcome outcome = new BattleOutcome(currentLevel, List.copyOf(sessionData.playerPokemons), List.copyOf(sessionData.enemyPokemons));
+        battleOutcomes.add(outcome);
         currentBattle = new Battle(this, sessionData.pl, sessionData.player, sessionData.trainer,
-                sessionData.playerPokemons, sessionData.enemyPokemons, new BattleOutcome(currentLevel));
+                sessionData.playerPokemons, sessionData.enemyPokemons, outcome);
     }
 
     public void startGame() {
@@ -76,8 +79,6 @@ public class GameController implements BattleEventListener {
 
     @Override
     public void onBattleEnd(BattleOutcome outcome) {
-        battleOutcomes.add(outcome);
-
         if (gameStateListener != null) {
             gameStateListener.onBattleEnd(outcome);
         }

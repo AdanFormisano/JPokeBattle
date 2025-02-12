@@ -72,6 +72,7 @@ public class Stats {
 
     // Setters
     public void increaseLevel() { level.set(level.get() + 1); }
+    public void setLevel(int level) { this.level.set(level); }
     public void increaseCurrentHP(PositiveInt increase) { currentHP.set(Math.min(currentHP.get() + increase.doubleValue(), maxHP.get())); }
     public void increaseAttack(PositiveInt increase) { attack.set(attack.get() + increase.doubleValue()); }
     public void increaseDefense(PositiveInt increase) { defense.set(defense.get() + increase.doubleValue()); }

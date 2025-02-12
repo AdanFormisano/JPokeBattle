@@ -1,6 +1,7 @@
 package com.example.jpokebattle.service.session;
 
 import com.example.jpokebattle.game.Player;
+import com.example.jpokebattle.game.SessionData;
 
 import java.util.Scanner;
 

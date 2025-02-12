@@ -62,7 +62,7 @@ public class MainApp extends Application implements GameStateListener {
             sceneController.showWinScreen();
         } else {
             System.out.println("Player lost!");
-            // sceneController.showLoseScreen();
+             sceneController.showLoseScreen();
         }
     }
 }

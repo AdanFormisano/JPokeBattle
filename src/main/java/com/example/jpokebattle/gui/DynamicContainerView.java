@@ -1,7 +1,7 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.game.GameController;
-import com.example.jpokebattle.service.session.SessionData;
+import com.example.jpokebattle.game.SessionData;
 import javafx.scene.layout.VBox;
 
 public class DynamicContainerView extends VBox {

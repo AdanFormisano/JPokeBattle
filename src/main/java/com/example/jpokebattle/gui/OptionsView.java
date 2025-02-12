@@ -1,6 +1,6 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.service.session.SessionData;
+import com.example.jpokebattle.game.SessionData;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 

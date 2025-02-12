@@ -2,7 +2,7 @@ Minimum:
   ☐ Assign 2 lvl 1 moves to each pokemon
     ✔ Moves assignments based on levels @done (25-01-28 18:01)
   ☐ Implement UI for:
-    ☐ Battle
+    ✔ Battle @done (25-02-12 15:53)
     ☐ Pokemon switch
     ☐ Win
     ☐ Lose

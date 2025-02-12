@@ -1,5 +1,6 @@
     package com.example.jpokebattle.gui;
 
+    import com.example.jpokebattle.game.BattleOutcome;
     import com.example.jpokebattle.game.GameController;
     import com.example.jpokebattle.poke.Pokemon;
     import javafx.beans.property.BooleanProperty;
@@ -9,6 +10,9 @@
     import javafx.scene.Scene;
     import javafx.stage.Stage;
 
+    import java.util.Collections;
+    import java.util.List;
+
     public class SceneController {
         private Stage stage;
         private Scene menuScene;
@@ -16,7 +20,7 @@
         private final ObjectProperty<DynamicViewStatus> dynamicViewStatus = new SimpleObjectProperty<>(DynamicViewStatus.BATTLE);
         private final ObjectProperty<FaintedInfo> faintedInfo = new SimpleObjectProperty<>();
 
-        private GameController gc = GameController.getInstance();
+        private final GameController gc = GameController.getInstance();
 
         public SceneController(Stage stage) {
             this.stage = stage;
@@ -43,7 +47,7 @@
         }
 
         public void showPokemonChoice() {
-            PokemonChoiceView choiceView = new PokemonChoiceView(pokemon -> gc.onPokemonSelected(pokemon));
+            PokemonChoiceView choiceView = new PokemonChoiceView(gc::onPokemonSelected);
             stage.setScene(new Scene(choiceView, 900, 600));
         }
 
@@ -52,7 +56,15 @@
         }
 
         public void showLoseScreen() {
-    //        stage.setScene(new Scene(new LoseView(this), 900, 600));
+            for (Pokemon pokemon : gc.battleOutcomes.getLast().getPlayerPokemons()) {
+                System.out.println(pokemon.getName());
+            }
+
+            List<BattleOutcome> allButLast = gc.battleOutcomes.subList(0, gc.battleOutcomes.size() - 1);
+            Collections.reverse(allButLast);
+
+            stage.setScene(new Scene(new LoseView(gc.battleOutcomes.getLast().getPlayerPokemons(), allButLast,
+                    gc.battleOutcomes.getLast().getCurrentOpponentPokemon(), gc.currentLevel), 900, 600));
         }
 
         public void showPokemonFainted(boolean isPlayer, Pokemon pokemon) {
