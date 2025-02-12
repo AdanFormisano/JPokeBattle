@@ -2,6 +2,7 @@ package com.example.jpokebattle.poke;
 
 import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.data.ExpPattern;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -16,8 +17,8 @@ public class Stats {
     private final int expYield;
 
     private final IntegerProperty level = new SimpleIntegerProperty(1);
-    private final DoubleProperty exp = new SimpleDoubleProperty();
     private final DoubleProperty currentExp = new SimpleDoubleProperty();
+    private final IntegerProperty totalExpNeeded = new SimpleIntegerProperty();
     private final DoubleProperty currentHP = new SimpleDoubleProperty();
     private final DoubleProperty maxHP = new SimpleDoubleProperty();
     private final DoubleProperty attack = new SimpleDoubleProperty();
@@ -32,6 +33,11 @@ public class Stats {
         this.expPattern = ExpPattern.valueOf(expPattern);
         this.expYield = expYield;
 
+        totalExpNeeded.bind(Bindings.createIntegerBinding(
+                () -> this.expPattern.getRequiredExp(level.get() + 1),
+                level
+        ));
+
         calculateAllStats();
 
         System.out.printf("IVs: %s\n", IV);
@@ -39,8 +45,8 @@ public class Stats {
     }
 
     public IntegerProperty levelProperty() { return level; }
-    public DoubleProperty expProperty() { return exp; }
     public DoubleProperty currentExpProperty() { return currentExp; }
+    public IntegerProperty totalExpNeededProperty() { return totalExpNeeded; }
     public DoubleProperty currentHPProperty() { return currentHP; }
     public DoubleProperty maxHPProperty() { return maxHP; }
     public DoubleProperty attackProperty() { return attack; }
@@ -61,7 +67,7 @@ public class Stats {
     public int getLevel() { return level.get(); }
     public double getCurrentExp() { return currentExp.get(); }
     public double getExpToNextLevel() { return expPattern.getRequiredExp(level.get() + 1) - currentExp.get();}
-    public int getTotalExp() { return expPattern.getRequiredExp(level.get() + 1); }
+    public int getTotalExpNeeded() { return totalExpNeeded.get(); }
     public int getExpYield() { return expYield; }
 
     // Setters

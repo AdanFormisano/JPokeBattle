@@ -75,7 +75,7 @@ public class StatsView extends VBox {
         );
 
         StringBinding expBinding = (StringBinding) Bindings.concat(stats.currentExpProperty().asString("%.0f"),
-                "/", stats.expProperty().asString("%.0f")
+                "/", stats.getTotalExpNeeded() + " EXP"
         );
 
         HBox hpBox = createStatLabel("HP", hpBinding);

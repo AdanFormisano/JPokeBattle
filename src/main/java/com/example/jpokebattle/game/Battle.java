@@ -21,7 +21,8 @@ public class Battle {
     private final RandomGenerator randGen = RandomGenerator.getDefault();
     private final PokeLoader pl;
 
-    public Battle(PokeLoader pl, Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons) {
+    public Battle(BattleEventListener listener, PokeLoader pl, Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons) {
+        this.listener = listener;
         this.pl = pl;
         this.player = player;
         this.trainer = trainer;
@@ -178,7 +179,7 @@ public class Battle {
             System.out.println(gainingPokemon.getName() + " has leveled up!");
             System.out.printf("%s is now level: %d%n", gainingPokemon.getName(), gainingPokemon.getStats().getLevel());
         }
-        System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExp());
+        System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExpNeeded());
     }
 
     private void giveEV(Pokemon gainingPokemon, Pokemon faintedPokemon) {
