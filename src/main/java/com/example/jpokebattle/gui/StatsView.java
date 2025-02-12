@@ -1,8 +1,7 @@
 package com.example.jpokebattle.gui;
 
+import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.poke.Stats;
-import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.value.ObservableValue;
@@ -16,13 +15,10 @@ import java.util.Objects;
 
 public class StatsView extends VBox {
     private SceneController sceneController;
-    private SessionData sessionData;
-    private SessionGame sessionGame;
+    private GameController gc = GameController.getInstance();
 
     public StatsView(SceneController sceneController, boolean isPlayer) {
         this.sceneController = sceneController;
-        this.sessionData = sceneController.sessionData;
-        this.sessionGame = sceneController.sessionGame;
         if (isPlayer) {
             setupUIPlayer();
         } else {
@@ -46,10 +42,10 @@ public class StatsView extends VBox {
     }
 
     private void setupUIPlayer() {
-        Text name = new Text(sessionData.currentPlayerPokemon.getName());
+        Text name = new Text(gc.getSessionData().currentPlayerPokemon.getName());
         getChildren().add(name);
         // Get the stats object from your Pokemon
-        Stats stats = sessionData.currentPlayerPokemon.getStats();
+        Stats stats = gc.getSessionData().currentPlayerPokemon.getStats();
 
         // Create bindings for combined stats
         createBindings(stats);
@@ -58,15 +54,15 @@ public class StatsView extends VBox {
 
     private void setupUIOpponent() {
         Text name;
-        if (Objects.equals(SessionGame.currentBattle.getCurrentEnemyPokemon().getName(), SessionGame.currentBattle.getCurrentPlayerPokemon().getName())) {
-            name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName() + " (Enemy)");
+        if (Objects.equals(GameController.currentBattle.getCurrentEnemyPokemon().getName(), GameController.currentBattle.getCurrentPlayerPokemon().getName())) {
+            name = new Text(GameController.currentBattle.getCurrentEnemyPokemon().getName() + " (Enemy)");
         } else {
-            name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName());
+            name = new Text(GameController.currentBattle.getCurrentEnemyPokemon().getName());
         }
         getChildren().add(name);
 
         // Get the stats object from your Pokemon
-        Stats stats = SessionGame.currentBattle.getCurrentEnemyPokemon().getStats();
+        Stats stats = GameController.currentBattle.getCurrentEnemyPokemon().getStats();
 
         // Create bindings for combined stats
         createBindings(stats);

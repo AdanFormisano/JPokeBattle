@@ -1,5 +1,6 @@
 package com.example.jpokebattle.gui;
 
+import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.poke.Move;
 import com.example.jpokebattle.service.session.SessionData;
 import javafx.scene.layout.HBox;
@@ -11,10 +12,10 @@ import java.util.List;
 public class DynamicView extends VBox {
     SceneController sceneController;
     SessionData sessionData;
+    GameController gc = GameController.getInstance();
 
-    public DynamicView(SceneController sceneController, SessionData sessionData) {
+    public DynamicView(SceneController sceneController) {
         this.sceneController = sceneController;
-        this.sessionData = sessionData;
         setupUI();
     }
 
@@ -23,8 +24,8 @@ public class DynamicView extends VBox {
         setStyle("-fx-border-color: transparent gray transparent transparent; " +
                 "-fx-border-width: 1;");
 
-        MovesView movesView = new MovesView(sessionData);
-        PokeListView pokeListView = new PokeListView(sessionData);
+        MovesView movesView = new MovesView();
+        PokeListView pokeListView = new PokeListView();
         getChildren().addAll(movesView);
 
         sceneController.showingPokemonListProperty().addListener((obs, oldVal, newVal) -> {
@@ -89,12 +90,11 @@ public class DynamicView extends VBox {
     }
 
     private class MovesView extends VBox {
-        SessionData sessionData;
+        GameController gc = GameController.getInstance();
         List<Move> playerMoves;
 
-        public MovesView(SessionData sessionData) {
-            this.sessionData = sessionData;
-            playerMoves = sessionData.currentPlayerPokemon.getMoveList();
+        public MovesView() {
+            playerMoves = gc.getSessionData().currentPlayerPokemon.getMoveList();
             setupUI();
         }
 
@@ -121,10 +121,9 @@ public class DynamicView extends VBox {
     }
 
     private class PokeListView extends VBox {
-        SessionData sessionData;
+        GameController gc = GameController.getInstance();
 
-        public PokeListView(SessionData sessionData) {
-            this.sessionData = sessionData;
+        public PokeListView() {
             setupUI();
         }
 
@@ -136,11 +135,11 @@ public class DynamicView extends VBox {
             Text pokeListTitle = new Text("Your Pokemon");
             getChildren().add(pokeListTitle);
 
-            for (int i = 0; i < sessionData.playerPokemons.size(); i++) {
+            for (int i = 0; i < gc.getSessionData().playerPokemons.size(); i++) {
                 HBox pokeContainer = new HBox();
-                Text pokeName = new Text(sessionData.playerPokemons.get(i).getName());
-                Text pokeLevel = new Text("Level: " + sessionData.playerPokemons.get(i).getStats().getLevel());
-                Text pokeHP = new Text("HP: " + sessionData.playerPokemons.get(i).getStats().getCurrentHP() + "/" + sessionData.playerPokemons.get(i).getStats().getMaxHP());
+                Text pokeName = new Text(gc.getSessionData().playerPokemons.get(i).getName());
+                Text pokeLevel = new Text("Level: " + gc.getSessionData().playerPokemons.get(i).getStats().getLevel());
+                Text pokeHP = new Text("HP: " + gc.getSessionData().playerPokemons.get(i).getStats().getCurrentHP() + "/" + gc.getSessionData().playerPokemons.get(i).getStats().getMaxHP());
                 pokeContainer.getChildren().addAll(pokeLevel, pokeHP);
                 getChildren().addAll(pokeName, pokeContainer);
             }

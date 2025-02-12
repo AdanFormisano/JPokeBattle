@@ -16,6 +16,8 @@ public class Battle {
     private final List<Pokemon> enemyPokemons;
     private Pokemon currentPlayerPokemon;
     private Pokemon currentEnemyPokemon;
+
+    private BattleEventListener listener;
     private final RandomGenerator randGen = RandomGenerator.getDefault();
     private final PokeLoader pl;
 
@@ -29,6 +31,10 @@ public class Battle {
         currentEnemyPokemon = enemyPokemons.getFirst();
 
         BattleIntro();
+    }
+
+    public void addListener(BattleEventListener listener) {
+        this.listener = listener;
     }
 
     public Pokemon getCurrentPlayerPokemon() { return currentPlayerPokemon; }
@@ -133,6 +139,7 @@ public class Battle {
                 currentPlayerPokemon = playerPokemons.getFirst();
             } catch (NoSuchElementException e) {
                 System.out.println("You have no more Pokemon left!");
+                notifyBattleEnd(new BattleOutcome(false, playerPokemons, enemyPokemons));
                 currentPlayerPokemon = null;
             }
         }
@@ -148,8 +155,15 @@ public class Battle {
                 currentEnemyPokemon = enemyPokemons.getFirst();
             } catch (NoSuchElementException e) {
                 System.out.println("Trainer has no more Pokemon left!");
+                notifyBattleEnd(new BattleOutcome(true, playerPokemons, enemyPokemons));
                 currentEnemyPokemon = null;
             }
+        }
+    }
+
+    private void notifyBattleEnd(BattleOutcome outcome) {
+        if (listener != null) {
+            listener.onBattleEnd(outcome);
         }
     }
 

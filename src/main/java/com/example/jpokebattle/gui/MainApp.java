@@ -1,5 +1,6 @@
 package com.example.jpokebattle.gui;
 
+import com.example.jpokebattle.game.BattleOutcome;
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.game.GameStateListener;
 import javafx.application.Application;
@@ -28,7 +29,7 @@ public class MainApp extends Application implements GameStateListener {
     }
 
     private void setupUI() {
-        sceneController = new SceneController(primaryStage,gameController);
+        sceneController = new SceneController(primaryStage);
         primaryStage.setResizable(false);
         primaryStage.setTitle("JPokeBattle");
         primaryStage.getIcons().add(new Image("file:src/main/resources/assets/bulbasaur.png"));
@@ -50,8 +51,8 @@ public class MainApp extends Application implements GameStateListener {
     }
 
     @Override
-    public void onBattleEnd(boolean playerWon) {
-        if (playerWon) {
+    public void onBattleEnd(BattleOutcome outcome) {
+        if (outcome.getPlayerWon()) {
             System.out.println("Player won!");
             // sceneController.showWinScreen();
         } else {

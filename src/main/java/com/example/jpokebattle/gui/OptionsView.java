@@ -8,7 +8,7 @@ public class OptionsView extends VBox {
     SceneController sceneController;
     SessionData sessionData;
 
-    public OptionsView(SceneController sceneController, SessionData sessionData) {
+    public OptionsView(SceneController sceneController) {
         this.sceneController = sceneController;
         setupUI();
     }

@@ -40,7 +40,6 @@ public class NoGuiSession implements PokeGameSession {
 
     @Override
     public void playSession() {
-        SessionGame sessionGame = new SessionGame(sessionData);
-//        sessionGame.run();
+//        SessionGame sessionGame = new SessionGame(sessionData);
     }
 }

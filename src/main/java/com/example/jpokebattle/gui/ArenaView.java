@@ -1,7 +1,6 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
+import com.example.jpokebattle.game.GameController;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -11,12 +10,9 @@ import javafx.scene.text.Text;
 public class ArenaView extends VBox {
     PlayerBox playerBox;
     OpponentBox opponentBox;
-    SessionData sessionData;
-    SessionGame sessionGame;
+    GameController gc = GameController.getInstance();
 
     public ArenaView(SceneController sceneController) {
-        this.sessionData = sceneController.sessionData;
-        this.sessionGame = sceneController.sessionGame;
         setMaxHeight(USE_COMPUTED_SIZE);
         setMinHeight(USE_COMPUTED_SIZE);
         setPrefHeight(300);
@@ -43,7 +39,7 @@ public class ArenaView extends VBox {
             setMaxHeight(USE_COMPUTED_SIZE);
             setMinHeight(USE_COMPUTED_SIZE);
 
-            ImageView playerPokemon = new ImageView(sessionData.currentPlayerPokemon.getSpriteBack());
+            ImageView playerPokemon = new ImageView(gc.getSessionData().currentPlayerPokemon.getSpriteBack());
             HBox pokeView = new HBox();
             pokeView.setPrefWidth(700);
             pokeView.setAlignment(Pos.BOTTOM_LEFT);
@@ -64,7 +60,7 @@ public class ArenaView extends VBox {
             setMaxHeight(USE_COMPUTED_SIZE);
             setMinHeight(USE_COMPUTED_SIZE);
 
-            ImageView opponentPokemon = new ImageView(SessionGame.currentBattle.getCurrentEnemyPokemon().getSpriteFront());
+            ImageView opponentPokemon = new ImageView(GameController.currentBattle.getCurrentEnemyPokemon().getSpriteFront());
             HBox pokeView = new HBox();
             pokeView.setPrefWidth(700);
             pokeView.setAlignment(Pos.BOTTOM_RIGHT);

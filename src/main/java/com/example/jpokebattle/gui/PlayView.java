@@ -1,7 +1,6 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
+import com.example.jpokebattle.game.GameController;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -11,13 +10,10 @@ import javafx.scene.layout.VBox;
 
 public class PlayView extends HBox {
     private SceneController sceneController;
-    private SessionData sessionData;
-    private SessionGame sessionGame;
+    private GameController gc = GameController.getInstance();
 
     public PlayView(SceneController sceneController) {
         this.sceneController = sceneController;
-        this.sessionData = sceneController.sessionData;
-        this.sessionGame = sceneController.sessionGame;
         setupUI();
     }
 
@@ -56,8 +52,8 @@ public class PlayView extends HBox {
                 "-fx-border-width: 1;");
 
         HBox dynamicAndOptionsContainer = new HBox();
-        DynamicView dynamicView = new DynamicView(sceneController, sessionData);
-        OptionsView optionsView = new OptionsView(sceneController, sessionData);
+        DynamicView dynamicView = new DynamicView(sceneController);
+        OptionsView optionsView = new OptionsView(sceneController);
 
         VBox.setVgrow(arenaView, Priority.ALWAYS);
         VBox.setVgrow(dynamicAndOptionsContainer, Priority.ALWAYS);

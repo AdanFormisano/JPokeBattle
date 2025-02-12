@@ -1,8 +1,6 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.game.GameController;
-import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Scene;
@@ -14,15 +12,10 @@ public class SceneController {
     private Scene playScene;
     private BooleanProperty showingPokemonList = new SimpleBooleanProperty(false);
 
-    private GameController gameController;
-    public SessionData sessionData;
-    public SessionGame sessionGame;
+    private GameController gc = GameController.getInstance();
 
-    public SceneController(Stage stage, GameController gameController) {
+    public SceneController(Stage stage) {
         this.stage = stage;
-        this.gameController = gameController;
-        this.sessionData = gameController.getSessionData();
-        this.sessionGame = gameController.getSessionGame();
 
         menuScene = new Scene(new MenuView(this), 900, 600);
 //        playScene = new Scene(new PlayView(this, sessionData), 900, 600);
@@ -41,7 +34,7 @@ public class SceneController {
     }
 
     public void showPokemonChoice() {
-        PokemonChoiceView choiceView = new PokemonChoiceView(pokemon -> gameController.onPokemonSelected(pokemon), gameController);
+        PokemonChoiceView choiceView = new PokemonChoiceView(pokemon -> gc.onPokemonSelected(pokemon));
         stage.setScene(new Scene(choiceView, 900, 600));
     }
 
@@ -54,6 +47,6 @@ public class SceneController {
     }
 
     public void choseMove(String moveName) {
-        gameController.onMoveSelected(moveName);
+        gc.onMoveSelected(moveName);
     }
 }

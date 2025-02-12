@@ -4,5 +4,5 @@ public interface GameStateListener {
     void onGameStart();
     void onNeedPokemonSelection();
     void onBattleStart();
-    void onBattleEnd(boolean playerWon);
+    void onBattleEnd(BattleOutcome outcome);
 }

@@ -1,16 +1,21 @@
 package com.example.jpokebattle.game;
 
+import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
 
-public class GameController {
-    private SessionGame sessionGame;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameController implements BattleEventListener {
     private SessionData sessionData;
     private GameStateListener gameStateListener;
 
+    public int currentLevel = 0;
+    List<BattleOutcome> battleOutcomes = new ArrayList<>();
+    public static Battle currentBattle;
+
     private GameController() {
         sessionData = new SessionData(true);
-        sessionGame = new SessionGame(sessionData);
     }
 
     private static class GameControllerHolder {
@@ -24,18 +29,30 @@ public class GameController {
     public SessionData getSessionData() {
         return sessionData;
     }
-    public SessionGame getSessionGame() {
-        return sessionGame;
-    }
 
     public void setGameStateListener(GameStateListener gameStateListener) {
         this.gameStateListener = gameStateListener;
     }
 
+    private void generateLevel() {
+        currentLevel++;
+
+        // Generate a new Trainer
+        sessionData.trainer = new Trainer("Trainer", currentLevel);
+
+        // Randomly generate the trainer's pokemon
+        sessionData.enemyPokemons = new ArrayList<>(List.of(
+                new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI)
+        ));
+    }
+
+    public void generateBattle() {
+        generateLevel();
+        currentBattle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
+    }
+
     public void startGame() {
-        // Notify UI we need a Pokemon selection
         if (gameStateListener != null) {
-//            gameStateListener.onNeedPokemonSelection();
             gameStateListener.onGameStart();
         }
     }
@@ -46,14 +63,23 @@ public class GameController {
     }
 
     private void startBattle() {
-        sessionGame.generateBattle();
+        generateBattle();
         if (gameStateListener != null) {
             gameStateListener.onBattleStart();
         }
     }
 
     public void onMoveSelected(String moveName) {
-        SessionGame.currentBattle.playTurn(moveName);
+        currentBattle.playTurn(moveName);
+    }
+
+    @Override
+    public void onBattleEnd(BattleOutcome outcome) {
+        battleOutcomes.add(outcome);
+
+        if (gameStateListener != null) {
+            gameStateListener.onBattleEnd(outcome);
+        }
     }
 }
 

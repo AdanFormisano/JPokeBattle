@@ -1,8 +1,6 @@
 package com.example.jpokebattle.gui;
 
 import com.example.jpokebattle.game.GameController;
-import com.example.jpokebattle.service.session.SessionData;
-import com.example.jpokebattle.service.session.SessionGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,14 +12,11 @@ import javafx.scene.text.Text;
 import java.util.function.Consumer;
 
 public class PokemonChoiceView extends VBox {
-    private SessionData sessionData;
-    private SessionGame sessionGame;
+    private GameController gc = GameController.getInstance();
     private Consumer<String> onPokemonSelected;
 
-    public PokemonChoiceView(Consumer<String> onPokemonSelected, GameController gameController) {
+    public PokemonChoiceView(Consumer<String> onPokemonSelected) {
         this.onPokemonSelected = onPokemonSelected;
-        this.sessionData = gameController.getSessionData();
-        this.sessionGame = gameController.getSessionGame();
         setupUI();
     }
 
@@ -58,7 +53,7 @@ public class PokemonChoiceView extends VBox {
             setPadding(new Insets(20));
 
             // Show the pokemon image
-            ImageView pokeView = new ImageView(sessionData.pl.getPokemonImage(name, true));
+            ImageView pokeView = new ImageView(gc.getSessionData().pl.getPokemonImage(name, true));
 
             Button chooseButton = new Button("Choose");
             setMargin(chooseButton, new Insets(30, 0, 0, 0));
