@@ -3,13 +3,14 @@ package com.example.jpokebattle.poke;
 import com.example.jpokebattle.service.loader.NatureLoader;
 
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class Nature {
     private final String name;
     private final String increasedStat;
     private final String decreasedStat;
 
-    private static final Random random = new Random();
+    private static final RandomGenerator random = RandomGenerator.getDefault();
 
     // Generate nature with specific name, increased stat, and decreased stat
     public Nature(String name, String increasedStat, String decreasedStat) {

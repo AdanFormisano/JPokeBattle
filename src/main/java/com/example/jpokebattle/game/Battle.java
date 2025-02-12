@@ -16,12 +16,14 @@ public class Battle {
     private final List<Pokemon> enemyPokemons;
     private Pokemon currentPlayerPokemon;
     private Pokemon currentEnemyPokemon;
+    private int currentLvl = GameController.getInstance().currentLevel;
+    private BattleOutcome outcome;
 
     private BattleEventListener listener;
     private final RandomGenerator randGen = RandomGenerator.getDefault();
     private final PokeLoader pl;
 
-    public Battle(BattleEventListener listener, PokeLoader pl, Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons) {
+    public Battle(BattleEventListener listener, PokeLoader pl, Player player, Trainer trainer, List<Pokemon> playerPokemons, List<Pokemon> enemyPokemons, BattleOutcome outcome) {
         this.listener = listener;
         this.pl = pl;
         this.player = player;
@@ -30,6 +32,7 @@ public class Battle {
         this.enemyPokemons = enemyPokemons;
         currentPlayerPokemon = playerPokemons.getFirst();
         currentEnemyPokemon = enemyPokemons.getFirst();
+        this.outcome = outcome;
 
         BattleIntro();
     }
@@ -38,8 +41,13 @@ public class Battle {
         this.listener = listener;
     }
 
-    public Pokemon getCurrentPlayerPokemon() { return currentPlayerPokemon; }
-    public Pokemon getCurrentEnemyPokemon() { return currentEnemyPokemon; }
+    public Pokemon getCurrentPlayerPokemon() {
+        return currentPlayerPokemon;
+    }
+
+    public Pokemon getCurrentEnemyPokemon() {
+        return currentEnemyPokemon;
+    }
 
     private void BattleIntro() {
         System.out.printf("Trainer sent %s!%n", currentEnemyPokemon.getName());
@@ -70,7 +78,7 @@ public class Battle {
         checkFaintedPokemon();
     }
 
-    private void orderMoves (List<ChosenMove> chosenMoves) {
+    private void orderMoves(List<ChosenMove> chosenMoves) {
         if (chosenMoves.get(0).move.getPriority() < chosenMoves.get(1).move.getPriority()) {
             Collections.swap(chosenMoves, 0, 1);
         } else if (chosenMoves.get(0).move.getPriority() == chosenMoves.get(1).move.getPriority()) {
@@ -126,7 +134,7 @@ public class Battle {
         var type2 = defender.getType().size() > 1 ? DataTypeChart.getMultiplier(move.getType(), defender.getType().getLast()) : 1;
         float random = (float) randGen.nextInt(85, 101) / 100;
 
-        damage = (((double) (((level * 2) /5) + 2) * power * (A/D)) / 50) * stab * type1 * type2 * random;
+        damage = (((double) (((level * 2) / 5) + 2) * power * (A / D)) / 50) * stab * type1 * type2 * random;
         System.out.printf("Damage: %f, level: %d, A: %f, D: %f, power: %d, stab: %f, type1: %f, type2: %f, random: %f%n", damage, level, A, D, power, stab, type1, type2, random);
 
         return damage;
@@ -134,30 +142,38 @@ public class Battle {
 
     private void checkFaintedPokemon() {
         if (currentPlayerPokemon.getStats().getCurrentHP() <= 0) {
-            try {
-                System.out.println(currentPlayerPokemon.getName() + " fainted!");
+            System.out.println(currentPlayerPokemon.getName() + " fainted!");
+            outcome.addPlayerPokemon(currentPlayerPokemon);     // Save the fainted pokemon for future references
+
+            notifyPokemonFainted(true, currentPlayerPokemon);
+
+            if (playerPokemons.size() == 1) {
+                outcome.setPlayerWon(false);
+                notifyBattleEnd(outcome);
                 playerPokemons.remove(currentPlayerPokemon);
-                currentPlayerPokemon = playerPokemons.getFirst();
-            } catch (NoSuchElementException e) {
-                System.out.println("You have no more Pokemon left!");
-                notifyBattleEnd(new BattleOutcome(false, playerPokemons, enemyPokemons));
-                currentPlayerPokemon = null;
+                return;
+            } else {
+                playerPokemons.remove(currentPlayerPokemon);
+                currentPlayerPokemon = playerPokemons.getFirst();   // TODO: Implement a way to switch to another pokemon
             }
         }
 
         if (currentEnemyPokemon.getStats().getCurrentHP() <= 0) {
-            try {
-                System.out.println(currentEnemyPokemon.getName() + " fainted!");
+            System.out.println(currentEnemyPokemon.getName() + " fainted!");
 
-                giveExp(currentPlayerPokemon,currentEnemyPokemon);
-                giveEV(currentPlayerPokemon,currentEnemyPokemon);
+            giveExp(currentPlayerPokemon, currentEnemyPokemon);
+            giveEV(currentPlayerPokemon, currentEnemyPokemon);
 
+            outcome.addEnemyPokemon(currentEnemyPokemon);     // Save the fainted pokemon for future references
+            notifyPokemonFainted(false, currentEnemyPokemon);
+
+            if (enemyPokemons.size() == 1) {
+                outcome.setPlayerWon(true);
+                notifyBattleEnd(outcome);
+            } else {
+                System.out.println("Trainer has no more Pokemon left!");
                 enemyPokemons.remove(currentEnemyPokemon);
                 currentEnemyPokemon = enemyPokemons.getFirst();
-            } catch (NoSuchElementException e) {
-                System.out.println("Trainer has no more Pokemon left!");
-                notifyBattleEnd(new BattleOutcome(true, playerPokemons, enemyPokemons));
-                currentEnemyPokemon = null;
             }
         }
     }
@@ -165,6 +181,12 @@ public class Battle {
     private void notifyBattleEnd(BattleOutcome outcome) {
         if (listener != null) {
             listener.onBattleEnd(outcome);
+        }
+    }
+
+    private void notifyPokemonFainted(boolean isPlayer, Pokemon pokemon) {
+        if (listener != null) {
+            listener.onPokemonFainted(isPlayer, pokemon);
         }
     }
 

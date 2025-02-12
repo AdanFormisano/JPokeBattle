@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DataNature {
-    private final int id;
-    private final String name;
-    private final String increasedStat;
-    private final String decreasedStat;
+    private int id;
+    private String name;
+    private String increasedStat;
+    private String decreasedStat;
 
     @JsonCreator
     public DataNature(@JsonProperty("id") int id,
@@ -25,6 +25,12 @@ public class DataNature {
     public String getName() { return this.name; }
     public String getIncreasedStat() { return this.increasedStat; }
     public String getDecreasedStat() { return this.decreasedStat; }
+
+    // Setters
+    public void setId(int id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setIncreasedStat(String increasedStat) { this.increasedStat = increasedStat; }
+    public void setDecreasedStat(String decreasedStat) { this.decreasedStat = decreasedStat; }
 
     @Override
     public String toString() {

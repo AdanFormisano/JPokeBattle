@@ -11,7 +11,7 @@ public class GameController implements BattleEventListener {
     private GameStateListener gameStateListener;
 
     public int currentLevel = 0;
-    List<BattleOutcome> battleOutcomes = new ArrayList<>();
+    public List<BattleOutcome> battleOutcomes = new ArrayList<>();
     public static Battle currentBattle;
 
     private GameController() {
@@ -48,7 +48,8 @@ public class GameController implements BattleEventListener {
 
     public void generateBattle() {
         generateLevel();
-        currentBattle = new Battle(sessionData.pl, sessionData.player, sessionData.trainer, sessionData.playerPokemons, sessionData.enemyPokemons);
+        currentBattle = new Battle(this, sessionData.pl, sessionData.player, sessionData.trainer,
+                sessionData.playerPokemons, sessionData.enemyPokemons, new BattleOutcome(currentLevel));
     }
 
     public void startGame() {
@@ -81,5 +82,14 @@ public class GameController implements BattleEventListener {
             gameStateListener.onBattleEnd(outcome);
         }
     }
+
+    @Override
+    public void onPokemonFainted(boolean isPlayer, Pokemon pokemon) {
+        if (gameStateListener != null) {
+            gameStateListener.onPokemonFainted(isPlayer, pokemon);
+        }
+    }
+
+
 }
 

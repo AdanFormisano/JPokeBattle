@@ -19,12 +19,12 @@ public class OptionsView extends VBox {
         toggleContainer.getChildren().add(toggleBattlePokemon);
         toggleBattlePokemon.setOnAction(e -> {
             toggleContainer.getChildren().clear();
-            if (sceneController.showingPokemonListProperty().get()) {
+            if (sceneController.getDynamicViewStatus() == DynamicViewStatus.BATTLE) {
                 toggleBattlePokemon.setText("Pokemon");
-                sceneController.togglePokemonList();
+                sceneController.setDynamicViewStatus(DynamicViewStatus.POKEMON_SELECTION);
             } else {
                 toggleBattlePokemon.setText("Battle!");
-                sceneController.togglePokemonList();
+                sceneController.setDynamicViewStatus(DynamicViewStatus.BATTLE);
             }
         });
 

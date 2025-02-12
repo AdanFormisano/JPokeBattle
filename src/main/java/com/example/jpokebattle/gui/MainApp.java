@@ -3,6 +3,7 @@ package com.example.jpokebattle.gui;
 import com.example.jpokebattle.game.BattleOutcome;
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.game.GameStateListener;
+import com.example.jpokebattle.poke.Pokemon;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -51,10 +52,14 @@ public class MainApp extends Application implements GameStateListener {
     }
 
     @Override
+    public void onPokemonFainted(boolean isPlayer, Pokemon pokemon) {
+        sceneController.showPokemonFainted(isPlayer, pokemon);
+    }
+
+    @Override
     public void onBattleEnd(BattleOutcome outcome) {
         if (outcome.getPlayerWon()) {
-            System.out.println("Player won!");
-            // sceneController.showWinScreen();
+            sceneController.showWinScreen();
         } else {
             System.out.println("Player lost!");
             // sceneController.showLoseScreen();

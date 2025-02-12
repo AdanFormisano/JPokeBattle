@@ -12,8 +12,15 @@ public class PlayView extends HBox {
     private SceneController sceneController;
     private GameController gc = GameController.getInstance();
 
+    public StatsView statsPlayer;
+    public StatsView statsOpponent;
+    public ArenaView arenaView;
+    public DynamicContainerView dynamicContainerView;
+    public OptionsView optionsView;
+
     public PlayView(SceneController sceneController) {
         this.sceneController = sceneController;
+
         setupUI();
     }
 
@@ -33,8 +40,8 @@ public class PlayView extends HBox {
         statsContainer.setStyle("-fx-border-color: transparent gray transparent transparent; " +
                 "-fx-border-width: 1;");
 
-        StatsView statsPlayer = new StatsView(sceneController, true);
-        StatsView statsOpponent = new StatsView(sceneController, false);
+        statsPlayer = new StatsView(sceneController, true);
+        statsOpponent = new StatsView(sceneController, false);
         Separator separator = new Separator();
         VBox.setVgrow(statsPlayer, Priority.ALWAYS);
         VBox.setVgrow(statsOpponent, Priority.ALWAYS);
@@ -47,18 +54,26 @@ public class PlayView extends HBox {
 //        playingViews.setPrefWidth(700);
         playingViews.setPrefHeight(600);
         HBox.setHgrow(playingViews, Priority.ALWAYS);
-        ArenaView arenaView = new ArenaView(sceneController);
+        arenaView = new ArenaView(sceneController);
         arenaView.setStyle("-fx-border-color: transparent gray gray transparent; " +
                 "-fx-border-width: 1;");
 
         HBox dynamicAndOptionsContainer = new HBox();
-        DynamicView dynamicView = new DynamicView(sceneController);
-        OptionsView optionsView = new OptionsView(sceneController);
+        dynamicContainerView = new DynamicContainerView(sceneController);
+        optionsView = new OptionsView(sceneController);
+
+        dynamicContainerView.showView(new MovesView(sceneController));
+
+        sceneController.dynamicViewStatusProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == DynamicViewStatus.POKEMON_FAINTED) {
+
+            };
+        });
 
         VBox.setVgrow(arenaView, Priority.ALWAYS);
         VBox.setVgrow(dynamicAndOptionsContainer, Priority.ALWAYS);
 
-        dynamicAndOptionsContainer.getChildren().addAll(dynamicView, optionsView);
+        dynamicAndOptionsContainer.getChildren().addAll(dynamicContainerView, optionsView);
         playingViews.getChildren().addAll(arenaView, dynamicAndOptionsContainer);
 
         getChildren().addAll(scrollPane, playingViews);

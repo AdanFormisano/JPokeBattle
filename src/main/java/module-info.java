@@ -5,6 +5,7 @@ module com.example.jpokebattle {
     requires org.controlsfx.controls;
     requires com.fasterxml.jackson.databind;
     requires javafx.graphics;
+    requires java.xml;
 
     opens com.example.jpokebattle to javafx.fxml;
     exports com.example.jpokebattle;
