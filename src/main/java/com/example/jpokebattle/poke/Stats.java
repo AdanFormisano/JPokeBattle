@@ -77,8 +77,9 @@ public class Stats {
         currentExp.set(currentExp.get() + expGained);
         return expGained;
     }
-    public void gainEV(EffortValue ev) {
-        EV.add(ev);
+    public void gainEV(EffortValue ev) { EV.add(ev); }
+    public void gainEV(int HP, int attack, int defense, int specialAttack, int specialDefense, int speed) {
+        EV.add(HP, attack, defense, specialAttack, specialDefense, speed);
     }
 
     public void decreaseCurrentHP(double decrease) { currentHP.set(Math.max(currentHP.get() - decrease, 0)); }
@@ -160,7 +161,7 @@ public class Stats {
 
     private double calculateMaxHP() {
         int hp = baseStats.getBaseHP();
-        return Math.floor((double) ((2 * hp + IV.getHp() + EV.getHP()) * level.getValue()) / 100 + level.getValue() + 10);
+        return Math.floor((double) ((2 * hp + IV.getHp() + EV.getHp()) * level.getValue()) / 100 + level.getValue() + 10);
     }
 
     private double calculateStat(int baseStat, int IV, int EV, int level, double natureMultiplier) {

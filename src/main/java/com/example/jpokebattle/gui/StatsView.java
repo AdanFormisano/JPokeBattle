@@ -1,140 +1,95 @@
 package com.example.jpokebattle.gui;
 
+import com.example.jpokebattle.poke.Stats;
 import com.example.jpokebattle.service.session.SessionData;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.example.jpokebattle.service.session.SessionGame;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class StatsView extends VBox {
     private SceneController sceneController;
     private SessionData sessionData;
-    private ObservableList<Stat> stats = FXCollections.observableArrayList();
-    private ListView<Stat> statsList = new ListView<>();
-    private ObservableList<Stat> EV = FXCollections.observableArrayList();
-    private ListView<Stat> EVList = new ListView<>();
+    private SessionGame sessionGame;
 
-    public StatsView(SceneController sceneController, SessionData sessionData) {
+    public StatsView(SceneController sceneController, boolean isPlayer) {
         this.sceneController = sceneController;
-        this.sessionData = sessionData;
-        setupUI();
-    }
-
-//    public static class Stat {
-//        private StringProperty name;
-//        public void setName(String name) { nameProperty().set(name); }
-//        public String getName() { return name.get(); }
-//        public StringProperty nameProperty() {
-//            if (name == null) name = new SimpleStringProperty(this, "name");
-//            return name;
-//        }
-//
-//        private IntegerProperty value;
-//        public void setValue(int value) { valueProperty().set(value); }
-//        public int getValue() { return value.get(); }
-//        public IntegerProperty valueProperty() {
-//            if (value == null) value = new SimpleIntegerProperty(this, "value");
-//            return value;
-//        }
-//
-//        public Stat(String name, int value) {
-//            setName(name);
-//            setValue(value);
-//        }
-//    }
-
-    private class Stat {
-        private String name;
-        private int value;
-
-        public Stat(String name, int value) {
-            this.name = name;
-            this.value = value;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getValue() {
-            return value;
+        this.sessionData = sceneController.sessionData;
+        this.sessionGame = sceneController.sessionGame;
+        if (isPlayer) {
+            setupUIPlayer();
+        } else {
+            setupUIOpponent();
         }
     }
 
-    private ListCell<Stat> createStatCell() {
-        return new ListCell<>() {
-            @Override
-            protected void updateItem(Stat stat, boolean empty) {
-                super.updateItem(stat, empty);
-                if (empty || stat == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox container = new HBox();
+    private HBox createStatLabel(String statName,ObservableValue<String> value) {
+        HBox container = new HBox(10);
+        Text nameText = new Text(statName + ": ");
+        Text valueText = new Text();
 
-                    Text nameText = new Text(stat.getName() + ": ");
-                    Text valueText = new Text(String.valueOf(stat.value));
+        valueText.textProperty().bind(value);
 
-                    HBox valueBox = new HBox(valueText);
-                    valueBox.setAlignment(Pos.CENTER_RIGHT);
-                    HBox.setHgrow(valueBox, javafx.scene.layout.Priority.ALWAYS);
+        HBox valueBox = new HBox(valueText);
+        valueBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(valueBox, Priority.ALWAYS);
 
-                    container.getChildren().addAll(nameText, valueBox);
-                    setGraphic(container);
-                }
-            }
-        };
+        container.getChildren().addAll(nameText, valueBox);
+        return container;
     }
 
-    private void setupUI() {
-        Text name = new Text("Bulbasaur");
-        Text level = new Text("Level: 5");
-        Text hp = new Text("HP: " + sessionData.currentPlayerPokemon.getStats().getCurrentHP() + "/" + sessionData.currentPlayerPokemon.getStats().getMaxHP());
-        Text statsText = new Text("Stats");
-        Text EVText = new Text("EVs");
+    private void setupUIPlayer() {
+        Text name = new Text(sessionData.currentPlayerPokemon.getName());
 
-        stats.addAll(
-                new Stat("HP", (int) sessionData.currentPlayerPokemon.getStats().getCurrentHP()),
-                new Stat("Attack", (int) sessionData.currentPlayerPokemon.getStats().getAttack()),
-                new Stat("Defense", (int) sessionData.currentPlayerPokemon.getStats().getDefense()),
-                new Stat("Sp. Attack", (int) sessionData.currentPlayerPokemon.getStats().getSpecialAttack()),
-                new Stat("Sp. Defense", (int) sessionData.currentPlayerPokemon.getStats().getSpecialDefense()),
-                new Stat("Speed", (int) sessionData.currentPlayerPokemon.getStats().getSpeed())
+        // Get the stats object from your Pokemon
+        Stats stats = sessionData.currentPlayerPokemon.getStats();
+
+        // Create bindings for combined stats
+        createBindings(stats);
+//        createBindings();
+    }
+
+    private void setupUIOpponent() {
+        Text name = new Text(SessionGame.currentBattle.getCurrentEnemyPokemon().getName());
+        getChildren().add(name);
+        // Get the stats object from your Pokemon
+        Stats stats = SessionGame.currentBattle.getCurrentEnemyPokemon().getStats();
+
+        // Create bindings for combined stats
+        createBindings(stats);
+    }
+
+    private void createBindings(Stats stats) {
+        StringBinding hpBinding = (StringBinding) Bindings.concat(
+                stats.currentHPProperty().asString("%.0f"),
+                "/", stats.maxHPProperty().asString("%.0f")
         );
 
-
-        statsList.setItems(stats);
-        statsList.setPrefHeight(140);
-        statsList.setMinHeight(140);
-        statsList.setMaxHeight(140);
-        statsList.setPrefWidth(120);
-        statsList.setMinWidth(120);
-        statsList.setMaxWidth(120);
-
-        statsList.setCellFactory(lv -> createStatCell());
-
-        EV.addAll(
-                new Stat("HP", (int) sessionData.currentPlayerPokemon.getStats().getEV().getHP()),
-                new Stat("Attack", (int) sessionData.currentPlayerPokemon.getStats().getEV().getAttack()),
-                new Stat("Defense", (int) sessionData.currentPlayerPokemon.getStats().getEV().getDefense()),
-                new Stat("Sp. Attack", (int) sessionData.currentPlayerPokemon.getStats().getEV().getSpecialAttack()),
-                new Stat("Sp. Defense", (int) sessionData.currentPlayerPokemon.getStats().getEV().getSpecialDefense()),
-                new Stat("Speed", (int) sessionData.currentPlayerPokemon.getStats().getEV().getSpeed())
+        StringBinding expBinding = (StringBinding) Bindings.concat(stats.currentExpProperty().asString("%.0f"),
+                "/", stats.expProperty().asString("%.0f")
         );
-        EVList.setItems(EV);
-        EVList.setPrefHeight(140);
-        EVList.setMinHeight(140);
-        EVList.setMaxHeight(140);
-        EVList.setPrefWidth(120);
-        EVList.setMinWidth(120);
-        EVList.setMaxWidth(120);
 
-        EVList.setCellFactory(lv -> createStatCell());
+        HBox hpBox = createStatLabel("HP", hpBinding);
+        HBox expBox = createStatLabel("EXP", expBinding);
+        HBox levelBox = createStatLabel("Level", stats.levelProperty().asString());
+        HBox attackBox = createStatLabel("Attack", stats.attackProperty().asString());
+        HBox defenseBox = createStatLabel("Defense", stats.defenseProperty().asString());
+        HBox specialAttackBox = createStatLabel("Special Attack", stats.specialAttackProperty().asString());
+        HBox specialDefenseBox = createStatLabel("Special Defense", stats.specialDefenseProperty().asString());
+        HBox speedBox = createStatLabel("Speed", stats.speedProperty().asString());
 
-        getChildren().addAll(name, level, hp, statsText, statsList, EVText, EVList);
+        HBox EVhpBox = createStatLabel("EV HP", stats.getEV().hpProperty().asString());
+        HBox EVAttackBox = createStatLabel("EV Attack", stats.getEV().attackProperty().asString());
+        HBox EVDefenseBox = createStatLabel("EV Defense", stats.getEV().defenseProperty().asString());
+        HBox EVSpecialAttackBox = createStatLabel("EV Special Attack", stats.getEV().specialAttackProperty().asString());
+        HBox EVSpecialDefenseBox = createStatLabel("EV Special Defense", stats.getEV().specialDefenseProperty().asString());
+        HBox EVSpeedBox = createStatLabel("EV Speed", stats.getEV().speedProperty().asString());
+
+        getChildren().addAll(hpBox, expBox, levelBox, attackBox, defenseBox, specialAttackBox, specialDefenseBox, speedBox, EVhpBox, EVAttackBox, EVDefenseBox, EVSpecialAttackBox, EVSpecialDefenseBox, EVSpeedBox);
     }
 }

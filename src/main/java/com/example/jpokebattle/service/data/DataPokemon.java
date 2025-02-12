@@ -15,7 +15,7 @@ public class DataPokemon {
     private int specialAttack;
     private int specialDefense;
     private int speed;
-    private EffortValue effortValue;
+    private EffortValueDTO effortValue;
     private List<DataMoveBasic> moves;
     private String levelingRate;
     private int expYield;
@@ -33,12 +33,21 @@ public class DataPokemon {
     public int getSpecialAttack() { return this.specialAttack; }
     public int getSpecialDefense() { return this.specialDefense; }
     public int getSpeed() { return this.speed; }
-    public EffortValue getEffortValue() { return this.effortValue; }
     public List<DataMoveBasic> getMoves() { return this.moves; }
     public String getLevelingRate() { return this.levelingRate; }
     public int getExpYield() { return this.expYield; }
     public String getSpriteFrontPath() { return spriteFrontPath; }
     public String getSpriteBackPath() { return this.spriteBackPath; }
+    public EffortValue getEffortValue() {
+        return new EffortValue(
+                effortValue.getHp(),
+                effortValue.getAttack(),
+                effortValue.getDefense(),
+                effortValue.getSpecialAttack(),
+                effortValue.getSpecialDefense(),
+                effortValue.getSpeed()
+        );
+    }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -51,12 +60,12 @@ public class DataPokemon {
     public void setSpecialAttack(int specialAttack) { this.specialAttack = specialAttack; }
     public void setSpecialDefense(int specialDefense) { this.specialDefense = specialDefense; }
     public void setSpeed(int speed) { this.speed = speed; }
-    public void setEffortValue(EffortValue effortValue) { this.effortValue = effortValue; }
     public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
     public void setLevelingRate(String levelingRate) { this.levelingRate = levelingRate; }
     public void setExpYield(int expYield) { this.expYield = expYield; }
     public void setSpriteFrontPath(String spritePath) { this.spriteFrontPath = spritePath; }
     public void setSpriteBackPath(String backSpritePath) { this.spriteBackPath = backSpritePath; }
+    public void setEffortValue(EffortValueDTO effortValue) { this.effortValue = effortValue; }
 
     @Override
     public String toString() {

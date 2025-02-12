@@ -37,14 +37,14 @@ public class PlayView extends HBox {
         statsContainer.setStyle("-fx-border-color: transparent gray transparent transparent; " +
                 "-fx-border-width: 1;");
 
-        StatsView statsPlayer = new StatsView(sceneController, sessionData);
-        StatsView statsOpponent = new StatsView(sceneController, sessionData);
+        StatsView statsPlayer = new StatsView(sceneController, true);
+        StatsView statsOpponent = new StatsView(sceneController, false);
         Separator separator = new Separator();
         VBox.setVgrow(statsPlayer, Priority.ALWAYS);
         VBox.setVgrow(statsOpponent, Priority.ALWAYS);
         separator.setPadding(new Insets(10, 0, 10, 0));
 
-        statsContainer.getChildren().addAll(statsPlayer, separator, statsOpponent);
+        statsContainer.getChildren().addAll(statsOpponent, separator, statsPlayer);
 
         // Set up playing view
         VBox playingViews = new VBox();
