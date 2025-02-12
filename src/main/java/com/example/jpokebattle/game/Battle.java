@@ -38,20 +38,6 @@ public class Battle {
         System.out.printf("Trainer sent %s!%n", currentEnemyPokemon.getName());
     }
 
-    private static class PlayingMoves {
-        Move move1;
-        Move move2;
-        Pokemon pokemon1;
-        Pokemon pokemon2;
-
-        public PlayingMoves(Move move1, Move move2, Pokemon pokemon1, Pokemon pokemon2) {
-            this.move1 = move1;
-            this.move2 = move2;
-            this.pokemon1 = pokemon1;
-            this.pokemon2 = pokemon2;
-        }
-    }
-
     private static class ChosenMove {
         Pokemon pokemon;
         Move move;
@@ -76,74 +62,6 @@ public class Battle {
         applyDamage(chosenMoves);
         checkFaintedPokemon();
     }
-
-//
-//    private void BattleLoop() {
-//        // For testing purposes, the battle will end when there are no more pokemon
-//        while (!playerPokemons.isEmpty() && !enemyPokemons.isEmpty()) {
-//
-//            // Moves selected
-//            PlayingMoves playingMoves = new PlayingMoves(selectMove(true), selectMove(false), currentPlayerPokemon, currentEnemyPokemon);
-//            // Order of moves checked
-//            checkMovesOrder(playingMoves);
-//            // Check if it hits
-//            AccuracyCheck doesHit = checkAccuracy(playingMoves);
-//            // Calculate & Apply damage
-//            applyDamage(playingMoves, doesHit);
-//            // Check if any pokemon fainted
-//            checkFaintedPokemon();
-//        }
-//
-//        if (enemyPokemons.isEmpty()) {
-//            System.out.println("You have defeated the enemy!");
-//        } else {
-//            System.out.println("You have been defeated!");
-//        }
-//    }
-//
-//    private Move selectMove(boolean player) {
-//        if (player) {
-//            int choice = getMoveChoice();
-//
-//            Move chosenMove = currentPlayerPokemon.getMoveList().get(choice);
-//            chosenMove.decreasePP();
-//            System.out.println(currentPlayerPokemon.getName() + " has chosen " + chosenMove.getName());
-//            return chosenMove;
-//        } else {
-//           // For now, the enemy will always use the first move
-//            Move chosenMove = currentEnemyPokemon.getMoveList().getFirst();
-//            chosenMove.decreasePP();
-//            System.out.println(currentEnemyPokemon.getName() + " has chosen " + chosenMove.getName());
-//            return chosenMove;
-//        }
-//    }
-//
-//    private int getMoveChoice() {
-//        // Print available moves
-//        System.out.println("Please select a move:");
-//        for (int i = 0; i < currentPlayerPokemon.getMoveList().size(); i++) {
-//            System.out.printf("%d. %s (PP: %d/%d)%n",
-//                    i + 1,
-//                    currentPlayerPokemon.getMoveList().get(i).getName(),
-//                    currentPlayerPokemon.getMoveList().get(i).getPP(),
-//                    currentPlayerPokemon.getMoveList().get(i).getMaxPP());
-//        }
-//
-//        // Get user input
-//        while (true) {
-//            try {
-//                String input = scanner.nextLine();
-//                int choice = Integer.parseInt(input);
-//
-//                if (choice >= 1 && choice <= currentPlayerPokemon.getMoveList().size()) {
-//                    return choice - 1;
-//                }
-//                System.out.println("Please enter a valid number between 1 and " + currentPlayerPokemon.getMoveList().size());
-//            } catch (NumberFormatException e) {
-//                System.out.println("Invalid input. Please enter a number.");
-//            }
-//        }
-//    }
 
     private void orderMoves (List<ChosenMove> chosenMoves) {
         if (chosenMoves.get(0).move.getPriority() < chosenMoves.get(1).move.getPriority()) {
