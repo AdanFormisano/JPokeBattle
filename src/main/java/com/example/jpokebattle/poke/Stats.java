@@ -8,6 +8,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import static java.lang.Math.floor;
+
 public class Stats {
     private final Nature nature;
     private final BaseStats baseStats;
@@ -17,7 +19,7 @@ public class Stats {
     private final int expYield;
 
     private final IntegerProperty level = new SimpleIntegerProperty(1);
-    private final DoubleProperty currentExp = new SimpleDoubleProperty();
+    private final IntegerProperty currentExp = new SimpleIntegerProperty();
     private final IntegerProperty totalExpNeeded = new SimpleIntegerProperty();
     private final DoubleProperty currentHP = new SimpleDoubleProperty();
     private final DoubleProperty maxHP = new SimpleDoubleProperty();
@@ -45,7 +47,7 @@ public class Stats {
     }
 
     public IntegerProperty levelProperty() { return level; }
-    public DoubleProperty currentExpProperty() { return currentExp; }
+    public IntegerProperty currentExpProperty() { return currentExp; }
     public IntegerProperty totalExpNeededProperty() { return totalExpNeeded; }
     public DoubleProperty currentHPProperty() { return currentHP; }
     public DoubleProperty maxHPProperty() { return maxHP; }
@@ -65,8 +67,8 @@ public class Stats {
     public double getCurrentHP() { return currentHP.get(); }
     public EffortValue getEV() { return EV; }
     public int getLevel() { return level.get(); }
-    public double getCurrentExp() { return currentExp.get(); }
-    public double getExpToNextLevel() { return expPattern.getRequiredExp(level.get() + 1) - currentExp.get();}
+    public int getCurrentExp() { return currentExp.get(); }
+    public int getExpToNextLevel() { return expPattern.getRequiredExp(level.get() + 1) - currentExp.get();}
     public int getTotalExpNeeded() { return totalExpNeeded.get(); }
     public int getExpYield() { return expYield; }
 
@@ -79,8 +81,8 @@ public class Stats {
     public void increaseSpecialAttack(PositiveInt increase) { specialAttack.set(specialAttack.get() + increase.doubleValue()); }
     public void increaseSpecialDefense(PositiveInt increase) { specialDefense.set(specialDefense.get() + increase.doubleValue()); }
     public void increaseSpeed(PositiveInt increase) { speed.set(speed.get() + increase.doubleValue()); }
-    public double gainExp(int enemyLvl, int baseExpYield, boolean isWild) {
-        double expGained = (double) (baseExpYield * enemyLvl) / 7 * (isWild ? 1 : 1.5);
+    public int gainExp(int enemyLvl, int baseExpYield, boolean isWild) {
+        int expGained = (int) ((double) (baseExpYield * enemyLvl) / 7 * (isWild ? 1 : 1.5));
         currentExp.set(currentExp.get() + expGained);
         return expGained;
     }
@@ -168,10 +170,10 @@ public class Stats {
 
     private double calculateMaxHP() {
         int hp = baseStats.getBaseHP();
-        return Math.floor((double) ((2 * hp + IV.getHp() + EV.getHp()) * level.getValue()) / 100 + level.getValue() + 10);
+        return floor((double) ((2 * hp + IV.getHp() + EV.getHp()) * level.getValue()) / 100 + level.getValue() + 10);
     }
 
     private double calculateStat(int baseStat, int IV, int EV, int level, double natureMultiplier) {
-        return Math.floor(Math.floor((double) ((2 * baseStat + IV + EV) * level) / 100 + 5) * natureMultiplier);
+        return floor(floor((double) ((2 * baseStat + IV + EV) * level) / 100 + 5) * natureMultiplier);
     }
 }

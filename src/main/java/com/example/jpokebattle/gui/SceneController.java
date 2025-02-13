@@ -77,7 +77,7 @@
         }
 
         @Override
-        public void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp) {
+        public void onPokemonFainted(String faintedPokemon, String playerPokemon, int exp) {
             FaintedViewData data = new FaintedViewData(faintedPokemon, playerPokemon, exp);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_FAINTED, data));
         }

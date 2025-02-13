@@ -1,20 +1,27 @@
 package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.GameController;
+import com.example.jpokebattle.gui.DynamicViewUIState;
 import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.gui.data.DynamicViewModel;
 import com.example.jpokebattle.gui.data.DynamicViewStatus;
 import com.example.jpokebattle.gui.data.FaintedViewData;
 import com.example.jpokebattle.gui.data.LevelUpViewData;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.layout.VBox;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class DynamicView extends VBox {
     SceneController sceneController;
     DynamicViewModel dvModel;
     GameController gc = GameController.getInstance();
-
-    MovesView movesView;
-    PokeListView pokeListView;
+    private Queue<DynamicViewUIState> stateQueue = new LinkedList<>();
+    private boolean isTransitioning = false;
+    private MovesView movesView;
+    private PokeListView pokeListView;
 
     public DynamicView(SceneController sceneController, DynamicViewModel dynamicViewModel) {
         this.sceneController = sceneController;
@@ -27,36 +34,58 @@ public class DynamicView extends VBox {
     }
 
     private void setupUI() {
-        MovesView movesView = new MovesView(sceneController);
-        PokeListView pokeListView = new PokeListView();
+        movesView = new MovesView(sceneController);
+        pokeListView = new PokeListView();
 
-        if (dvModel.getUIState().getStatus() == DynamicViewStatus.BATTLE) {
-            getChildren().add(movesView);
-        }
+        dvModel.toggleMovesPokeList.addListener((obs, oldVal, newVal) -> {
+            if (!isTransitioning){
+                getChildren().clear();
+                if (newVal) {
+                    getChildren().add(movesView);
+                } else {
+                    getChildren().add(pokeListView);
+                }
+            }
+        });
 
         dvModel.currentViewUIStateProperty().addListener((obs, oldState, newState) -> {
-            getChildren().clear();
-            switch (newState.getStatus()) {
-                case BATTLE:
-                    getChildren().add(movesView);
-                    break;
-                case POKEMON_SELECTION:
-                    getChildren().add(pokeListView);
-                    break;
+            stateQueue.offer(newState);
+            if (!isTransitioning) {
+                processNextState();
+            }
+        });
+    }
+
+    private void processNextState() {
+        DynamicViewUIState nextUIState = stateQueue.poll();
+        if (nextUIState == null) {
+            isTransitioning = false;
+            return;
+        }
+        isTransitioning = true;
+        getChildren().clear();
+
+        switch (nextUIState.getStatus()) {
+//                case BATTLE:
+//                    getChildren().add(movesView);
+//                    break;
+//                case POKEMON_SELECTION:
+//                    getChildren().add(pokeListView);
+//                    break;
                 case POKEMON_FAINTED:
-                    FaintedViewData faintedData = (FaintedViewData) newState.getData();
-                    getChildren().add(new PokeFaintedView(faintedData));
-                    System.out.println("PokemonFaintedView added");
+                    FaintedViewData faintedData = (FaintedViewData) nextUIState.getData();
+                    PokeFaintedView faintedView = new PokeFaintedView(faintedData);
+                    faintedView.setOnFinished(this::processNextState);
+                    getChildren().add(faintedView);
                     break;
                 case BATTLE_WIN:
                     getChildren().add(new WinView(gc.currentLevel, sceneController.canNextLevelProperty()));
                     break;
                 case LEVEL_UP:
-                    LevelUpViewData levelUpData = (LevelUpViewData) newState.getData();
+                    LevelUpViewData levelUpData = (LevelUpViewData) nextUIState.getData();
                     getChildren().add(new LevelUpView(levelUpData));
                     break;
             }
-        });
     }
 
     public void showView(VBox scene) {

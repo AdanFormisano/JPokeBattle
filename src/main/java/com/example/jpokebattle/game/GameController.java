@@ -87,7 +87,7 @@ public class GameController implements BattleEventListener {
     }
 
     @Override
-    public void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp) {
+    public void onPokemonFainted(String faintedPokemon, String playerPokemon, int exp) {
         if (gameStateListener != null) {
             gameStateListener.onPokemonFainted(faintedPokemon, playerPokemon, exp);
         }
@@ -97,6 +97,7 @@ public class GameController implements BattleEventListener {
     public void onLevelUp(Pokemon pokemon) {
         var moves = pokemon.checkNewMoves();
 
+        gameStateListener.onLevelUp(pokemon);
         if (!moves.isEmpty()) {
             var remainingMoves = pokemon.learnMoves(moves);
             if (!remainingMoves.isEmpty()) {
@@ -104,8 +105,6 @@ public class GameController implements BattleEventListener {
             } else {
                 gameStateListener.onLearnedMoves(pokemon.getName(), moves);
             }
-        } else {
-            gameStateListener.onLevelUp(pokemon);
         }
     }
 }

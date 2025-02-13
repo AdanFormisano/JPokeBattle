@@ -21,7 +21,7 @@ public class Nature {
 
     // Generate random nature
     public Nature() {
-        int natureIndex = random.nextInt(26);
+        int natureIndex = random.nextInt(25);
 
         NatureLoader natureLoader = new NatureLoader("src/main/resources/com/example/jpokebattle/data/nature.json");
         String[] natureData = natureLoader.getNatureDataById(natureIndex);

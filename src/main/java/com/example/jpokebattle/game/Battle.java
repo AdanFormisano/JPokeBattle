@@ -166,8 +166,8 @@ public class Battle {
 
             var exp = giveExp(currentPlayerPokemon, currentEnemyPokemon);
             giveEV(currentPlayerPokemon, currentEnemyPokemon);
-
             notifyPokemonFainted(currentEnemyPokemon.getName(), currentPlayerPokemon.getName(), exp);
+            listener.onLevelUp(currentPlayerPokemon);
 
             if (enemyPokemons.size() == 1) {
                 outcome.setPlayerWon(true);
@@ -194,13 +194,13 @@ public class Battle {
         }
     }
 
-    private void notifyPokemonFainted(String pokemonFainted, String playerPokemon, double exp) {
+    private void notifyPokemonFainted(String pokemonFainted, String playerPokemon, int exp) {
         if (listener != null) {
-            listener.onPokemonFainted(pokemonFainted, playerPokemon,  exp);
+            listener.onPokemonFainted(pokemonFainted, playerPokemon, exp);
         }
     }
 
-    private double giveExp(Pokemon gainingPokemon, Pokemon faintedPokemon) {
+    private int giveExp(Pokemon gainingPokemon, Pokemon faintedPokemon) {
         int baseExpYield = faintedPokemon.getStats().getExpYield();
         int enemyLvl = faintedPokemon.getStats().getLevel();
         boolean isWild = true; // For now, all enemy pokemon are wild
@@ -208,11 +208,10 @@ public class Battle {
 
         if (gainedExp > gainingPokemon.getStats().getExpToNextLevel()) {
             gainingPokemon.getStats().increaseLevel();
-            listener.onLevelUp(gainingPokemon);
             System.out.println(gainingPokemon.getName() + " has leveled up!");
             System.out.printf("%s is now level: %d%n", gainingPokemon.getName(), gainingPokemon.getStats().getLevel());
         }
-        System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExpNeeded());
+        System.out.printf("%s gained %d EXP! [%d/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExpNeeded());
         return gainedExp;
     }
 

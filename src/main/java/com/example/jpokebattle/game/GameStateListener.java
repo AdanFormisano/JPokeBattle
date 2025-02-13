@@ -9,7 +9,7 @@ public interface GameStateListener {
     void onNeedPokemonSelection();
     void onBattleStart();
     void onPokemonFainted(String pokemon);
-    void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp);
+    void onPokemonFainted(String faintedPokemon, String playerPokemon, int exp);
     void onBattleEnd(BattleOutcome outcome);
     void onLevelUp(Pokemon pokemon);
     void onRemainingMoves(String pokemon, List<String> moves);

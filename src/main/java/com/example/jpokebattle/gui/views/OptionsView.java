@@ -23,12 +23,12 @@ public class OptionsView extends VBox {
         toggleContainer.getChildren().add(toggleBattlePokemon);
         toggleBattlePokemon.setOnAction(e -> {
             toggleContainer.getChildren().clear();
-            if (dvModel.getUIState().getStatus() == DynamicViewStatus.BATTLE) {
+            if (dvModel.getToggleMovesPokeList()) {
                 toggleBattlePokemon.setText("Pokemon");
-                dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_SELECTION, null));
+                dvModel.toggleMovesPokeList.set(false);
             } else {
                 toggleBattlePokemon.setText("Battle!");
-                dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.BATTLE, null));
+                dvModel.toggleMovesPokeList.set(true);
             }
         });
 

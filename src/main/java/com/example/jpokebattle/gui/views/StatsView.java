@@ -50,7 +50,6 @@ public class StatsView extends VBox {
 
         // Create bindings for combined stats
         createBindings(stats);
-//        createBindings();
     }
 
     private void setupUIOpponent() {
@@ -75,8 +74,8 @@ public class StatsView extends VBox {
                 "/", stats.maxHPProperty().asString("%.0f")
         );
 
-        StringBinding expBinding = (StringBinding) Bindings.concat(stats.currentExpProperty().asString("%.0f"),
-                "/", stats.getTotalExpNeeded() + " EXP"
+        StringBinding expBinding = (StringBinding) Bindings.concat(stats.currentExpProperty(),
+                "/", stats.totalExpNeededProperty(), " EXP"
         );
 
         HBox hpBox = createStatLabel("HP", hpBinding);
