@@ -5,6 +5,7 @@ import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.gui.data.DynamicViewModel;
 import com.example.jpokebattle.gui.data.DynamicViewStatus;
 import com.example.jpokebattle.gui.data.FaintedViewData;
+import com.example.jpokebattle.gui.data.LevelUpViewData;
 import javafx.scene.layout.VBox;
 
 public class DynamicView extends VBox {
@@ -51,7 +52,8 @@ public class DynamicView extends VBox {
                     getChildren().add(new WinView(gc.currentLevel, sceneController.canNextLevelProperty()));
                     break;
                 case LEVEL_UP:
-//                    getChildren().add(new LevelUpView(sceneController));
+                    LevelUpViewData levelUpData = (LevelUpViewData) newState.getData();
+                    getChildren().add(new LevelUpView(levelUpData));
                     break;
             }
         });

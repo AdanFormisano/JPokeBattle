@@ -98,7 +98,8 @@
 
         @Override
         public void onLevelUp(Pokemon pokemon) {
-
+            LevelUpViewData data = new LevelUpViewData(pokemon.getName(), pokemon.getStats().getLevel());
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.LEVEL_UP, data));
         }
 
         @Override
