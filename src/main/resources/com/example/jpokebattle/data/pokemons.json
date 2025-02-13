@@ -22,7 +22,7 @@
     },
     "moves": [
       {"lvl": 1, "name": "Tackle"},
-      {"lvl": 4, "name": "Growl"},
+      {"lvl": 2, "name": "Growl"},
       {"lvl": 7, "name": "Leech Seed"},
       {"lvl": 10, "name": "Vine Whip"},
       {"lvl": 15, "name": "Poison Powder"},
@@ -138,7 +138,7 @@
     },
     "moves": [
       {"lvl": 1, "name": "Scratch"},
-      {"lvl": 1, "name": "Growl"},
+      {"lvl": 2, "name": "Growl"},
       {"lvl": 7, "name": "Ember"},
       {"lvl": 13, "name": "Smoke Screen"},
       {"lvl": 19, "name": "Rage"},
@@ -250,7 +250,7 @@
     },
     "moves": [
       {"lvl": 1, "name": "Tackle"},
-      {"lvl": 4, "name": "Tail Whip"},
+      {"lvl": 2, "name": "Tail Whip"},
       {"lvl": 7, "name": "Bubble"},
       {"lvl": 10, "name": "Withdraw"},
       {"lvl": 13, "name": "Water Gun"},

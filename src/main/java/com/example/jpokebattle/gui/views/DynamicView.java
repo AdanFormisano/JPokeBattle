@@ -3,10 +3,7 @@ package com.example.jpokebattle.gui.views;
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.gui.DynamicViewUIState;
 import com.example.jpokebattle.gui.SceneController;
-import com.example.jpokebattle.gui.data.DynamicViewModel;
-import com.example.jpokebattle.gui.data.DynamicViewStatus;
-import com.example.jpokebattle.gui.data.FaintedViewData;
-import com.example.jpokebattle.gui.data.LevelUpViewData;
+import com.example.jpokebattle.gui.data.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.layout.VBox;
@@ -72,19 +69,29 @@ public class DynamicView extends VBox {
 //                case POKEMON_SELECTION:
 //                    getChildren().add(pokeListView);
 //                    break;
-                case POKEMON_FAINTED:
-                    FaintedViewData faintedData = (FaintedViewData) nextUIState.getData();
-                    PokeFaintedView faintedView = new PokeFaintedView(faintedData);
-                    faintedView.setOnFinished(this::processNextState);
-                    getChildren().add(faintedView);
-                    break;
-                case BATTLE_WIN:
-                    getChildren().add(new WinView(gc.currentLevel, sceneController.canNextLevelProperty()));
-                    break;
-                case LEVEL_UP:
-                    LevelUpViewData levelUpData = (LevelUpViewData) nextUIState.getData();
-                    getChildren().add(new LevelUpView(levelUpData));
-                    break;
+            case POKEMON_FAINTED:
+                FaintedViewData faintedData = (FaintedViewData) nextUIState.getData();
+                PokeFaintedView faintedView = new PokeFaintedView(faintedData);
+                faintedView.setOnFinished(this::processNextState);
+                getChildren().add(faintedView);
+                break;
+            case BATTLE_WIN:
+                getChildren().add(new WinView(gc.currentLevel, sceneController.canNextLevelProperty()));
+                break;
+            case LEVEL_UP:
+                LevelUpViewData levelUpData = (LevelUpViewData) nextUIState.getData();
+                LevelUpView levelUpView = new LevelUpView(levelUpData);
+                levelUpView.setOnFinished(this::processNextState);
+                getChildren().add(levelUpView);
+                movesView.updateMoves();
+                break;
+            case LEARNED_MOVES:
+                LearnedMovesViewData learnedMovesData = (LearnedMovesViewData) nextUIState.getData();
+                LearnedMovesView learnedMovesView = new LearnedMovesView(learnedMovesData);
+                learnedMovesView.setOnFinished(this::processNextState);
+                getChildren().add(learnedMovesView);
+                movesView.updateMoves();
+                break;
             }
     }
 

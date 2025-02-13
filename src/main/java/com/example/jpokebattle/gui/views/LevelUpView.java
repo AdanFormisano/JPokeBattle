@@ -8,8 +8,10 @@ import javafx.scene.layout.VBox;
 
 public class LevelUpView extends MessageView {
     public LevelUpView(LevelUpViewData levelUpData) {
-        Label label = new Label("Your " + levelUpData.getPokemonName() + " has leveled up to level " + levelUpData.getLevel() + "!");
+        Label label = new Label("Your " + levelUpData.pokemonName() + " has leveled up to level " + levelUpData.level() + "!");
 
         getChildren().addFirst(label);
+
+        this.setOnMouseClicked(event -> finished());
     }
 }

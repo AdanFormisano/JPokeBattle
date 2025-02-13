@@ -21,6 +21,7 @@ public class MovesView extends VBox {
     }
 
     private void setupUI() {
+        getChildren().clear();
         setPrefWidth(200);
         setStyle("-fx-border-color: transparent gray transparent transparent; " +
                 "-fx-border-width: 1;");
@@ -91,5 +92,10 @@ public class MovesView extends VBox {
 
             getChildren().addAll(moveContainer, moveDescription);
         }
+    }
+
+    public void updateMoves() {
+        playerMoves = gc.getSessionData().currentPlayerPokemon.getMoveList();
+        setupUI();
     }
 }

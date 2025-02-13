@@ -109,6 +109,8 @@
 
         @Override
         public void onLearnedMoves(String pokemon, List<String> moves) {
-
+            // Show new moves learned message
+            LearnedMovesViewData data = new LearnedMovesViewData(pokemon, moves);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.LEARNED_MOVES, data));
         }
     }
