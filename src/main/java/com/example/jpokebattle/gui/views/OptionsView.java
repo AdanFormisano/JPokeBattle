@@ -37,7 +37,7 @@ public class OptionsView extends VBox {
         toNextLevel.setOnAction(e -> sceneController.loadNextLevel());
 
         Button backButton = new Button("Menu");
-        backButton.setOnAction(e -> sceneController.showMenu());
+        backButton.setOnAction(e -> sceneController.onGameStart());
 
         getChildren().addAll(toggleBattlePokemon, toNextLevel, backButton);
     }

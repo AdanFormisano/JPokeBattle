@@ -19,7 +19,7 @@ public class MenuView extends VBox {
         setPadding(new Insets(10));
 
         Button playButton = new Button("Play");
-        playButton.setOnAction(e -> sceneController.showPokemonChoice());
+        playButton.setOnAction(e -> sceneController.onNeedPokemonSelection());
 
         Text menuText = new Text("Menu View");
 

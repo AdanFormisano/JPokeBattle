@@ -98,10 +98,21 @@ public class Pokemon {
         }
     }
 
-    public void learnMoves(List<String> toLearn) {
-        for (String move : toLearn) {
-            learnMove(move);
+    public List<String> learnMoves(List<String> toLearn) {
+        List<String> remainingMoves = new ArrayList<>();
+
+        if (toLearn.size() + moveList.size() > 4) {
+            List<String> learnableMoves = toLearn.subList(0, 4 - moveList.size());
+            remainingMoves.addAll(toLearn.subList(4 - moveList.size(), toLearn.size()));
+            for (String move : learnableMoves) {
+                learnMove(move);
+            }
+        } else {
+            for (String move : toLearn) {
+                learnMove(move);
+            }
         }
+        return remainingMoves;
     }
 
     public void learnAndForgetMove(String toLearn, String toForget) {

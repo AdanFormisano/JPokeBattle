@@ -11,5 +11,7 @@ public interface GameStateListener {
     void onPokemonFainted(String pokemon);
     void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp);
     void onBattleEnd(BattleOutcome outcome);
-    void onLevelUp(Pokemon pokemon, List<String> moves);
+    void onLevelUp(Pokemon pokemon);
+    void onRemainingMoves(String pokemon, List<String> moves);
+    void onLearnedMoves(String pokemon, List<String> moves);
 }

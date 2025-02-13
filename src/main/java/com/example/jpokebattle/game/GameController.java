@@ -62,10 +62,6 @@ public class GameController implements BattleEventListener {
 
     public void onPokemonSelected(String pokemonName) {
         gameData.giveStartingPokemon(pokemonName);
-        startBattle();
-    }
-
-    private void startBattle() {
         generateBattle();
         if (gameStateListener != null) {
             gameStateListener.onBattleStart();
@@ -101,8 +97,15 @@ public class GameController implements BattleEventListener {
     public void onLevelUp(Pokemon pokemon) {
         var moves = pokemon.checkNewMoves();
 
-        if (gameStateListener != null) {
-            gameStateListener.onLevelUp(pokemon, moves);
+        if (!moves.isEmpty()) {
+            var remainingMoves = pokemon.learnMoves(moves);
+            if (!remainingMoves.isEmpty()) {
+                gameStateListener.onRemainingMoves(pokemon.getName(), remainingMoves);
+            } else {
+                gameStateListener.onLearnedMoves(pokemon.getName(), moves);
+            }
+        } else {
+            gameStateListener.onLevelUp(pokemon);
         }
     }
 }
