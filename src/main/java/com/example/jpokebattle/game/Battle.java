@@ -16,6 +16,8 @@ public class Battle {
     private final List<Pokemon> enemyPokemons;
     private Pokemon currentPlayerPokemon;
     private Pokemon currentEnemyPokemon;
+    private StatStage currentPlayerPokemonStatStage = new StatStage();
+    private StatStage currentEnemyPokemonStatStage = new StatStage();
     private int currentLvl = GameController.getInstance().currentLevel;
     private BattleOutcome outcome;
 
@@ -55,12 +57,14 @@ public class Battle {
 
     private static class ChosenMove {
         Pokemon pokemon;
+        StatStage statStage;
         Move move;
         boolean isPlayer;
         boolean doesHit = true;
 
-        public ChosenMove(Pokemon pokemon, Move move, boolean isPlayer) {
+        public ChosenMove(Pokemon pokemon, Move move, boolean isPlayer, StatStage statStage) {
             this.pokemon = pokemon;
+            this.statStage = statStage;
             this.move = move;
             this.isPlayer = isPlayer;
         }
@@ -68,8 +72,8 @@ public class Battle {
 
     public void playTurn(String playerMoveName) {
         List<ChosenMove> chosenMoves = new ArrayList<>(Arrays.asList(
-                new ChosenMove(currentPlayerPokemon, currentPlayerPokemon.getMove(playerMoveName), true),
-                new ChosenMove(currentEnemyPokemon, currentEnemyPokemon.getMoveList().getFirst(), false)
+                new ChosenMove(currentPlayerPokemon, currentPlayerPokemon.getMove(playerMoveName), true, currentPlayerPokemonStatStage),
+                new ChosenMove(currentEnemyPokemon, currentEnemyPokemon.getMoveList().getFirst(), false, currentEnemyPokemonStatStage)
         ));
 
         orderMoves(chosenMoves);
@@ -106,7 +110,7 @@ public class Battle {
         for (ChosenMove chosenMove : chosenMoves) {
             int target = chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0;
             if (chosenMove.doesHit && chosenMoves.get(target).pokemon.getStats().getCurrentHP() > 0) {
-                double damage = calculateDamage(chosenMove.move, chosenMove.pokemon, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon);
+                double damage = calculateDamage(chosenMove.move, chosenMove.pokemon, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon, chosenMove.statStage, chosenMoves.get(target).statStage);
                 chosenMoves.get(target).pokemon.takeDamage(damage);
                 System.out.printf("%s dealt %f damage to %s!%n", chosenMove.pokemon.getName(), damage, chosenMove.isPlayer ? chosenMoves.get(1).pokemon.getName() : chosenMoves.get(0).pokemon.getName());
             }
@@ -114,11 +118,15 @@ public class Battle {
     }
 
     // Follow this formula (GEN 3) : https://bulbapedia.bulbagarden.net/wiki/Damage
-    private double calculateDamage(Move move, Pokemon attacker, Pokemon defender) {
+    private double calculateDamage(Move move, Pokemon attacker, Pokemon defender, StatStage attackerStatStage, StatStage defenderStatStage) {
         double damage = 0;
         var level = attacker.getStats().getLevel();
-        var A = move.getCategory().equals("Physical") ? attacker.getStats().getAttack() : attacker.getStats().getSpecialAttack();
-        var D = move.getCategory().equals("Physical") ? defender.getStats().getDefense() : defender.getStats().getSpecialDefense();
+        var A = move.getCategory().equals("Physical") ?
+                attacker.getStats().getAttack() * attackerStatStage.getMultiplier(StatStageType.ATTACK) :
+                attacker.getStats().getSpecialAttack() * attackerStatStage.getMultiplier(StatStageType.SPECIAL_ATTACK);
+        var D = move.getCategory().equals("Physical") ?
+                defender.getStats().getDefense() * defenderStatStage.getMultiplier(StatStageType.DEFENSE) :
+                defender.getStats().getSpecialDefense() * defenderStatStage.getMultiplier(StatStageType.SPECIAL_DEFENSE);
         var power = move.getPower();
         // Burn check
         // Screen check
