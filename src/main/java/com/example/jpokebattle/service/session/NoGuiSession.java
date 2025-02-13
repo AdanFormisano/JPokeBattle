@@ -1,16 +1,16 @@
 package com.example.jpokebattle.service.session;
 
 import com.example.jpokebattle.game.Player;
-import com.example.jpokebattle.game.SessionData;
+import com.example.jpokebattle.game.GameData;
 
 import java.util.Scanner;
 
 public class NoGuiSession implements PokeGameSession {
-    SessionData sessionData;
+    GameData gameData;
     Scanner scanner = new Scanner(System.in);
 
     public NoGuiSession() {
-        sessionData = new SessionData(false);
+        gameData = new GameData(false);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class NoGuiSession implements PokeGameSession {
         System.out.println("Please enter your name: ");
         String playerName = scanner.nextLine();
         Player player = new Player(playerName);
-        sessionData.setPlayer(player);
-        System.out.println("Hello, " + sessionData.player.getName() + "! Remember you Gotta catch'em all!");
+        gameData.setPlayer(player);
+        System.out.println("Hello, " + gameData.player.getName() + "! Remember you Gotta catch'em all!");
 
         // Assign pokemon to player
     }

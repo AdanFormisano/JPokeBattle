@@ -12,7 +12,7 @@ import java.util.List;
     * It contains the current player data, the current pokemon data, and the current move data
  */
 
-public class SessionData {
+public class GameData {
     public Player player;
     public Trainer trainer;
     public List<Pokemon> playerPokemons;
@@ -23,7 +23,7 @@ public class SessionData {
     public final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
-    public SessionData(boolean isGUI) {
+    public GameData(boolean isGUI) {
         this.isGUI = isGUI;
     }
 

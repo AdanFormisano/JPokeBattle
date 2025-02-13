@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController implements BattleEventListener {
-    private SessionData sessionData;
+    private GameData gameData;
     private GameStateListener gameStateListener;
 
     public int currentLevel = 0;
@@ -14,7 +14,7 @@ public class GameController implements BattleEventListener {
     public static Battle currentBattle;
 
     private GameController() {
-        sessionData = new SessionData(true);
+        gameData = new GameData(true);
     }
 
     private static class GameControllerHolder {
@@ -25,8 +25,8 @@ public class GameController implements BattleEventListener {
         return GameControllerHolder.INSTANCE;
     }
 
-    public SessionData getSessionData() {
-        return sessionData;
+    public GameData getSessionData() {
+        return gameData;
     }
 
     public void setGameStateListener(GameStateListener gameStateListener) {
@@ -37,21 +37,21 @@ public class GameController implements BattleEventListener {
         currentLevel++;
 
         // Generate a new Trainer
-        sessionData.trainer = new Trainer("Trainer", currentLevel);
+        gameData.trainer = new Trainer("Trainer", currentLevel);
 
         // Randomly generate the trainer's pokemon
-        sessionData.enemyPokemons = new ArrayList<>(List.of(
-                new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI)
+        gameData.enemyPokemons = new ArrayList<>(List.of(
+                new Pokemon(gameData.pl.getRandomPokemon(), currentLevel, gameData.isGUI)
         ));
     }
 
     public void generateBattle() {
         generateLevel();
 //        sessionData.enemyPokemons.add(new Pokemon(sessionData.pl.getRandomPokemon(), currentLevel, sessionData.isGUI));
-        BattleOutcome outcome = new BattleOutcome(currentLevel, List.copyOf(sessionData.playerPokemons), List.copyOf(sessionData.enemyPokemons));
+        BattleOutcome outcome = new BattleOutcome(currentLevel, List.copyOf(gameData.playerPokemons), List.copyOf(gameData.enemyPokemons));
         battleOutcomes.add(outcome);
-        currentBattle = new Battle(this, sessionData.pl, sessionData.player, sessionData.trainer,
-                sessionData.playerPokemons, sessionData.enemyPokemons, outcome);
+        currentBattle = new Battle(this, gameData.pl, gameData.player, gameData.trainer,
+                gameData.playerPokemons, gameData.enemyPokemons, outcome);
     }
 
     public void startGame() {
@@ -61,7 +61,7 @@ public class GameController implements BattleEventListener {
     }
 
     public void onPokemonSelected(String pokemonName) {
-        sessionData.giveStartingPokemon(pokemonName);
+        gameData.giveStartingPokemon(pokemonName);
         startBattle();
     }
 
