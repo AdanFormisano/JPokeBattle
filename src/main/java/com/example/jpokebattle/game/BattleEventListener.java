@@ -4,5 +4,7 @@ import com.example.jpokebattle.poke.Pokemon;
 
 public interface BattleEventListener {
     void onBattleEnd(BattleOutcome battleOutcome);
-    void onPokemonFainted(boolean isPlayer, Pokemon pokemon);
+    void onPokemonFainted(String pokemon);
+    void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp);
+    void onLevelUp(Pokemon pokemon);
 }

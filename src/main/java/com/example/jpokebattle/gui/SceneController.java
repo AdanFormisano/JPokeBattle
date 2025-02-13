@@ -2,11 +2,14 @@
 
     import com.example.jpokebattle.game.BattleOutcome;
     import com.example.jpokebattle.game.GameController;
+    import com.example.jpokebattle.gui.data.*;
+    import com.example.jpokebattle.gui.views.LoseView;
+    import com.example.jpokebattle.gui.views.MenuView;
+    import com.example.jpokebattle.gui.views.PlayView;
+    import com.example.jpokebattle.gui.views.PokemonChoiceView;
     import com.example.jpokebattle.poke.Pokemon;
     import javafx.beans.property.BooleanProperty;
-    import javafx.beans.property.ObjectProperty;
     import javafx.beans.property.SimpleBooleanProperty;
-    import javafx.beans.property.SimpleObjectProperty;
     import javafx.scene.Scene;
     import javafx.stage.Stage;
 
@@ -17,30 +20,23 @@
         private Stage stage;
         private Scene menuScene;
         private Scene playScene;
-        private final ObjectProperty<DynamicViewStatus> dynamicViewStatus = new SimpleObjectProperty<>(DynamicViewStatus.BATTLE);
-        private final ObjectProperty<InfoFainted> faintedInfo = new SimpleObjectProperty<>();
-        private final ObjectProperty<InfoWin> winInfo = new SimpleObjectProperty<>();
+        private DynamicViewModel dvModel;
         private final BooleanProperty canNextLevel = new SimpleBooleanProperty(false);
 
         private final GameController gc = GameController.getInstance();
 
-        public SceneController(Stage stage) {
+        public SceneController(Stage stage, DynamicViewModel dynamicViewModel) {
             this.stage = stage;
+            this.dvModel = dynamicViewModel;
 
             menuScene = new Scene(new MenuView(this), 900, 600);
-    //        playScene = new Scene(new PlayView(this, sessionData), 900, 600);
         }
 
-        public ObjectProperty<DynamicViewStatus> dynamicViewStatusProperty() { return dynamicViewStatus; }
-        public DynamicViewStatus getDynamicViewStatus() { return dynamicViewStatus.get(); }
-        public void setDynamicViewStatus(DynamicViewStatus status) { dynamicViewStatus.set(status); }
+        public DynamicViewModel getDynamicViewModel() { return dvModel; }
 
         public BooleanProperty canNextLevelProperty() { return canNextLevel; }
         public boolean canNextLevel() { return canNextLevel.get(); }
         public void setCanNextLevel(boolean canNextLevel) { this.canNextLevel.set(canNextLevel); }
-
-        public ObjectProperty<InfoFainted> faintedInfoProperty() { return faintedInfo; }
-        public InfoFainted getFaintedInfo() { return faintedInfo.get(); }
 
         public void showMenu() {
             stage.setScene(menuScene);
@@ -50,7 +46,7 @@
             if (playScene != null) {
                 ((PlayView) playScene.getRoot()).getChildren().clear();
             }
-            playScene = new Scene(new PlayView(this), 900, 600);
+            playScene = new Scene(new PlayView(this, dvModel), 900, 600);
             stage.setScene(playScene);
         }
 
@@ -60,7 +56,7 @@
         }
 
         public void showWinScreen() {
-            dynamicViewStatus.set(DynamicViewStatus.BATTLE_WIN);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.BATTLE_WIN, null));
         }
 
         public void showLoseScreen() {
@@ -75,10 +71,18 @@
                     gc.battleOutcomes.getLast().getCurrentOpponentPokemon(), gc.currentLevel), 900, 600));
         }
 
-        public void showPokemonFainted(boolean isPlayer, Pokemon pokemon) {
-            faintedInfo.set(new InfoFainted(pokemon, isPlayer));
-            dynamicViewStatus.set(DynamicViewStatus.POKEMON_FAINTED);
-            System.out.println("Pokemon fainted set");
+        public void showPokemonFainted(String pokemon) {
+            FaintedViewData data = new FaintedViewData(pokemon);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_FAINTED, data));
+        }
+
+        public void showPokemonFainted(String faintedPokemon, String playerPokemon, double exp) {
+            FaintedViewData data = new FaintedViewData(faintedPokemon, playerPokemon, exp);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_FAINTED, data));
+        }
+
+        public void showLevelUp(Pokemon pokemon, List<String> moves) {
+//            dynamicViewStatus.set(DynamicViewStatus.LEVEL_UP);
         }
 
         public void choseMove(String moveName) {
@@ -87,6 +91,7 @@
 
         public void loadNextLevel() {
             gc.generateBattle();
+            canNextLevel.set(false);
             showBattle();
         }
     }

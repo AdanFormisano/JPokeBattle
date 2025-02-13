@@ -1,4 +1,4 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.BattleOutcome;
 import com.example.jpokebattle.poke.Pokemon;

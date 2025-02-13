@@ -3,7 +3,6 @@ package com.example.jpokebattle.game;
 import com.example.jpokebattle.poke.Pokemon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GameController implements BattleEventListener {
@@ -85,12 +84,26 @@ public class GameController implements BattleEventListener {
     }
 
     @Override
-    public void onPokemonFainted(boolean isPlayer, Pokemon pokemon) {
+    public void onPokemonFainted(String pokemon) {
         if (gameStateListener != null) {
-            gameStateListener.onPokemonFainted(isPlayer, pokemon);
+            gameStateListener.onPokemonFainted(pokemon);
         }
     }
 
+    @Override
+    public void onPokemonFainted(String faintedPokemon, String playerPokemon, double exp) {
+        if (gameStateListener != null) {
+            gameStateListener.onPokemonFainted(faintedPokemon, playerPokemon, exp);
+        }
+    }
 
+    @Override
+    public void onLevelUp(Pokemon pokemon) {
+        var moves = pokemon.checkNewMoves();
+
+        if (gameStateListener != null) {
+            gameStateListener.onLevelUp(pokemon, moves);
+        }
+    }
 }
 

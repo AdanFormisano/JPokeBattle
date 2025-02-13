@@ -1,7 +1,6 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 

@@ -1,13 +1,19 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
+import com.example.jpokebattle.gui.DynamicViewUIState;
+import com.example.jpokebattle.gui.data.DynamicViewModel;
+import com.example.jpokebattle.gui.data.DynamicViewStatus;
+import com.example.jpokebattle.gui.SceneController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class OptionsView extends VBox {
     SceneController sceneController;
+    DynamicViewModel dvModel;
 
-    public OptionsView(SceneController sceneController) {
+    public OptionsView(SceneController sceneController, DynamicViewModel dvModel) {
         this.sceneController = sceneController;
+        this.dvModel = dvModel;
         setupUI();
     }
 
@@ -17,12 +23,12 @@ public class OptionsView extends VBox {
         toggleContainer.getChildren().add(toggleBattlePokemon);
         toggleBattlePokemon.setOnAction(e -> {
             toggleContainer.getChildren().clear();
-            if (sceneController.getDynamicViewStatus() == DynamicViewStatus.BATTLE) {
+            if (dvModel.getUIState().getStatus() == DynamicViewStatus.BATTLE) {
                 toggleBattlePokemon.setText("Pokemon");
-                sceneController.setDynamicViewStatus(DynamicViewStatus.POKEMON_SELECTION);
+                dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_SELECTION, null));
             } else {
                 toggleBattlePokemon.setText("Battle!");
-                sceneController.setDynamicViewStatus(DynamicViewStatus.BATTLE);
+                dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.BATTLE, null));
             }
         });
 

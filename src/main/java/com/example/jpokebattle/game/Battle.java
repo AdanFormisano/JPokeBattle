@@ -59,8 +59,8 @@ public class Battle {
         boolean isPlayer;
         boolean doesHit = true;
 
-        public ChosenMove(Pokemon currentPlayerPokemon, Move move, boolean isPlayer) {
-            this.pokemon = currentPlayerPokemon;
+        public ChosenMove(Pokemon pokemon, Move move, boolean isPlayer) {
+            this.pokemon = pokemon;
             this.move = move;
             this.isPlayer = isPlayer;
         }
@@ -104,9 +104,10 @@ public class Battle {
 
     private void applyDamage(List<ChosenMove> chosenMoves) {
         for (ChosenMove chosenMove : chosenMoves) {
-            if (chosenMove.doesHit) {
+            int target = chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0;
+            if (chosenMove.doesHit && chosenMoves.get(target).pokemon.getStats().getCurrentHP() > 0) {
                 double damage = calculateDamage(chosenMove.move, chosenMove.pokemon, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon);
-                chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokemon.takeDamage(damage);
+                chosenMoves.get(target).pokemon.takeDamage(damage);
                 System.out.printf("%s dealt %f damage to %s!%n", chosenMove.pokemon.getName(), damage, chosenMove.isPlayer ? chosenMoves.get(1).pokemon.getName() : chosenMoves.get(0).pokemon.getName());
             }
         }
@@ -134,7 +135,7 @@ public class Battle {
         var type2 = defender.getType().size() > 1 ? DataTypeChart.getMultiplier(move.getType(), defender.getType().getLast()) : 1;
         float random = (float) randGen.nextInt(85, 101) / 100;
 
-        damage = (((double) (((level * 2) / 5) + 2) * power * (A / D)) / 50) * stab * type1 * type2 * random;
+        damage = (((double) (((level * 2) / 5) + 2) * power * (A / D)) / 50 + 2) * stab * type1 * type2 * random;
         System.out.printf("Damage: %f, level: %d, A: %f, D: %f, power: %d, stab: %f, type1: %f, type2: %f, random: %f%n", damage, level, A, D, power, stab, type1, type2, random);
 
         return damage;
@@ -144,7 +145,7 @@ public class Battle {
         if (currentPlayerPokemon.getStats().getCurrentHP() <= 0) {
             System.out.println(currentPlayerPokemon.getName() + " fainted!");
 
-            notifyPokemonFainted(true, currentPlayerPokemon);
+            notifyPokemonFainted(currentPlayerPokemon.getName());
 
             if (playerPokemons.size() == 1) {
                 outcome.setPlayerWon(false);
@@ -163,10 +164,10 @@ public class Battle {
         if (currentEnemyPokemon.getStats().getCurrentHP() <= 0) {
             System.out.println(currentEnemyPokemon.getName() + " fainted!");
 
-            giveExp(currentPlayerPokemon, currentEnemyPokemon);
+            var exp = giveExp(currentPlayerPokemon, currentEnemyPokemon);
             giveEV(currentPlayerPokemon, currentEnemyPokemon);
 
-            notifyPokemonFainted(false, currentEnemyPokemon);
+            notifyPokemonFainted(currentEnemyPokemon.getName(), currentPlayerPokemon.getName(), exp);
 
             if (enemyPokemons.size() == 1) {
                 outcome.setPlayerWon(true);
@@ -187,13 +188,19 @@ public class Battle {
         }
     }
 
-    private void notifyPokemonFainted(boolean isPlayer, Pokemon pokemon) {
+    private void notifyPokemonFainted(String pokemon) {
         if (listener != null) {
-            listener.onPokemonFainted(isPlayer, pokemon);
+            listener.onPokemonFainted(pokemon);
         }
     }
 
-    private void giveExp(Pokemon gainingPokemon, Pokemon faintedPokemon) {
+    private void notifyPokemonFainted(String pokemonFainted, String playerPokemon, double exp) {
+        if (listener != null) {
+            listener.onPokemonFainted(pokemonFainted, playerPokemon,  exp);
+        }
+    }
+
+    private double giveExp(Pokemon gainingPokemon, Pokemon faintedPokemon) {
         int baseExpYield = faintedPokemon.getStats().getExpYield();
         int enemyLvl = faintedPokemon.getStats().getLevel();
         boolean isWild = true; // For now, all enemy pokemon are wild
@@ -201,10 +208,12 @@ public class Battle {
 
         if (gainedExp > gainingPokemon.getStats().getExpToNextLevel()) {
             gainingPokemon.getStats().increaseLevel();
+            listener.onLevelUp(gainingPokemon);
             System.out.println(gainingPokemon.getName() + " has leveled up!");
             System.out.printf("%s is now level: %d%n", gainingPokemon.getName(), gainingPokemon.getStats().getLevel());
         }
         System.out.printf("%s gained %f EXP! [%f/%d]%n", gainingPokemon.getName(), gainedExp, gainingPokemon.getStats().getCurrentExp(), gainingPokemon.getStats().getTotalExpNeeded());
+        return gainedExp;
     }
 
     private void giveEV(Pokemon gainingPokemon, Pokemon faintedPokemon) {

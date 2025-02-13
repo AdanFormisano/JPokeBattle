@@ -28,7 +28,7 @@ public class Pokemon {
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
         stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate(), dataPokemon.getExpYield());
-        checkNewMoves();
+        learnMoves(checkNewMoves());
 
         // Load sprites
         if (isGUI) {
@@ -47,7 +47,8 @@ public class Pokemon {
         while (stats.getLevel() < lvl) {
             stats.increaseLevel();
         }
-        checkNewMoves();
+        learnMoves(checkNewMoves());
+
         // Load sprites
         if (isGUI) {
             System.out.printf("Loading sprites from %s%n", "src/main/resources/assets/Sprite/" + name + ".png");
@@ -74,25 +75,37 @@ public class Pokemon {
     public void takeDamage(double damageTaken) { stats.decreaseCurrentHP(damageTaken); }
     public void heal(int healAmount) { stats.increaseCurrentHP(new PositiveInt(healAmount)); }
 
-    private void checkNewMoves() {
-        MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
+    public List<String> checkNewMoves() {
         PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
+
+        List<String> newMoves = new ArrayList<>();
 
         for (DataMoveBasic dataMoveBasic : pl.getPokemonByName(name).getMoves()) {
             if (dataMoveBasic.getLvl() > stats.getLevel()) {
                 break;
-            } else{
-                DataMove dataMove = ml.getMoveByName(dataMoveBasic.getName());
-
-                if (moveList.size() < 4 && moveList.stream().noneMatch(move -> move.getName().equals(dataMove.getName()))) {
-                    moveList.add(new Move(dataMove.getName(), dataMove.getType(), dataMove.getCategory(), dataMove.getPower(), dataMove.getAccuracy(), dataMove.getPriority(), dataMove.getPp()));
-                    System.out.println("Pokemon " + name + " learned " + dataMoveBasic.getName());
-                } else if (moveList.size() >= 4) {
-                    System.out.println("Pokemon " + name + " tried to learn " + dataMoveBasic.getName() + " but already knows 4 moves.");
-                } else {
-                    System.out.println("Move " + dataMoveBasic.getName() + " not found in moves.json");
-                }
+            } else {
+                newMoves.add(dataMoveBasic.getName());
             }
         }
+        return newMoves;
+    }
+
+    public void learnMove(String toLearn) {
+        MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
+        DataMove dataMove = ml.getMoveByName(toLearn);
+        if (moveList.size() < 4 && moveList.stream().noneMatch(m -> m.getName().equals(dataMove.getName()))) {
+            moveList.add(new Move(dataMove.getName(), dataMove.getType(), dataMove.getCategory(), dataMove.getPower(), dataMove.getAccuracy(), dataMove.getPriority(), dataMove.getPp()));
+        }
+    }
+
+    public void learnMoves(List<String> toLearn) {
+        for (String move : toLearn) {
+            learnMove(move);
+        }
+    }
+
+    public void learnAndForgetMove(String toLearn, String toForget) {
+        learnMove(toLearn);
+        moveList.removeIf(m -> m.getName().equals(toForget));
     }
 }

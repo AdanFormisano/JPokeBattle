@@ -1,5 +1,6 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
+import com.example.jpokebattle.gui.SceneController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;

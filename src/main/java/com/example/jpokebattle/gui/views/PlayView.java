@@ -1,6 +1,9 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.GameController;
+import com.example.jpokebattle.gui.data.DynamicViewModel;
+import com.example.jpokebattle.gui.data.DynamicViewStatus;
+import com.example.jpokebattle.gui.SceneController;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -10,16 +13,17 @@ import javafx.scene.layout.VBox;
 
 public class PlayView extends HBox {
     private SceneController sceneController;
-    private GameController gc = GameController.getInstance();
+    private DynamicViewModel dvModel;
 
     public StatsView statsPlayer;
     public StatsView statsOpponent;
     public ArenaView arenaView;
-    public DynamicContainerView dynamicContainerView;
+    public DynamicView dynamicContainerView;
     public OptionsView optionsView;
 
-    public PlayView(SceneController sceneController) {
+    public PlayView(SceneController sceneController, DynamicViewModel dynamicViewModel) {
         this.sceneController = sceneController;
+        this.dvModel = dynamicViewModel;
 
         setupUI();
     }
@@ -59,16 +63,10 @@ public class PlayView extends HBox {
                 "-fx-border-width: 1;");
 
         HBox dynamicAndOptionsContainer = new HBox();
-        dynamicContainerView = new DynamicContainerView(sceneController);
-        optionsView = new OptionsView(sceneController);
+        dynamicContainerView = new DynamicView(sceneController, dvModel);
+        optionsView = new OptionsView(sceneController, dvModel);
 
         dynamicContainerView.showView(new MovesView(sceneController));
-
-        sceneController.dynamicViewStatusProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == DynamicViewStatus.POKEMON_FAINTED) {
-
-            };
-        });
 
         VBox.setVgrow(arenaView, Priority.ALWAYS);
         VBox.setVgrow(dynamicAndOptionsContainer, Priority.ALWAYS);

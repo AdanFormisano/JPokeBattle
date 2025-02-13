@@ -30,4 +30,8 @@ module com.example.jpokebattle {
     opens com.example.jpokebattle.service to com.fasterxml.jackson.databind;
     exports com.example.jpokebattle.service;
     opens com.example.jpokebattle.gui to com.fasterxml.jackson.databind, javafx.fxml;
+    exports com.example.jpokebattle.gui.views;
+    opens com.example.jpokebattle.gui.views to com.fasterxml.jackson.databind, javafx.fxml;
+    exports com.example.jpokebattle.gui.data;
+    opens com.example.jpokebattle.gui.data to com.fasterxml.jackson.databind, javafx.fxml;
 }

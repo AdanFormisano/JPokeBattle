@@ -1,6 +1,7 @@
-package com.example.jpokebattle.gui;
+package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.GameController;
+import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.poke.Move;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
