@@ -95,6 +95,7 @@ public class GameController implements BattleEventListener {
 
     @Override
     public void onLevelUp(Pokemon pokemon) {
+        pokemon.getStats().calculateAllStats();
         var moves = pokemon.checkNewMoves();
 
         gameStateListener.onLevelUp(pokemon);

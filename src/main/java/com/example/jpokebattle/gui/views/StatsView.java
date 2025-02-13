@@ -27,21 +27,6 @@ public class StatsView extends VBox {
         }
     }
 
-    private HBox createStatLabel(String statName,ObservableValue<String> value) {
-        HBox container = new HBox(10);
-        Text nameText = new Text(statName + ": ");
-        Text valueText = new Text();
-
-        valueText.textProperty().bind(value);
-
-        HBox valueBox = new HBox(valueText);
-        valueBox.setAlignment(Pos.CENTER_LEFT);
-        HBox.setHgrow(valueBox, Priority.ALWAYS);
-
-        container.getChildren().addAll(nameText, valueBox);
-        return container;
-    }
-
     private void setupUIPlayer() {
         Text name = new Text(gc.getSessionData().currentPlayerPokemon.getName());
         getChildren().add(name);
@@ -49,7 +34,7 @@ public class StatsView extends VBox {
         Stats stats = gc.getSessionData().currentPlayerPokemon.getStats();
 
         // Create bindings for combined stats
-        createBindings(stats);
+        createBindings(stats, true);
     }
 
     private void setupUIOpponent() {
@@ -65,10 +50,38 @@ public class StatsView extends VBox {
         Stats stats = GameController.currentBattle.getCurrentEnemyPokemon().getStats();
 
         // Create bindings for combined stats
-        createBindings(stats);
+        createBindings(stats, false);
     }
 
-    private void createBindings(Stats stats) {
+    private HBox createStatLabel(String statName,ObservableValue<String> value) {
+        HBox container = new HBox(10);
+        Text nameText = new Text(statName + ": ");
+        Text valueText = new Text();
+
+        valueText.textProperty().bind(value);
+
+        HBox valueBox = new HBox(valueText);
+        valueBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(valueBox, Priority.ALWAYS);
+
+        container.getChildren().addAll(nameText, valueBox);
+        return container;
+    }
+
+    private HBox createSimpleStatLabel(String statName,int value) {
+        HBox container = new HBox(10);
+        Text nameText = new Text(statName + ": ");
+        Text valueText = new Text(String.valueOf(value));
+
+        HBox valueBox = new HBox(valueText);
+        valueBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(valueBox, Priority.ALWAYS);
+
+        container.getChildren().addAll(nameText, valueBox);
+        return container;
+    }
+
+    private void createBindings(Stats stats, boolean isPlayer) {
         StringBinding hpBinding = (StringBinding) Bindings.concat(
                 stats.currentHPProperty().asString("%.1f"),
                 "/", stats.maxHPProperty().asString("%.0f")
@@ -87,13 +100,27 @@ public class StatsView extends VBox {
         HBox specialDefenseBox = createStatLabel("Special Defense", stats.specialDefenseProperty().asString());
         HBox speedBox = createStatLabel("Speed", stats.speedProperty().asString());
 
-        HBox EVhpBox = createStatLabel("EV HP", stats.getEV().hpProperty().asString());
-        HBox EVAttackBox = createStatLabel("EV Attack", stats.getEV().attackProperty().asString());
-        HBox EVDefenseBox = createStatLabel("EV Defense", stats.getEV().defenseProperty().asString());
-        HBox EVSpecialAttackBox = createStatLabel("EV Special Attack", stats.getEV().specialAttackProperty().asString());
-        HBox EVSpecialDefenseBox = createStatLabel("EV Special Defense", stats.getEV().specialDefenseProperty().asString());
-        HBox EVSpeedBox = createStatLabel("EV Speed", stats.getEV().speedProperty().asString());
+        HBox IVhpBox = createSimpleStatLabel("IV HP", stats.getIV().getHp());
+        HBox IVAttackBox = createSimpleStatLabel("IV Attack", stats.getIV().getAttack());
+        HBox IVDefenseBox = createSimpleStatLabel("IV Defense", stats.getIV().getDefense());
+        HBox IVSpecialAttackBox = createSimpleStatLabel("IV Special Attack", stats.getIV().getSpecialAttack());
+        HBox IVSpecialDefenseBox = createSimpleStatLabel("IV Special Defense", stats.getIV().getSpecialDefense());
+        HBox IVSpeedBox = createSimpleStatLabel("IV Speed", stats.getIV().getSpeed());
 
-        getChildren().addAll(hpBox, expBox, levelBox, attackBox, defenseBox, specialAttackBox, specialDefenseBox, speedBox, EVhpBox, EVAttackBox, EVDefenseBox, EVSpecialAttackBox, EVSpecialDefenseBox, EVSpeedBox);
+        if (isPlayer) {
+            HBox EVhpBox = createStatLabel("EV HP", stats.getEV().hpProperty().asString());
+            HBox EVAttackBox = createStatLabel("EV Attack", stats.getEV().attackProperty().asString());
+            HBox EVDefenseBox = createStatLabel("EV Defense", stats.getEV().defenseProperty().asString());
+            HBox EVSpecialAttackBox = createStatLabel("EV Special Attack", stats.getEV().specialAttackProperty().asString());
+            HBox EVSpecialDefenseBox = createStatLabel("EV Special Defense", stats.getEV().specialDefenseProperty().asString());
+            HBox EVSpeedBox = createStatLabel("EV Speed", stats.getEV().speedProperty().asString());
+
+            getChildren().addAll(hpBox, expBox, levelBox, attackBox, defenseBox, specialAttackBox, specialDefenseBox, speedBox,
+                    EVhpBox, EVAttackBox, EVDefenseBox, EVSpecialAttackBox, EVSpecialDefenseBox, EVSpeedBox,
+                    IVhpBox, IVAttackBox, IVDefenseBox, IVSpecialAttackBox, IVSpecialDefenseBox, IVSpeedBox);
+        } else {
+            getChildren().addAll(hpBox, expBox, levelBox, attackBox, defenseBox, specialAttackBox, specialDefenseBox, speedBox,
+                    IVhpBox, IVAttackBox, IVDefenseBox, IVSpecialAttackBox, IVSpecialDefenseBox, IVSpeedBox);
+        }
     }
 }

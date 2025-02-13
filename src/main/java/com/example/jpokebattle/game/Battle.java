@@ -218,6 +218,7 @@ public class Battle {
     private void giveEV(Pokemon gainingPokemon, Pokemon faintedPokemon) {
         EffortValue gainedEV = pl.getPokemonByName(faintedPokemon.getName()).getEffortValue();
         gainingPokemon.getStats().gainEV(gainedEV);
+        gainingPokemon.getStats().calculateAllStats();
         System.out.printf("%s gained %s EVs!%n", gainingPokemon.getName(), gainedEV);   // TODO: Maybe format the print as "HP: +1, Attack: +2, Defense: +0, Special Attack: +1, Special Defense: +1, Speed: +0"
         System.out.printf("Current EVs: %s%n", gainingPokemon.getStats().getEV());
     }

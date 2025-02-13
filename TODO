@@ -1,13 +1,13 @@
 Minimum:
-  ☐ Assign 2 lvl 1 moves to each pokemon
-    ✔ Moves assignments based on levels @done (25-01-28 18:01)
   ☐ Implement UI for:
     ✔ Battle @done (25-02-12 15:53)
     ☐ Pokemon switch
-    ☐ Win
-    ☐ Lose
+    ✔ Win @done (25-02-12 19:59)
+    ✔ Lose @done (25-02-12 17:52)
     ✔ Start @done (25-02-05 19:32)
 
+  ✔ Assign 2 lvl 1 moves to each pokemon @done (25-02-13 17:11)
+    ✔ Moves assignments based on levels @done (25-01-28 18:01)
   ✔ Series of random NPCs until first lost battle (Roguelike) @done (25-02-04 16:13)
   ✔ Bulbasaur, Charmander, Squirtile @done (25-01-26 20:04)
   ✔ Base pokémon stats @done (25-01-26 20:05)
@@ -21,14 +21,15 @@ Tipical:
   ✔ Pokemon's persistence across battles @done (25-01-28 18:01)
 Extra:
   Evolution Set:
-    ☐ Implement evolutions and level increase
-      ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
-      ✔ When levelup check if new moves need to be learned @done (25-01-28 18:00)
-    ☐ Implement learining new moves
+    ☐ Implement evolutions
+    ✔ Implement learining new moves @done (25-02-13 17:12)
       ☐  Implement a move effect factory
        ☐ Json contains details for each move and it's effect
        ☐ Factory builds the effects
 
+    ✔ Implement level increase @done (25-02-13 17:12)
+      ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
+      ✔ When levelup check if new moves need to be learned @done (25-01-28 18:00)
     ✔ Implement IV and EV @done (25-01-27 00:06)
   Multimedia Set:
     ☐ Implement animations
@@ -38,3 +39,10 @@ Extra:
     ☐ Implement Bot AI
   TUI Set:
     ☐ No GUI mode
+
+
+ ☐ Go Again button
+ ☐ Make stats "dynamic", every time one of its component (eg EV) changes, it needs to be updated
+ ☐ Add someway to make the user gain pokemons
+
+ ✔ Try to refactor the SceneController to be a GameStateListener @done (25-02-13 16:35)

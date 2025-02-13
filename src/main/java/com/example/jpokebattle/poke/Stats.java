@@ -65,6 +65,7 @@ public class Stats {
     public double getSpeed() { return speed.get(); }
     public double getMaxHP() { return maxHP.get(); }
     public double getCurrentHP() { return currentHP.get(); }
+    public IndividualValue getIV() { return IV; }
     public EffortValue getEV() { return EV; }
     public int getLevel() { return level.get(); }
     public int getCurrentExp() { return currentExp.get(); }
@@ -93,7 +94,7 @@ public class Stats {
 
     public void decreaseCurrentHP(double decrease) { currentHP.set(Math.max(currentHP.get() - decrease, 0)); }
 
-    private void calculateAllStats() {
+    public void calculateAllStats() {
         attack.set(calculateAttack());
         defense.set(calculateDefense());
         specialAttack.set(calculateSpecialAttack());
