@@ -93,6 +93,7 @@ public class Stats {
     }
 
     public void decreaseCurrentHP(double decrease) { currentHP.set(Math.max(currentHP.get() - decrease, 0)); }
+    public void setHPToMax() { currentHP.set(maxHP.get()); }
 
     public void calculateAllStats() {
         double hpRatio = maxHP.get() > 0 ? currentHP.get() / maxHP.get() : 0;

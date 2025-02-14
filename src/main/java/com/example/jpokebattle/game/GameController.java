@@ -5,14 +5,16 @@ import com.example.jpokebattle.service.data.DataPokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.random.RandomGenerator;
 
 public class GameController implements IBattleEventListener {
     private GameData gameData;
     private IGameStateListener gameStateListener;
-
     public int currentLevel = 0;
     public List<BattleOutcome> battleOutcomes = new ArrayList<>();
     public static Battle currentBattle;
+    private double chanceForPokeOffer = 0.7;
+    private RandomGenerator randGen = RandomGenerator.getDefault();
 
     private GameController() {
         gameData = new GameData(true);
@@ -88,6 +90,12 @@ public class GameController implements IBattleEventListener {
         gameData.currentPlayerPokemon.learnAndForgetMove(toLearn, toForget);
     }
 
+    public void onOfferAccepted() {
+        Pokemon offeredPokemon = currentBattle.getCurrentEnemyPokemon();
+        offeredPokemon.fullHP();
+        gameData.playerPokemons.add(currentBattle.getCurrentEnemyPokemon());
+    }
+
     @Override
     public void onBattleEnd(BattleOutcome outcome) {
         if (gameStateListener != null) {
@@ -103,9 +111,16 @@ public class GameController implements IBattleEventListener {
     }
 
     @Override
-    public void onPokemonFainted(String faintedPokemon, String playerPokemon, int exp) {
+    public void onPokemonFainted(Pokemon faintedPokemon, String playerPokemon, int exp) {
+        var pokeOfferCheck = randGen.nextDouble();
+        System.out.println("Offer: " + pokeOfferCheck + " < " + chanceForPokeOffer);
+
         if (gameStateListener != null) {
-            gameStateListener.onPokemonFainted(faintedPokemon, playerPokemon, exp);
+            gameStateListener.onPokemonFainted(faintedPokemon.getName(), playerPokemon, exp);
+            if (pokeOfferCheck < chanceForPokeOffer) {
+                gameStateListener.onPokeOffer(faintedPokemon);
+                chanceForPokeOffer *= 0.75;
+            }
         }
     }
 

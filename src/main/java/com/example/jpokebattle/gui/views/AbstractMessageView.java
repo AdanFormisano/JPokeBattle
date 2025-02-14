@@ -6,10 +6,12 @@ import javafx.scene.layout.VBox;
 public abstract class AbstractMessageView extends VBox {
     private Runnable onFinished;
 
-    public AbstractMessageView() {
+    public AbstractMessageView(boolean noMassage) {
         setPrefWidth(200);
-        Label message3 = new Label("Click to continue...");
-        getChildren().add(message3);
+        if (!noMassage) {
+            Label message3 = new Label("Click to continue...");
+            getChildren().add(message3);
+        }
     }
 
     public void setOnFinished(Runnable onFinished) {

@@ -75,7 +75,6 @@ public class Battle {
 
         orderMoves(chosenMoves);
         checkAccuracy(chosenMoves);
-//        applyDamage(chosenMoves);
         executeMoves(chosenMoves);
         checkFaintedPokemon();
     }
@@ -103,17 +102,6 @@ public class Battle {
             }
         }
     }
-
-//    private void applyDamage(List<ChosenMove> chosenMoves) {
-//        for (ChosenMove chosenMove : chosenMoves) {
-//            int target = chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0;
-//            if (chosenMove.doesHit && chosenMoves.get(target).pokeInBattle.getStats().getCurrentHP() > 0) {
-//                double damage = calculateDamage(chosenMove.move, chosenMove.pokeInBattle, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokeInBattle, chosenMove.statStage, chosenMoves.get(target).statStage);
-//                chosenMoves.get(target).pokeInBattle.takeDamage(damage);
-//                System.out.printf("%s dealt %f damage to %s!%n", chosenMove.pokeInBattle.getName(), damage, chosenMove.isPlayer ? chosenMoves.get(1).pokeInBattle.getName() : chosenMoves.get(0).pokeInBattle.getName());
-//            }
-//        }
-//    }
 
     private void executeMoves(List<ChosenMove> chosenMoves) {
         for (ChosenMove chosenMove : chosenMoves) {
@@ -148,7 +136,7 @@ public class Battle {
 
             var exp = giveExp(currentPlayerPokemon.pokemon, currentEnemyPokemon.pokemon);
             giveEV(currentPlayerPokemon.pokemon, currentEnemyPokemon.pokemon);
-            notifyPokemonFainted(currentEnemyPokemon.pokemon.getName(), currentPlayerPokemon.pokemon.getName(), exp);
+            notifyPokemonFainted(currentEnemyPokemon.pokemon, currentPlayerPokemon.pokemon.getName(), exp);
             listener.onLevelUp(currentPlayerPokemon.pokemon);
 
             if (enemyPokemons.size() == 1) {
@@ -176,7 +164,7 @@ public class Battle {
         }
     }
 
-    private void notifyPokemonFainted(String pokemonFainted, String playerPokemon, int exp) {
+    private void notifyPokemonFainted(Pokemon pokemonFainted, String playerPokemon, int exp) {
         if (listener != null) {
             listener.onPokemonFainted(pokemonFainted, playerPokemon, exp);
         }

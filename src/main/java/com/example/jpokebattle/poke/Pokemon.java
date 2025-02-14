@@ -82,7 +82,7 @@ public class Pokemon {
 
     // Game methods
     public void takeDamage(double damageTaken) { stats.decreaseCurrentHP(damageTaken); }
-    public void heal(int healAmount) { stats.increaseCurrentHP(new PositiveInt(healAmount)); }
+    public void fullHP() { stats.setHPToMax();}
 
     public List<String> checkNewMoves() {
         PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");

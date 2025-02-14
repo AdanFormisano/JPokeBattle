@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 
 public class EvolvedView extends AbstractMessageView {
     public EvolvedView(EvolvedViewData evolvedData) {
+        super(false);
         Label label = new Label("Your " + evolvedData.pokeNameFrom() + " has evolved into " + evolvedData.pokemon().getName() + "!");
         this.getChildren().addFirst(label);
 

@@ -54,6 +54,10 @@
             gc.onForgetMove(toLearn, toForget);
         }
 
+        public void onOfferAccepted() {
+            gc.onOfferAccepted();
+        }
+
         @Override
         public void onGameStart() {
             stage.setScene(menuScene);
@@ -126,5 +130,12 @@
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.EVOLUTION, data));
             PlayView pv = (PlayView) playScene.getRoot();
             pv.arenaView.setupUI();
+        }
+
+        @Override
+        public void onPokeOffer(Pokemon pokemon) {
+            // Show pokemon offer message
+            PokeOfferViewData data = new PokeOfferViewData(pokemon);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_OFFER, data));
         }
     }

@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 
 public class LearnedMovesView extends AbstractMessageView {
     public LearnedMovesView(LearnedMovesViewData learnedMovesData) {
+        super(false);
         StringBuilder sb = new StringBuilder();
         sb.append("Your ").append(learnedMovesData.pokemon()).append(" now knows the following moves:\n");
         for (String move : learnedMovesData.moves()) {

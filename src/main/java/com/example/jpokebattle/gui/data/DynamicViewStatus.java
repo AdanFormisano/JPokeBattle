@@ -9,4 +9,5 @@ public enum DynamicViewStatus {
     LEARNED_MOVES,
     REMAINING_MOVES,
     EVOLUTION,
+    POKEMON_OFFER,
 }

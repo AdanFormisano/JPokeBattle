@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 
 public class LevelUpView extends AbstractMessageView {
     public LevelUpView(LevelUpViewData levelUpData) {
+        super(false);
         Label label = new Label("Your " + levelUpData.pokemonName() + " has leveled up to level " + levelUpData.level() + "!");
 
         getChildren().addFirst(label);

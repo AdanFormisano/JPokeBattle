@@ -20,8 +20,7 @@ Tipical:
   ✔ Pokemon's persistence across battles @done (25-01-28 18:01)
 Extra:
   Evolution Set:
-    ☐ Implement evolutions
-
+    ✔ Implement evolutions @done (25-02-14 12:28)
     ✔ Implement learining new moves @done (25-02-13 17:12)
       ✔  Implement a move effect factory @done (25-02-14 05:39)
        ✔ Json contains details for each move and it's effect @done (25-02-14 05:39)
@@ -42,12 +41,13 @@ Extra:
  ☐ Add someway to make the user gain pokemons
    Every turn there is a chance the defeated pokemon might join, the player can decided if "accept" the new pokemon.
    At every turn the chance % gets lower -> pokemon level gets higher
- ☐ Fix stats refresh
-   Currently completly recalculating every stat => Stats are increasing when they shouldn't
- ☐ Make StatsView show Effective Stats
  ☐ Refactor Stats (?)
+   ☐ Make StatsView show Effective Stats
  ☐ Enemy move UI
+ ☐ Implement full Accuracy check
 
+ ✔ Fix stats refresh @done (25-02-14 12:28)
+   Currently completly recalculating every stat => Stats are increasing when they shouldn't
  ✔ UI to chose/forget a move @done (25-02-14 02:08)
  ✔ Make stats "dynamic", every time one of its component (eg EV) changes, it needs to be updated @done (25-02-13 17:35)
  ✔ Try to refactor the SceneController to be a GameStateListener @done (25-02-13 16:35)

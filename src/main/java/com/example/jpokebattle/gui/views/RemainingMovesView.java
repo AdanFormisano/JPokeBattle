@@ -16,6 +16,7 @@ public class RemainingMovesView extends AbstractMessageView {
     private SceneController sceneController;
 
     public RemainingMovesView(RemainingMovesViewData remainingMovesData, SceneController sceneController) {
+        super(false);
         this.knownMoves = remainingMovesData.knownMoves();
         this.sceneController = sceneController;
         String pokemonName = remainingMovesData.pokemonName();

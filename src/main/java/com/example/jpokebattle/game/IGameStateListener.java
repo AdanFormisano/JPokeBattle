@@ -15,4 +15,5 @@ public interface IGameStateListener {
     void onRemainingMoves(String pokemon, List<String> movesToLearn, List<String> knownMoves);
     void onLearnedMoves(String pokemon, List<String> moves);
     void onPokemonEvolved(Pokemon pokemonEvolved, String pokeFromName);
+    void onPokeOffer(Pokemon pokemon);
 }

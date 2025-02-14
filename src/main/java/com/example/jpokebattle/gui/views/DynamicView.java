@@ -102,6 +102,12 @@ public class DynamicView extends VBox {
                 evolvedView.setOnFinished(this::processNextState);
                 getChildren().add(evolvedView);
                 break;
+            case POKEMON_OFFER:
+                PokeOfferViewData offerData = (PokeOfferViewData) nextUIState.getData();
+                PokemonOfferView offerView = new PokemonOfferView(offerData, sceneController);
+                offerView.setOnFinished(this::processNextState);
+                getChildren().add(offerView);
+                break;
             }
     }
 

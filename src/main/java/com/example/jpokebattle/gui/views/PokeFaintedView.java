@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 public class PokeFaintedView extends AbstractMessageView {
 
     public PokeFaintedView(FaintedViewData faintedViewData) {
+        super(false);
         Label message = new Label(faintedViewData.faintedPokemon() + " has fainted!");
 
         if (faintedViewData.isPlayer()) {
