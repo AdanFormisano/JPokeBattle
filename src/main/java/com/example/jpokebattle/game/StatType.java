@@ -1,6 +1,6 @@
 package com.example.jpokebattle.game;
 
-public enum StatStageType {
+public enum StatType {
     ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, ACCURACY, EVASION;
 
     public double getMultiplier(int stage) {

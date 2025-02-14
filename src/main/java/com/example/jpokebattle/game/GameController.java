@@ -71,6 +71,9 @@ public class GameController implements BattleEventListener {
     public void onMoveSelected(String moveName) {
         currentBattle.playTurn(moveName);
     }
+    public void onForgetMove(String toLearn, String toForget) {
+        gameData.currentPlayerPokemon.learnAndForgetMove(toLearn, toForget);
+    }
 
     @Override
     public void onBattleEnd(BattleOutcome outcome) {
@@ -97,12 +100,17 @@ public class GameController implements BattleEventListener {
     public void onLevelUp(Pokemon pokemon) {
         pokemon.getStats().calculateAllStats();
         var moves = pokemon.checkNewMoves();
+        List<String> knownMoves = new ArrayList<>();
+
+        for (var move : pokemon.getMoveList()) {
+            knownMoves.add(move.getName());
+        }
 
         gameStateListener.onLevelUp(pokemon);
         if (!moves.isEmpty()) {
             var remainingMoves = pokemon.learnMoves(moves);
             if (!remainingMoves.isEmpty()) {
-                gameStateListener.onRemainingMoves(pokemon.getName(), remainingMoves);
+                gameStateListener.onRemainingMoves(pokemon.getName(), remainingMoves, knownMoves);
             } else {
                 gameStateListener.onLearnedMoves(pokemon.getName(), moves);
             }

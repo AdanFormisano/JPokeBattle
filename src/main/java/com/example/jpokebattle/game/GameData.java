@@ -1,6 +1,7 @@
 package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.Pokemon;
+import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
 

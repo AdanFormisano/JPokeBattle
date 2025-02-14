@@ -6,5 +6,6 @@ public enum DynamicViewStatus {
     POKEMON_FAINTED,
     BATTLE_WIN,
     LEVEL_UP,
-    LEARNED_MOVES
+    LEARNED_MOVES,
+    REMAINING_MOVES
 }

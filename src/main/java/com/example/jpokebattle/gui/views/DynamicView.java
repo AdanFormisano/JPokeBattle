@@ -4,8 +4,6 @@ import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.gui.DynamicViewUIState;
 import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.gui.data.*;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
@@ -91,6 +89,12 @@ public class DynamicView extends VBox {
                 learnedMovesView.setOnFinished(this::processNextState);
                 getChildren().add(learnedMovesView);
                 movesView.updateMoves();
+                break;
+            case REMAINING_MOVES:
+                RemainingMovesViewData remainingMovesData = (RemainingMovesViewData) nextUIState.getData();
+                RemainingMovesView remainingMovesView = new RemainingMovesView(remainingMovesData, sceneController);
+                remainingMovesView.setOnFinished(this::processNextState);
+                getChildren().add(remainingMovesView);
                 break;
             }
     }

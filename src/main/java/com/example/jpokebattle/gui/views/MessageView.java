@@ -9,7 +9,7 @@ public abstract class MessageView extends VBox {
     public MessageView() {
         setPrefWidth(200);
         Label message3 = new Label("Click to continue...");
-        getChildren().addLast(message3);
+        getChildren().add(message3);
     }
 
     public void setOnFinished(Runnable onFinished) {

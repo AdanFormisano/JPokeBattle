@@ -54,24 +54,6 @@
     "pp": 10
   },
   {
-    "name": "Poison Powder",
-    "type": "POISON",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 75,
-    "priority": 0,
-    "pp": 35
-  },
-  {
-    "name": "Sleep Powder",
-    "type": "GRASS",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 75,
-    "priority": 0,
-    "pp": 15
-  },
-  {
     "name": "Razor Leaf",
     "type": "GRASS",
     "category": "Physical",
@@ -97,15 +79,6 @@
     "accuracy": 0,
     "priority": 0,
     "pp": 40
-  },
-  {
-    "name": "Synthesis",
-    "type": "GRASS",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 0,
-    "priority": 0,
-    "pp": 5
   },
   {
     "name": "SolarBeam",
@@ -232,24 +205,6 @@
     "accuracy": 100,
     "priority": 0,
     "pp": 40
-  },
-  {
-    "name": "Protect",
-    "type": "NORMAL",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 0,
-    "priority": 3,
-    "pp": 10
-  },
-  {
-    "name": "Rain Dance",
-    "type": "WATER",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 0,
-    "priority": 0,
-    "pp": 5
   },
   {
     "name": "Skull Bash",

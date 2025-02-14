@@ -79,12 +79,19 @@ public class Pokemon {
         PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
         List<String> newMoves = new ArrayList<>();
+        List<String> knownMoves = new ArrayList<>();
+
+        for (Move move : moveList) {
+            knownMoves.add(move.getName());
+        }
 
         for (DataMoveBasic dataMoveBasic : pl.getPokemonByName(name).getMoves()) {
             if (dataMoveBasic.getLvl() > stats.getLevel()) {
                 break;
             } else {
-                newMoves.add(dataMoveBasic.getName());
+                if (!knownMoves.contains(dataMoveBasic.getName())) {
+                    newMoves.add(dataMoveBasic.getName());
+                }
             }
         }
         return newMoves;
@@ -101,6 +108,10 @@ public class Pokemon {
     public List<String> learnMoves(List<String> toLearn) {
         List<String> remainingMoves = new ArrayList<>();
 
+        for (Move move : moveList) {
+            toLearn.remove(move.getName());
+        }
+
         if (toLearn.size() + moveList.size() > 4) {
             List<String> learnableMoves = toLearn.subList(0, 4 - moveList.size());
             remainingMoves.addAll(toLearn.subList(4 - moveList.size(), toLearn.size()));
@@ -116,7 +127,7 @@ public class Pokemon {
     }
 
     public void learnAndForgetMove(String toLearn, String toForget) {
-        learnMove(toLearn);
         moveList.removeIf(m -> m.getName().equals(toForget));
+        learnMove(toLearn);
     }
 }

@@ -50,6 +50,10 @@
             onBattleStart();
         }
 
+        public void onForgetMove(String toLearn, String toForget) {
+            gc.onForgetMove(toLearn, toForget);
+        }
+
         @Override
         public void onGameStart() {
             stage.setScene(menuScene);
@@ -103,8 +107,9 @@
         }
 
         @Override
-        public void onRemainingMoves(String pokemon, List<String> moves) {
-
+        public void onRemainingMoves(String pokemon, List<String> movesToLearn, List<String> knownMoves) {
+            RemainingMovesViewData data = new RemainingMovesViewData(pokemon, movesToLearn, knownMoves);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.REMAINING_MOVES, data));
         }
 
         @Override

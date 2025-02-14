@@ -122,11 +122,11 @@ public class Battle {
         double damage = 0;
         var level = attacker.getStats().getLevel();
         var A = move.getCategory().equals("Physical") ?
-                attacker.getStats().getAttack() * attackerStatStage.getMultiplier(StatStageType.ATTACK) :
-                attacker.getStats().getSpecialAttack() * attackerStatStage.getMultiplier(StatStageType.SPECIAL_ATTACK);
+                attacker.getStats().getAttack() * attackerStatStage.getMultiplier(StatType.ATTACK) :
+                attacker.getStats().getSpecialAttack() * attackerStatStage.getMultiplier(StatType.SPECIAL_ATTACK);
         var D = move.getCategory().equals("Physical") ?
-                defender.getStats().getDefense() * defenderStatStage.getMultiplier(StatStageType.DEFENSE) :
-                defender.getStats().getSpecialDefense() * defenderStatStage.getMultiplier(StatStageType.SPECIAL_DEFENSE);
+                defender.getStats().getDefense() * defenderStatStage.getMultiplier(StatType.DEFENSE) :
+                defender.getStats().getSpecialDefense() * defenderStatStage.getMultiplier(StatType.SPECIAL_DEFENSE);
         var power = move.getPower();
         // Burn check
         // Screen check
