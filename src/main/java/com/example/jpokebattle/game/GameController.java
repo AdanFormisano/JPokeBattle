@@ -2,10 +2,11 @@ package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.data.DataPokemon;
+import com.example.jpokebattle.service.data.LeaderboardEntry;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
 
 public class GameController implements IBattleEventListener {
@@ -17,7 +18,7 @@ public class GameController implements IBattleEventListener {
     private double chanceForPokeOffer = 0.7;
     private RandomGenerator randGen = RandomGenerator.getDefault();
 
-    private GameController() {
+    private GameController() throws IOException {
         gameData = new GameData(true);
     }
 
@@ -27,7 +28,15 @@ public class GameController implements IBattleEventListener {
     }
 
     private static class GameControllerHolder {
-        private static final GameController INSTANCE = new GameController();
+        private static final GameController INSTANCE;
+
+        static {
+            try {
+                INSTANCE = new GameController();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public static GameController getInstance() {
@@ -36,6 +45,20 @@ public class GameController implements IBattleEventListener {
 
     public GameData getGameData() {
         return gameData;
+    }
+
+    public void addLeaderboardEntry(List<Pokemon> playerPokemons, int level) {
+        List<LeaderboardEntry.LeaderboardPokeEntry> pokemonEntries = new ArrayList<>();
+        for (var pokemon : playerPokemons) {
+            pokemonEntries.add(new LeaderboardEntry.LeaderboardPokeEntry(pokemon.getName(), pokemon.getStats().getLevel()));
+        }
+
+        LeaderboardEntry entry = new LeaderboardEntry(pokemonEntries, level);
+        int position = gameData.leaderboardLoader.addEntry(entry);
+    }
+
+    public void getTopTenLeaderboardEntries() {
+        gameData.leaderboardLoader.getTopEntries(10);
     }
 
     public Pokemon getCurrentBattlePokemon() {

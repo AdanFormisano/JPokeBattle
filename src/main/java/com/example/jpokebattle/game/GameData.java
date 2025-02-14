@@ -2,9 +2,11 @@ package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.PositiveInt;
+import com.example.jpokebattle.service.loader.LeaderboardLoader;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +22,19 @@ public class GameData {
     public List<Pokemon> enemyPokemons;
     public Pokemon currentPlayerPokemon;
     public boolean isGUI = true;
+    public LeaderboardLoader leaderboardLoader;
 
     public final MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
     public final PokeLoader pl = new PokeLoader("src/main/resources/com/example/jpokebattle/data/pokemons.json");
 
-    public GameData(boolean isGUI) {
+    public GameData(boolean isGUI) throws IOException {
         this.isGUI = isGUI;
+
+        try{
+            leaderboardLoader = new LeaderboardLoader("src/main/resources/com/example/jpokebattle/data/leaderboard.json");
+        } catch (IOException e) {
+            System.out.println("Error loading leaderboard from JSON file: " + e.getMessage());
+        }
     }
 
     public void setPlayer(Player player) {

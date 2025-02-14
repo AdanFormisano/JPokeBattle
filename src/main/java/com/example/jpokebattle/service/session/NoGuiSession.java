@@ -3,13 +3,14 @@ package com.example.jpokebattle.service.session;
 import com.example.jpokebattle.game.Player;
 import com.example.jpokebattle.game.GameData;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class NoGuiSession implements PokeGameSession {
     GameData gameData;
     Scanner scanner = new Scanner(System.in);
 
-    public NoGuiSession() {
+    public NoGuiSession() throws IOException {
         gameData = new GameData(false);
     }
 
