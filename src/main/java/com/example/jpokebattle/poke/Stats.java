@@ -40,6 +40,7 @@ public class Stats {
         ));
 
         calculateAllStats();
+        currentHP.set(maxHP.get());
 
         System.out.printf("IVs: %s\n", IV);
         System.out.printf("Max HP: %.0f\n", maxHP.get());
@@ -94,13 +95,17 @@ public class Stats {
     public void decreaseCurrentHP(double decrease) { currentHP.set(Math.max(currentHP.get() - decrease, 0)); }
 
     public void calculateAllStats() {
+        double hpRatio = maxHP.get() > 0 ? currentHP.get() / maxHP.get() : 0;
+
         attack.set(calculateAttack());
         defense.set(calculateDefense());
         specialAttack.set(calculateSpecialAttack());
         specialDefense.set(calculateSpecialDefense());
         speed.set(calculateSpeed());
         maxHP.set(calculateMaxHP());
-        currentHP.set(maxHP.getValue());
+
+        // Set current HP to maintain the same ratio of HP
+        currentHP.set(Math.max(1, Math.round(maxHP.get() * hpRatio)));
     }
 
     private double calculateAttack() {
