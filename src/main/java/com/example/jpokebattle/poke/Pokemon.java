@@ -53,6 +53,7 @@ public class Pokemon {
         while (stats.getLevel() < lvl) {
             stats.increaseLevel();
         }
+        stats.calculateAllStats();
         learnMoves(checkNewMoves());
 
         // Load sprites
