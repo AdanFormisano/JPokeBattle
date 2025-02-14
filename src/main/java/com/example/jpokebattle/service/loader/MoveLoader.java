@@ -1,5 +1,6 @@
 package com.example.jpokebattle.service.loader;
 
+import com.example.jpokebattle.poke.Type;
 import com.example.jpokebattle.service.data.DataMove;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +43,7 @@ public class MoveLoader {
         return this.loadAllMoves().stream().filter(dataMove -> dataMove.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public List<DataMove> getMoveByType(String type) {
+    public List<DataMove> getMoveByType(Type type) {
         return this.loadAllMoves().stream().filter(dataMove -> dataMove.getType().equals(type)).collect(Collectors.toList());
     }
 }

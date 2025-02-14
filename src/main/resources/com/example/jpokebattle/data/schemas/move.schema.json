@@ -38,6 +38,24 @@
         "type": "integer",
         "minimum": 1,
         "description": "Power Points (PP) of the move"
+      },
+      "effect": {
+        "type": "object",
+        "required": ["statType", "stageLevel"],
+        "properties": {
+            "statType": {
+                "type": "string",
+                "enum": ["ATTACK", "DEFENSE", "SPECIAL_ATTACK", "SPECIAL_DEFENSE", "SPEED", "ACCURACY", "EVASION"],
+                "description": "Stat type affected by the move"
+            },
+            "stageLevel": {
+                "type": "integer",
+                "minimum": -6,
+                "maximum": 6,
+                "description": "Stage level of the stat affected by the move"
+            }
+        },
+        "description": "Effect of the move"
       }
     }
   }

@@ -1,181 +1,183 @@
 package com.example.jpokebattle.service.data;
 
+import com.example.jpokebattle.poke.Type;
+
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
 public class DataTypeChart {
-    private static final Map<DataType, Map<DataType, Double>> DAMAGE_MULTIPLIERS = new EnumMap<>(DataType.class);
+    private static final Map<Type, Map<Type, Double>> DAMAGE_MULTIPLIERS = new EnumMap<>(Type.class);
 
     static {
         // NORMAL chart
-        DAMAGE_MULTIPLIERS.put(DataType.NORMAL, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.NORMAL).put(DataType.ROCK, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.NORMAL).put(DataType.BUG, 1.0);
-        DAMAGE_MULTIPLIERS.get(DataType.NORMAL).put(DataType.GHOST, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.NORMAL).put(DataType.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.NORMAL, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.NORMAL).put(Type.ROCK, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.NORMAL).put(Type.BUG, 1.0);
+        DAMAGE_MULTIPLIERS.get(Type.NORMAL).put(Type.GHOST, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.NORMAL).put(Type.STEEL, 0.5);
 
         // FIGHTING chart
-        Map<DataType, Double> fightingMap = new EnumMap<>(DataType.class);
-        DAMAGE_MULTIPLIERS.put(DataType.FIGHTING, fightingMap);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.NORMAL, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.FLYING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.POISON, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.ROCK, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.BUG, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.GHOST, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.STEEL, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.PSYCHIC, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.ICE, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIGHTING).put(DataType.DARK, 2.0);
+        Map<Type, Double> fightingMap = new EnumMap<>(Type.class);
+        DAMAGE_MULTIPLIERS.put(Type.FIGHTING, fightingMap);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.NORMAL, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.FLYING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.POISON, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.ROCK, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.BUG, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.GHOST, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.STEEL, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.PSYCHIC, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.ICE, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIGHTING).put(Type.DARK, 2.0);
 
         // FLYING chart
-        Map<DataType, Double> flyingMap = new EnumMap<>(DataType.class);
-        DAMAGE_MULTIPLIERS.put(DataType.FLYING, flyingMap);
-        DAMAGE_MULTIPLIERS.get(DataType.FLYING).put(DataType.FIGHTING, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FLYING).put(DataType.ROCK, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FLYING).put(DataType.BUG, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FLYING).put(DataType.GRASS, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FLYING).put(DataType.ELECTRIC, 0.5);
+        Map<Type, Double> flyingMap = new EnumMap<>(Type.class);
+        DAMAGE_MULTIPLIERS.put(Type.FLYING, flyingMap);
+        DAMAGE_MULTIPLIERS.get(Type.FLYING).put(Type.FIGHTING, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FLYING).put(Type.ROCK, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FLYING).put(Type.BUG, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FLYING).put(Type.GRASS, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FLYING).put(Type.ELECTRIC, 0.5);
 
         // POISON chart
-        Map<DataType, Double> poisonMap = new EnumMap<>(DataType.class);
-        DAMAGE_MULTIPLIERS.put(DataType.POISON, poisonMap);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.POISON, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.GROUND, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.ROCK, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.GHOST, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.STEEL, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.POISON).put(DataType.GRASS, 2.0);
+        Map<Type, Double> poisonMap = new EnumMap<>(Type.class);
+        DAMAGE_MULTIPLIERS.put(Type.POISON, poisonMap);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.POISON, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.GROUND, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.ROCK, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.GHOST, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.STEEL, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.POISON).put(Type.GRASS, 2.0);
 
         // GROUND chart
-        DAMAGE_MULTIPLIERS.put(DataType.GROUND, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.FLYING, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.POISON, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.ROCK, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.BUG, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.STEEL, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.FIRE, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.GRASS, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GROUND).put(DataType.ELECTRIC, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.GROUND, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.FLYING, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.POISON, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.ROCK, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.BUG, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.STEEL, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.FIRE, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.GRASS, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GROUND).put(Type.ELECTRIC, 2.0);
 
         // ROCK chart
-        DAMAGE_MULTIPLIERS.put(DataType.ROCK, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.FIGHTING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.FLYING, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.GROUND, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.BUG, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.FIRE, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ROCK).put(DataType.ICE, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.ROCK, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.FIGHTING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.FLYING, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.GROUND, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.BUG, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.FIRE, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ROCK).put(Type.ICE, 2.0);
 
         // BUG chart
-        DAMAGE_MULTIPLIERS.put(DataType.BUG, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.FIGHTING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.FLYING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.POISON, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.GHOST, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.FIRE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.GRASS, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.PSYCHIC, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.BUG).put(DataType.DARK, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.BUG, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.FIGHTING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.FLYING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.POISON, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.GHOST, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.FIRE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.GRASS, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.PSYCHIC, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.BUG).put(Type.DARK, 2.0);
 
         // GHOST chart
-        DAMAGE_MULTIPLIERS.put(DataType.GHOST, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.GHOST).put(DataType.NORMAL, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GHOST).put(DataType.GHOST, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GHOST).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GHOST).put(DataType.PSYCHIC, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GHOST).put(DataType.DARK, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.GHOST, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.GHOST).put(Type.NORMAL, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.GHOST).put(Type.GHOST, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GHOST).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GHOST).put(Type.PSYCHIC, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GHOST).put(Type.DARK, 0.5);
 
         // STEEL chart
-        DAMAGE_MULTIPLIERS.put(DataType.STEEL, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.ROCK, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.FIRE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.WATER, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.ELECTRIC, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.STEEL).put(DataType.ICE, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.STEEL, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.ROCK, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.FIRE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.WATER, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.ELECTRIC, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.STEEL).put(Type.ICE, 2.0);
 
         // FIRE chart
-        DAMAGE_MULTIPLIERS.put(DataType.FIRE, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.ROCK, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.BUG, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.STEEL, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.FIRE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.WATER, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.GRASS, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.ICE, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.FIRE).put(DataType.DRAGON, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.FIRE, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.ROCK, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.BUG, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.STEEL, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.FIRE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.WATER, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.GRASS, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.ICE, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.FIRE).put(Type.DRAGON, 0.5);
 
         // WATER chart
-        DAMAGE_MULTIPLIERS.put(DataType.WATER, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.GROUND, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.ROCK, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.FIRE, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.WATER, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.GRASS, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.WATER).put(DataType.DRAGON, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.WATER, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.GROUND, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.ROCK, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.FIRE, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.WATER, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.GRASS, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.WATER).put(Type.DRAGON, 0.5);
 
         // GRASS chart
-        DAMAGE_MULTIPLIERS.put(DataType.GRASS, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.FLYING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.POISON, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.GROUND, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.ROCK, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.BUG, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.FIRE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.WATER, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.GRASS, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.GRASS).put(DataType.DRAGON, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.GRASS, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.FLYING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.POISON, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.GROUND, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.ROCK, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.BUG, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.FIRE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.WATER, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.GRASS, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.GRASS).put(Type.DRAGON, 0.5);
 
         // ELECTRIC chart
-        DAMAGE_MULTIPLIERS.put(DataType.ELECTRIC, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.FLYING, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.GROUND, 0.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.WATER, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.GRASS, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.ELECTRIC, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ELECTRIC).put(DataType.DRAGON, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.ELECTRIC, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.FLYING, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.GROUND, 0.0);
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.WATER, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.GRASS, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.ELECTRIC, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ELECTRIC).put(Type.DRAGON, 0.5);
 
         // PSYCHIC chart
-        DAMAGE_MULTIPLIERS.put(DataType.PSYCHIC, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.PSYCHIC).put(DataType.FIGHTING, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.PSYCHIC).put(DataType.POISON, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.PSYCHIC).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.PSYCHIC).put(DataType.PSYCHIC, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.PSYCHIC).put(DataType.DARK, 0.0);
+        DAMAGE_MULTIPLIERS.put(Type.PSYCHIC, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.PSYCHIC).put(Type.FIGHTING, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.PSYCHIC).put(Type.POISON, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.PSYCHIC).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.PSYCHIC).put(Type.PSYCHIC, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.PSYCHIC).put(Type.DARK, 0.0);
 
         // ICE chart
-        DAMAGE_MULTIPLIERS.put(DataType.ICE, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.FLYING, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.GROUND, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.FIRE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.WATER, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.GRASS, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.ICE, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.ICE).put(DataType.DRAGON, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.ICE, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.FLYING, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.GROUND, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.FIRE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.WATER, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.GRASS, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.ICE, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.ICE).put(Type.DRAGON, 2.0);
 
         // DRAGON chart
-        DAMAGE_MULTIPLIERS.put(DataType.DRAGON, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.DRAGON).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.DRAGON).put(DataType.DRAGON, 2.0);
+        DAMAGE_MULTIPLIERS.put(Type.DRAGON, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.DRAGON).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.DRAGON).put(Type.DRAGON, 2.0);
 
         // DARK chart
-        DAMAGE_MULTIPLIERS.put(DataType.DARK, new EnumMap<>(DataType.class));
-        DAMAGE_MULTIPLIERS.get(DataType.DARK).put(DataType.FIGHTING, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.DARK).put(DataType.GHOST, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.DARK).put(DataType.STEEL, 0.5);
-        DAMAGE_MULTIPLIERS.get(DataType.DARK).put(DataType.PSYCHIC, 2.0);
-        DAMAGE_MULTIPLIERS.get(DataType.DARK).put(DataType.DARK, 0.5);
+        DAMAGE_MULTIPLIERS.put(Type.DARK, new EnumMap<>(Type.class));
+        DAMAGE_MULTIPLIERS.get(Type.DARK).put(Type.FIGHTING, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.DARK).put(Type.GHOST, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.DARK).put(Type.STEEL, 0.5);
+        DAMAGE_MULTIPLIERS.get(Type.DARK).put(Type.PSYCHIC, 2.0);
+        DAMAGE_MULTIPLIERS.get(Type.DARK).put(Type.DARK, 0.5);
     }
 
-    public static double getMultiplier(DataType attackDataType, DataType defenseDataType) {
+    public static double getMultiplier(Type attackType, Type defenseType) {
         return DAMAGE_MULTIPLIERS
-                .getOrDefault(attackDataType, Collections.emptyMap())
-                .getOrDefault(defenseDataType, 1.0);
+                .getOrDefault(attackType, Collections.emptyMap())
+                .getOrDefault(defenseType, 1.0);
     }
 }

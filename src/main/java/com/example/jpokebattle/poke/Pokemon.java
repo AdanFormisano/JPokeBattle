@@ -1,10 +1,12 @@
 package com.example.jpokebattle.poke;
 
+import com.example.jpokebattle.poke.move.AbstractMove;
+import com.example.jpokebattle.poke.move.Move;
+import com.example.jpokebattle.poke.move.MoveFactory;
 import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.data.DataMove;
 import com.example.jpokebattle.service.data.DataMoveBasic;
 import com.example.jpokebattle.service.data.DataPokemon;
-import com.example.jpokebattle.service.data.DataType;
 import com.example.jpokebattle.service.loader.MoveLoader;
 import com.example.jpokebattle.service.loader.PokeLoader;
 import javafx.scene.image.Image;
@@ -18,7 +20,7 @@ public class Pokemon {
     private final BaseStats baseStats;
     private final Stats stats;
     private final Nature nature = new Nature();
-    private List<Move> moveList = new ArrayList<>();
+    private List<AbstractMove> moveList = new ArrayList<>();
     public boolean isFainted = false;
     public Image spriteFront;
     public Image spriteBack;
@@ -61,11 +63,11 @@ public class Pokemon {
     // Getters
     public int getId() { return id; }
     public String getName() { return name; }
-    public List<DataType> getType() { return baseStats.getType(); }
+    public List<Type> getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
-    public List<Move> getMoveList() { return this.moveList; }
-    public Move getMove(int index) { return moveList.get(index); }
-    public Move getMove(String moveName) { return moveList.stream().filter(move -> move.getName().equals(moveName)).findFirst().orElse(null); }
+    public List<AbstractMove> getMoveList() { return this.moveList; }
+    public AbstractMove getMove(int index) { return moveList.get(index); }
+    public AbstractMove getMove(String moveName) { return moveList.stream().filter(move -> move.getName().equals(moveName)).findFirst().orElse(null); }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
     public Image getSpriteFront() { return spriteFront; }
@@ -81,7 +83,7 @@ public class Pokemon {
         List<String> newMoves = new ArrayList<>();
         List<String> knownMoves = new ArrayList<>();
 
-        for (Move move : moveList) {
+        for (AbstractMove move : moveList) {
             knownMoves.add(move.getName());
         }
 
@@ -101,14 +103,14 @@ public class Pokemon {
         MoveLoader ml = new MoveLoader("src/main/resources/com/example/jpokebattle/data/moves.json");
         DataMove dataMove = ml.getMoveByName(toLearn);
         if (moveList.size() < 4 && moveList.stream().noneMatch(m -> m.getName().equals(dataMove.getName()))) {
-            moveList.add(new Move(dataMove.getName(), dataMove.getType(), dataMove.getCategory(), dataMove.getPower(), dataMove.getAccuracy(), dataMove.getPriority(), dataMove.getPp()));
+            moveList.add(MoveFactory.getMove(dataMove.getName()));
         }
     }
 
     public List<String> learnMoves(List<String> toLearn) {
         List<String> remainingMoves = new ArrayList<>();
 
-        for (Move move : moveList) {
+        for (AbstractMove move : moveList) {
             toLearn.remove(move.getName());
         }
 

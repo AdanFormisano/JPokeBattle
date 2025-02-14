@@ -2,7 +2,9 @@ package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.gui.SceneController;
-import com.example.jpokebattle.poke.Move;
+import com.example.jpokebattle.poke.move.AbstractMove;
+import com.example.jpokebattle.poke.move.Move;
+import com.example.jpokebattle.poke.move.MoveDamage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -12,7 +14,7 @@ import java.util.List;
 public class MovesView extends VBox {
     SceneController sceneController;
     GameController gc = GameController.getInstance();
-    List<Move> playerMoves;
+    List<AbstractMove> playerMoves;
 
     public MovesView(SceneController sceneController) {
         this.sceneController = sceneController;
@@ -29,7 +31,7 @@ public class MovesView extends VBox {
         HBox firstRow = new HBox();
         HBox secondRow = new HBox();
 
-        for (Move move : playerMoves) {
+        for (AbstractMove move : playerMoves) {
             if (playerMoves.indexOf(move) < 2) {
                 MoveView moveView = new MoveView(move);
                 firstRow.getChildren().add(moveView);
@@ -43,10 +45,9 @@ public class MovesView extends VBox {
     }
 
     private class MoveView extends VBox {
+        AbstractMove move;
 
-        Move move;
-
-        public MoveView(Move move) {
+        public MoveView(AbstractMove move) {
             this.move = move;
             setupUI();
         }
@@ -56,18 +57,23 @@ public class MovesView extends VBox {
             setStyle("-fx-border-color: transparent gray transparent transparent; " +
                     "-fx-border-width: 1;");
 
-            Text moveName = new Text(move.getName());
-            Text moveType = new Text(move.getType().toString());
-            Text moveCategory = new Text(move.getCategory());
-            Text movePower = new Text("Power: " + move.getPower());
-            Text moveAccuracy = new Text("Accuracy: " + move.getAccuracy());
-            Text movePP = new Text("PP: " + move.getPP());
-
             HBox moveContainer = new HBox();
             VBox leftContainer = new VBox();
-            leftContainer.getChildren().addAll(moveName, moveType, moveCategory);
             VBox rightContainer = new VBox();
-            rightContainer.getChildren().addAll(movePower, moveAccuracy, movePP);
+
+            Text moveName = new Text(move.getName());
+            Text moveType = new Text(move.getType().toString());
+            Text moveCategory = new Text(move.getCategory().toString());
+            Text moveAccuracy = new Text("Accuracy: " + move.getAccuracy());
+            Text movePP = new Text("PP: " + move.getCurrentPP());
+
+            if (move instanceof MoveDamage moveDamage) {
+                Text movePower = new Text("Power: " + moveDamage.getPower());
+                rightContainer.getChildren().add(movePower);
+            }
+
+            leftContainer.getChildren().addAll(moveName, moveType, moveCategory);
+            rightContainer.getChildren().addAll(moveAccuracy, movePP);
 
             Text moveDescription = new Text("Lorem Ipsum");
 

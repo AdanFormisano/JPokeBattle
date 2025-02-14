@@ -1,10 +1,7 @@
 package com.example.jpokebattle.gui;
 
-import com.example.jpokebattle.game.BattleOutcome;
 import com.example.jpokebattle.game.GameController;
-import com.example.jpokebattle.game.GameStateListener;
 import com.example.jpokebattle.gui.data.DynamicViewModel;
-import com.example.jpokebattle.poke.Pokemon;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;

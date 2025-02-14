@@ -2,9 +2,8 @@ package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.gui.data.FaintedViewData;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 
-public class PokeFaintedView extends MessageView {
+public class PokeFaintedView extends AbstractMessageView {
 
     public PokeFaintedView(FaintedViewData faintedViewData) {
         Label message = new Label(faintedViewData.faintedPokemon() + " has fainted!");

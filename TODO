@@ -14,7 +14,6 @@ Minimum:
 
 Tipical:
   ☐ Implement ALL moves for chosen Pokemons
-  ☐ Implement Abilities (???)
   ☐ Implement a top 10 leaderboard for the most won battles in a single run
     ☐ Also UI for it
 
@@ -31,10 +30,7 @@ Extra:
       ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
       ✔ When levelup check if new moves need to be learned @done (25-01-28 18:00)
     ✔ Implement IV and EV @done (25-01-27 00:06)
-  Multimedia Set:
-    ☐ Implement animations
-    ☐ Implement audio
-    ☐ Implement other graphical effects (?)
+    
   Bot Set:
     ☐ Implement Bot AI
   TUI Set:
@@ -42,7 +38,8 @@ Extra:
 
 
  ☐ Go Again button
- ☐ Make stats "dynamic", every time one of its component (eg EV) changes, it needs to be updated
  ☐ Add someway to make the user gain pokemons
 
+ ✔ UI to chose/forget a move @done (25-02-14 02:08)
+ ✔ Make stats "dynamic", every time one of its component (eg EV) changes, it needs to be updated @done (25-02-13 17:35)
  ✔ Try to refactor the SceneController to be a GameStateListener @done (25-02-13 16:35)

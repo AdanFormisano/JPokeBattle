@@ -4,7 +4,7 @@ import com.example.jpokebattle.poke.Pokemon;
 
 import java.util.List;
 
-public interface GameStateListener {
+public interface IGameStateListener {
     void onGameStart();
     void onNeedPokemonSelection();
     void onBattleStart();

@@ -40,7 +40,9 @@ public class GameData {
         // Increase the EV of the first pokemon to almost assure a first turn win
         playerPokemons.getFirst().getStats().gainEV(2, 2, 2, 2, 2, 2);
         currentPlayerPokemon = playerPokemons.getFirst();
-        currentPlayerPokemon.getStats().setLevel(10);   // DEBUG: Used to win first fight
+//        currentPlayerPokemon.getStats().setLevel(10);   // DEBUG: Used to win first fight
+        currentPlayerPokemon.getStats().increaseAttack(new PositiveInt(10));   // DEBUG: Used to win first fight
+//        currentPlayerPokemon.learnMoves(new ArrayList<>(List.of("Tackle", "Tail Whip", "Vine Whip", "Razor Leaf")));
 
         System.out.println("You have received a " + name + "!");
     }

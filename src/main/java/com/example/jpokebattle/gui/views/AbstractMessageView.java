@@ -3,10 +3,10 @@ package com.example.jpokebattle.gui.views;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public abstract class MessageView extends VBox {
+public abstract class AbstractMessageView extends VBox {
     private Runnable onFinished;
 
-    public MessageView() {
+    public AbstractMessageView() {
         setPrefWidth(200);
         Label message3 = new Label("Click to continue...");
         getChildren().add(message3);

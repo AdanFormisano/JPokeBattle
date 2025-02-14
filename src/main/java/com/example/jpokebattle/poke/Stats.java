@@ -1,7 +1,6 @@
 package com.example.jpokebattle.poke;
 
 import com.example.jpokebattle.service.PositiveInt;
-import com.example.jpokebattle.service.data.ExpPattern;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

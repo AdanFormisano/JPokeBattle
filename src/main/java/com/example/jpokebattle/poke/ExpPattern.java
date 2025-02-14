@@ -1,4 +1,4 @@
-package com.example.jpokebattle.service.data;
+package com.example.jpokebattle.poke;
 
 public enum ExpPattern {
     FAST {

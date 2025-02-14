@@ -23,14 +23,10 @@
     "moves": [
       {"lvl": 1, "name": "Tackle"},
       {"lvl": 2, "name": "Growl"},
-      {"lvl": 7, "name": "Leech Seed"},
       {"lvl": 10, "name": "Vine Whip"},
-      {"lvl": 15, "name": "Poison Powder"},
-      {"lvl": 15, "name": "Sleep Powder"},
       {"lvl": 20, "name": "Razor Leaf"},
       {"lvl": 25, "name": "Sweet Scent"},
       {"lvl": 32, "name": "Growth"},
-      {"lvl": 39, "name": "Synthesis"},
       {"lvl": 46, "name": "Solar Beam"}
     ],
     "spriteFrontPath": "src/main/resources/assets/Sprite/Bulbasaur.png",
@@ -60,16 +56,11 @@
     "moves": [
       {"lvl": 1, "name": "Tackle"},
       {"lvl": 1, "name": "Growl"},
-      {"lvl": 1, "name": "Leech Seed"},
       {"lvl": 4, "name": "Growl"},
-      {"lvl": 7, "name": "Leech Seed"},
       {"lvl": 10, "name": "Vine Whip"},
-      {"lvl": 15, "name": "Poison Powder"},
-      {"lvl": 15, "name": "Sleep Powder"},
       {"lvl": 22, "name": "Razor Leaf"},
       {"lvl": 29, "name": "Sweet Scent"},
       {"lvl": 38, "name": "Growth"},
-      {"lvl": 47, "name": "Synthesis"},
       {"lvl": 56, "name": "Solar Beam"}
     ],
     "spriteFrontPath": "src/main/resources/assets/Sprite/Ivysaur.png",
@@ -99,17 +90,12 @@
     "moves": [
       {"lvl": 1, "name": "Tackle"},
       {"lvl": 1, "name": "Growl"},
-      {"lvl": 1, "name": "Leech Seed"},
       {"lvl": 1, "name": "Vine Whip"},
       {"lvl": 4, "name": "Growl"},
-      {"lvl": 7, "name": "Leech Seed"},
       {"lvl": 10, "name": "Vine Whip"},
-      {"lvl": 15, "name": "Poison Powder"},
-      {"lvl": 15, "name": "Sleep Powder"},
       {"lvl": 22, "name": "Razor Leaf"},
       {"lvl": 29, "name": "Sweet Scent"},
       {"lvl": 41, "name": "Growth"},
-      {"lvl": 53, "name": "Synthesis"},
       {"lvl": 65, "name": "Solar Beam"}
     ],
     "spriteFrontPath": "src/main/resources/assets/Sprite/Venusaur.png",
@@ -256,8 +242,6 @@
       {"lvl": 13, "name": "Water Gun"},
       {"lvl": 18, "name": "Bite"},
       {"lvl": 23, "name": "Rapid Spin"},
-      {"lvl": 28, "name": "Protect"},
-      {"lvl": 33, "name": "Rain Dance"},
       {"lvl": 40, "name": "Skull Bash"},
       {"lvl": 47, "name": "Hydro Pump"}
     ],
@@ -295,8 +279,6 @@
       {"lvl": 13, "name": "Water Gun"},
       {"lvl": 19, "name": "Bite"},
       {"lvl": 25, "name": "Rapid Spin"},
-      {"lvl": 31, "name": "Protect"},
-      {"lvl": 37, "name": "Rain Dance"},
       {"lvl": 45, "name": "Skull Bash"},
       {"lvl": 53, "name": "Hydro Pump"}
     ],
@@ -335,8 +317,6 @@
       {"lvl": 13, "name": "Water Gun"},
       {"lvl": 19, "name": "Bite"},
       {"lvl": 25, "name": "Rapid Spin"},
-      {"lvl": 31, "name": "Protect"},
-      {"lvl": 42, "name": "Rain Dance"},
       {"lvl": 55, "name": "Skull Bash"},
       {"lvl": 68, "name": "Hydro Pump"}
     ],

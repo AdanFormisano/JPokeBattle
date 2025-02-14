@@ -2,7 +2,7 @@
 
     import com.example.jpokebattle.game.BattleOutcome;
     import com.example.jpokebattle.game.GameController;
-    import com.example.jpokebattle.game.GameStateListener;
+    import com.example.jpokebattle.game.IGameStateListener;
     import com.example.jpokebattle.gui.data.*;
     import com.example.jpokebattle.gui.views.LoseView;
     import com.example.jpokebattle.gui.views.MenuView;
@@ -17,7 +17,7 @@
     import java.util.Collections;
     import java.util.List;
 
-    public class SceneController implements GameStateListener {
+    public class SceneController implements IGameStateListener {
         private Stage stage;
         private Scene menuScene;
         private Scene playScene;

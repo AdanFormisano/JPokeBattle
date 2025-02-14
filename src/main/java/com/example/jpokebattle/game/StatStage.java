@@ -1,5 +1,7 @@
 package com.example.jpokebattle.game;
 
+import com.example.jpokebattle.poke.StatType;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -13,8 +15,11 @@ public class StatStage {
     }
 
     public void setStage(StatType stat, int stage) {
-        // You might want to clamp the stage between -6 and 6 here
         stages.put(stat, Math.max(-6, Math.min(6, stage)));
+    }
+
+    public void changeStage(StatType stat, int change) {
+        setStage(stat, stages.get(stat) + change);
     }
 
     public double getMultiplier(StatType stat) {

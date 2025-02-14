@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class RemainingMovesView extends MessageView {
+public class RemainingMovesView extends AbstractMessageView {
     private final List<String> knownMoves;
     private int remainingMovesCount;
     private SceneController sceneController;

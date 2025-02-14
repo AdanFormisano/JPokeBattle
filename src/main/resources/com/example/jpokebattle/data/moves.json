@@ -15,7 +15,11 @@
     "power": 0,
     "accuracy": 100,
     "priority": 0,
-    "pp": 40
+    "pp": 40,
+    "effect": {
+      "statType": "ATTACK",
+      "stageLevel": -1
+    }
   },
   {
     "name": "Scratch",
@@ -33,16 +37,11 @@
     "power": 0,
     "accuracy": 100,
     "priority": 0,
-    "pp": 30
-  },
-  {
-    "name": "Leech Seed",
-    "type": "GRASS",
-    "category": "Status",
-    "power": 0,
-    "accuracy": 90,
-    "priority": 0,
-    "pp": 10
+    "pp": 30,
+    "effect": {
+      "statType": "DEFENSE",
+      "stageLevel": -1
+    }
   },
   {
     "name": "Vine Whip",
@@ -69,7 +68,11 @@
     "power": 0,
     "accuracy": 100,
     "priority": 0,
-    "pp": 20
+    "pp": 20,
+    "effect": {
+      "statType": "EVASION",
+      "stageLevel": -1
+    }
   },
   {
     "name": "Growth",
@@ -78,7 +81,11 @@
     "power": 0,
     "accuracy": 0,
     "priority": 0,
-    "pp": 40
+    "pp": 40,
+    "effect": {
+      "statType": "SPECIAL_ATTACK",
+      "stageLevel": 1
+    }
   },
   {
     "name": "SolarBeam",
@@ -105,7 +112,11 @@
     "power": 0,
     "accuracy": 100,
     "priority": 0,
-    "pp": 20
+    "pp": 20,
+    "effect": {
+      "statType": "ACCURACY",
+      "stageLevel": -1
+    }
   },
   {
       "name": "Rage",
@@ -123,7 +134,11 @@
       "power": 0,
       "accuracy": 90,
       "priority": 0,
-      "pp": 10
+      "pp": 10,
+        "effect": {
+            "statType": "SPEED",
+            "stageLevel": -2
+        }
   },
   {
     "name": "Flamethrower",
@@ -177,7 +192,11 @@
     "power": 0,
     "accuracy": 0,
     "priority": 0,
-    "pp": 40
+    "pp": 40,
+    "effect": {
+      "statType": "DEFENSE",
+      "stageLevel": 1
+    }
   },
   {
     "name": "Bubble",

@@ -5,9 +5,9 @@ import com.example.jpokebattle.poke.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameController implements BattleEventListener {
+public class GameController implements IBattleEventListener {
     private GameData gameData;
-    private GameStateListener gameStateListener;
+    private IGameStateListener gameStateListener;
 
     public int currentLevel = 0;
     public List<BattleOutcome> battleOutcomes = new ArrayList<>();
@@ -29,7 +29,7 @@ public class GameController implements BattleEventListener {
         return gameData;
     }
 
-    public void setGameStateListener(GameStateListener gameStateListener) {
+    public void setGameStateListener(IGameStateListener gameStateListener) {
         this.gameStateListener = gameStateListener;
     }
 
@@ -71,6 +71,7 @@ public class GameController implements BattleEventListener {
     public void onMoveSelected(String moveName) {
         currentBattle.playTurn(moveName);
     }
+
     public void onForgetMove(String toLearn, String toForget) {
         gameData.currentPlayerPokemon.learnAndForgetMove(toLearn, toForget);
     }

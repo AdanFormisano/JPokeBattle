@@ -1,13 +1,14 @@
 package com.example.jpokebattle.service.data;
 
 import com.example.jpokebattle.poke.EffortValue;
+import com.example.jpokebattle.poke.Type;
 
 import java.util.List;
 
 public class DataPokemon {
     private int id;
     private String name;
-    private List<DataType> type;
+    private List<Type> type;
     private String ability;
     private int hp;
     private int attack;
@@ -25,7 +26,7 @@ public class DataPokemon {
     // Getters
     public int getId() { return this.id; }
     public String getName() { return this.name; }
-    public List<DataType> getType() { return this.type; }
+    public List<Type> getType() { return this.type; }
     public String getAbility() { return this.ability; }
     public int getHp() { return this.hp; }
     public int getAttack() { return this.attack; }
@@ -52,7 +53,7 @@ public class DataPokemon {
     // Setters
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
-    public void setType(List<DataType> type) { this.type = type; }
+    public void setType(List<Type> type) { this.type = type; }
     public void setAbility(String ability) { this.ability = ability; }
     public void setHp(int hp) { this.hp = hp; }
     public void setAttack(int attack) { this.attack = attack; }

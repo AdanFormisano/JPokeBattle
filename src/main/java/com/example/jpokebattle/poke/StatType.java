@@ -1,7 +1,7 @@
-package com.example.jpokebattle.game;
+package com.example.jpokebattle.poke;
 
 public enum StatType {
-    ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, ACCURACY, EVASION;
+    HP, ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, ACCURACY, EVASION;
 
     public double getMultiplier(int stage) {
         switch (this) {
@@ -11,6 +11,8 @@ public enum StatType {
             case EVASION:
                 double[] evaMultiplier = {3.0, 2.66, 2.5, 2.0, 1.66, 1.33, 1.0, 0.75, 0.6, 0.5, 0.43, 0.36, 0.33};
                 return evaMultiplier[stage + 6];
+            case HP:
+                return 1.0;
             default:
                 if (stage >= 0) {
                     return (2.0 + stage) / 2.0;

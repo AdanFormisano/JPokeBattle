@@ -1,7 +1,7 @@
 package com.example.jpokebattle.service.loader;
 
 import com.example.jpokebattle.service.data.DataPokemon;
-import com.example.jpokebattle.service.data.DataType;
+import com.example.jpokebattle.poke.Type;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
@@ -50,7 +50,7 @@ public class PokeLoader {
         return this.loadAllPokemons().stream().filter(dataPokemon -> dataPokemon.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public List<DataPokemon> getPokemonByType(List<DataType> types) {
+    public List<DataPokemon> getPokemonByType(List<Type> types) {
         return this.loadAllPokemons().stream().filter(dataPokemon -> dataPokemon.getType().equals(types)).collect(Collectors.toList());
     }
 
