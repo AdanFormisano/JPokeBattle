@@ -4,10 +4,7 @@
     import com.example.jpokebattle.game.GameController;
     import com.example.jpokebattle.game.IGameStateListener;
     import com.example.jpokebattle.gui.data.*;
-    import com.example.jpokebattle.gui.views.LoseView;
-    import com.example.jpokebattle.gui.views.MenuView;
-    import com.example.jpokebattle.gui.views.PlayView;
-    import com.example.jpokebattle.gui.views.PokemonChoiceView;
+    import com.example.jpokebattle.gui.views.*;
     import com.example.jpokebattle.poke.Pokemon;
     import javafx.beans.property.BooleanProperty;
     import javafx.beans.property.SimpleBooleanProperty;
@@ -16,6 +13,7 @@
 
     import java.util.Collections;
     import java.util.List;
+    import java.util.function.Consumer;
 
     public class SceneController implements IGameStateListener {
         private Stage stage;
@@ -24,6 +22,7 @@
         private DynamicViewModel dvModel;
         private GameController gc = GameController.getInstance();
         private final BooleanProperty canNextLevel = new SimpleBooleanProperty(false);
+        public Consumer<Pokemon> subSelectionCallback;
 
         public SceneController(Stage stage, DynamicViewModel dynamicViewModel) {
             this.stage = stage;
@@ -56,6 +55,11 @@
 
         public void onOfferAccepted() {
             gc.onOfferAccepted();
+        }
+
+        public void onPokemonSwitch(Pokemon pokemon) {
+            gc.pokemonSwitch(pokemon);
+            onBattleStart();
         }
 
         @Override
@@ -137,5 +141,11 @@
             // Show pokemon offer message
             PokeOfferViewData data = new PokeOfferViewData(pokemon);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_OFFER, data));
+        }
+
+        @Override
+        public void onPokemonSwitch(Consumer<Pokemon> callback) {
+            subSelectionCallback = callback;
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.SUB_SELECTION, null));
         }
     }

@@ -41,7 +41,7 @@ public class ArenaView extends VBox {
             setMaxHeight(USE_COMPUTED_SIZE);
             setMinHeight(USE_COMPUTED_SIZE);
 
-            ImageView playerPokemon = new ImageView(gc.getSessionData().currentPlayerPokemon.getSpriteBack());
+            ImageView playerPokemon = new ImageView(gc.getGameData().currentPlayerPokemon.getSpriteBack());
             HBox pokeView = new HBox();
             pokeView.setPrefWidth(700);
             pokeView.setAlignment(Pos.BOTTOM_LEFT);

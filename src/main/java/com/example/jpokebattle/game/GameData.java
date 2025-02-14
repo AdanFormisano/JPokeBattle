@@ -46,4 +46,23 @@ public class GameData {
 
         System.out.println("You have received a " + name + "!");
     }
+
+    public Pokemon getPokemonFromName(String name) {
+        for (Pokemon pokemon : playerPokemons) {
+            if (pokemon.getName().equals(name)) {
+                return pokemon;
+            }
+        }
+        return null;
+    }
+
+    public List<Pokemon> getAlivePokemons(List<Pokemon> pokemon) {
+        List<Pokemon> alivePokemons = new ArrayList<>();
+        for (Pokemon p : pokemon) {
+            if (!p.isFainted) {
+                alivePokemons.add(p);
+            }
+        }
+        return alivePokemons;
+    }
 }

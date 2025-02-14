@@ -6,6 +6,7 @@ import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
 
 public class Battle {
@@ -40,10 +41,15 @@ public class Battle {
         this.listener = listener;
     }
 
+    public void setCurrentPlayerPokemon(Pokemon pokemon) {
+        currentPlayerPokemon = new PokeInBattle(pokemon);
+    }
+    public void setCurrentEnemyPokemon(Pokemon pokemon) {
+        currentEnemyPokemon = new PokeInBattle(pokemon);
+    }
     public Pokemon getCurrentPlayerPokemon() {
         return currentPlayerPokemon.pokemon;
     }
-
     public Pokemon getCurrentEnemyPokemon() {
         return currentEnemyPokemon.pokemon;
     }
@@ -111,27 +117,41 @@ public class Battle {
         }
     }
 
+    private boolean checkEndCondition(List<Pokemon> list) {
+        for (Pokemon pokemon : list) {
+            if (!pokemon.isFainted) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void checkFaintedPokemon() {
-        if (currentPlayerPokemon.pokemon.getStats().getCurrentHP() <= 0) {
+        if (currentPlayerPokemon.pokemon.isFainted) {
             System.out.println(currentPlayerPokemon.pokemon.getName() + " fainted!");
 
+            // Notify pkm fainted
             notifyPokemonFainted(currentPlayerPokemon.pokemon.getName());
 
-            if (playerPokemons.size() == 1) {
+
+
+            if (checkEndCondition(GameController.getInstance().gameData.getAlivePokemons(playerPokemons))) {
                 outcome.setPlayerWon(false);
                 outcome.setCurrentPlayerPokemon(currentPlayerPokemon.pokemon);
                 outcome.setCurrentOpponentPokemon(currentEnemyPokemon.pokemon);
-                playerPokemons.remove(currentPlayerPokemon.pokemon);
+//                playerPokemons.remove(currentPlayerPokemon.pokemon);
                 notifyBattleEnd(outcome);
                 System.out.println("You have no more Pokemon left!");
                 return;
             } else {
-                playerPokemons.remove(currentPlayerPokemon.pokemon);
+                // Notify continue battle => choose another pokemon
+                notifyBattleContinue();
+//                playerPokemons.remove(currentPlayerPokemon.pokemon);
                 currentPlayerPokemon.pokemon = playerPokemons.getFirst();   // TODO: Implement a way to switch to another pokemon
             }
         }
 
-        if (currentEnemyPokemon.pokemon.getStats().getCurrentHP() <= 0) {
+        if (currentEnemyPokemon.pokemon.isFainted) {
             System.out.println(currentEnemyPokemon.pokemon.getName() + " fainted!");
 
             var exp = giveExp(currentPlayerPokemon.pokemon, currentEnemyPokemon.pokemon);
@@ -139,7 +159,7 @@ public class Battle {
             notifyPokemonFainted(currentEnemyPokemon.pokemon, currentPlayerPokemon.pokemon.getName(), exp);
             listener.onLevelUp(currentPlayerPokemon.pokemon);
 
-            if (enemyPokemons.size() == 1) {
+            if (checkEndCondition(GameController.getInstance().gameData.getAlivePokemons(enemyPokemons))) {
                 outcome.setPlayerWon(true);
                 outcome.setCurrentPlayerPokemon(currentPlayerPokemon.pokemon);
                 outcome.setCurrentOpponentPokemon(currentEnemyPokemon.pokemon);
@@ -149,6 +169,12 @@ public class Battle {
                 enemyPokemons.remove(currentEnemyPokemon.pokemon);
                 currentEnemyPokemon.pokemon = enemyPokemons.getFirst();
             }
+        }
+    }
+
+    private void notifyBattleContinue() {
+        if (listener != null) {
+            listener.onBattleContinue();
         }
     }
 

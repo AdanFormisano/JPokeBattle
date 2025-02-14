@@ -53,7 +53,7 @@ public class PokemonChoiceView extends VBox {
             setPadding(new Insets(20));
 
             // Show the pokemon image
-            ImageView pokeView = new ImageView(gc.getSessionData().pl.getPokemonImage(name, true));
+            ImageView pokeView = new ImageView(gc.getGameData().pl.getPokemonImage(name, true));
 
             Button chooseButton = new Button("Choose");
             setMargin(chooseButton, new Insets(30, 0, 0, 0));

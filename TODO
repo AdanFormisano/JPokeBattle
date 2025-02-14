@@ -15,6 +15,7 @@ Minimum:
 Tipical:
   ☐ Implement a top 10 leaderboard for the most won battles in a single run
     ☐ Also UI for it
+    ☐ Refactor BattleOutomes
 
   ✔ Implement ALL moves for chosen Pokemons @done (25-02-14 05:39)
   ✔ Pokemon's persistence across battles @done (25-01-28 18:01)
@@ -37,15 +38,15 @@ Extra:
     ☐ No GUI mode
 
 
+ ☐ Enemy move UI
  ☐ Go Again button
- ☐ Add someway to make the user gain pokemons
-   Every turn there is a chance the defeated pokemon might join, the player can decided if "accept" the new pokemon.
-   At every turn the chance % gets lower -> pokemon level gets higher
  ☐ Refactor Stats (?)
    ☐ Make StatsView show Effective Stats
- ☐ Enemy move UI
  ☐ Implement full Accuracy check
 
+ ✔ Add someway to make the user gain pokemons @done (25-02-14 13:25)
+   Every turn there is a chance the defeated pokemon might join, the player can decided if "accept" the new pokemon.
+   At every turn the chance % gets lower -> pokemon level gets higher
  ✔ Fix stats refresh @done (25-02-14 12:28)
    Currently completly recalculating every stat => Stats are increasing when they shouldn't
  ✔ UI to chose/forget a move @done (25-02-14 02:08)

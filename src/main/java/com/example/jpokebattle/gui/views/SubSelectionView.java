@@ -3,25 +3,19 @@ package com.example.jpokebattle.gui.views;
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.poke.Pokemon;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PokeListView extends VBox {
-    GameController gc = GameController.getInstance();
-    SceneController sceneController;
+public class SubSelectionView extends AbstractMessageView {
+    private SceneController sceneController;
+    private GameController gc = GameController.getInstance();
+    private boolean isSubChosen = false;
 
-    public PokeListView(SceneController sceneController) {
-        this.sceneController = sceneController;
-        setupUI();
-    }
-
-    private void setupUI() {
+    public SubSelectionView(SceneController sceneController) {
+        super(false);
         setPrefWidth(200);
         setStyle("-fx-border-color: transparent gray transparent transparent; " +
                 "-fx-border-width: 1;");
@@ -76,11 +70,18 @@ public class PokeListView extends VBox {
                 });
             }
 
+
             pokeInfo.getChildren().addAll(pokeImage, pokeLevelContainer, pokeHPContainer);
             pokeContainer.getChildren().addAll(pokeName, pokeInfo);
             pokeListContainer.getChildren().add(pokeContainer);
         }
         scrollPane.setContent(pokeListContainer);
         getChildren().add(scrollPane);
+
+        setOnMouseClicked(e -> {
+            if (isSubChosen) {
+                finished();
+            }
+        });
     }
 }

@@ -26,6 +26,9 @@ public class MoveDamage extends AbstractMove implements IDamageEffect{
     @Override
     public void execute(PokeInBattle attacker, PokeInBattle target) {
         dealDamage(attacker, target);
+        if (target.pokemon.getStats().getCurrentHP() <= 0) {
+            target.pokemon.isFainted = true;
+        }
     }
 
     @Override

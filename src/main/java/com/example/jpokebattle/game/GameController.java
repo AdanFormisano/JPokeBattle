@@ -5,10 +5,11 @@ import com.example.jpokebattle.service.data.DataPokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
 
 public class GameController implements IBattleEventListener {
-    private GameData gameData;
+    GameData gameData;
     private IGameStateListener gameStateListener;
     public int currentLevel = 0;
     public List<BattleOutcome> battleOutcomes = new ArrayList<>();
@@ -20,6 +21,11 @@ public class GameController implements IBattleEventListener {
         gameData = new GameData(true);
     }
 
+    public void onPokemonSwitch(String pokemon) {
+        pokemonSwitch(gameData.getPokemonFromName(pokemon));
+
+    }
+
     private static class GameControllerHolder {
         private static final GameController INSTANCE = new GameController();
     }
@@ -28,12 +34,17 @@ public class GameController implements IBattleEventListener {
         return GameControllerHolder.INSTANCE;
     }
 
-    public GameData getSessionData() {
+    public GameData getGameData() {
         return gameData;
     }
 
     public void setGameStateListener(IGameStateListener gameStateListener) {
         this.gameStateListener = gameStateListener;
+    }
+
+    public void pokemonSwitch(Pokemon pokemon) {
+        currentBattle.setCurrentPlayerPokemon(pokemon);
+        gameData.currentPlayerPokemon = pokemon;
     }
 
     private void checkEvolution(Pokemon pokemon) {
@@ -93,6 +104,7 @@ public class GameController implements IBattleEventListener {
     public void onOfferAccepted() {
         Pokemon offeredPokemon = currentBattle.getCurrentEnemyPokemon();
         offeredPokemon.fullHP();
+        offeredPokemon.isFainted = false;
         gameData.playerPokemons.add(currentBattle.getCurrentEnemyPokemon());
     }
 
@@ -145,6 +157,15 @@ public class GameController implements IBattleEventListener {
         }
 
         checkEvolution(pokemon);
+    }
+
+    @Override
+    public void onBattleContinue() {
+        // When battle continues, SC has already showed the fainted pokemon
+        // Ask for pokemon switch
+        if (gameStateListener != null) {
+            gameStateListener.onPokemonSwitch(this::pokemonSwitch);
+        }
     }
 }
 

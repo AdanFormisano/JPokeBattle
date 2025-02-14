@@ -30,7 +30,7 @@ public class DynamicView extends VBox {
 
     private void setupUI() {
         movesView = new MovesView(sceneController);
-        pokeListView = new PokeListView();
+        pokeListView = new PokeListView(sceneController);
 
         dvModel.toggleMovesPokeList.addListener((obs, oldVal, newVal) -> {
             if (!isTransitioning){
@@ -64,9 +64,11 @@ public class DynamicView extends VBox {
 //                case BATTLE:
 //                    getChildren().add(movesView);
 //                    break;
-//                case POKEMON_SELECTION:
-//                    getChildren().add(pokeListView);
-//                    break;
+            case SUB_SELECTION:
+                SubSelectionView subSelectionView = new SubSelectionView(sceneController);
+                subSelectionView.setOnFinished(this::processNextState);
+                getChildren().add(subSelectionView);
+                break;
             case POKEMON_FAINTED:
                 FaintedViewData faintedData = (FaintedViewData) nextUIState.getData();
                 PokeFaintedView faintedView = new PokeFaintedView(faintedData);

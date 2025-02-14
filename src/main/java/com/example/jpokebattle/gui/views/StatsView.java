@@ -28,10 +28,10 @@ public class StatsView extends VBox {
     }
 
     private void setupUIPlayer() {
-        Text name = new Text(gc.getSessionData().currentPlayerPokemon.getName());
+        Text name = new Text(gc.getGameData().currentPlayerPokemon.getName());
         getChildren().add(name);
         // Get the stats object from your Pokemon
-        Stats stats = gc.getSessionData().currentPlayerPokemon.getStats();
+        Stats stats = gc.getGameData().currentPlayerPokemon.getStats();
 
         // Create bindings for combined stats
         createBindings(stats, true);

@@ -17,7 +17,7 @@ public class MovesView extends VBox {
 
     public MovesView(SceneController sceneController) {
         this.sceneController = sceneController;
-        playerMoves = gc.getSessionData().currentPlayerPokemon.getMoveList();
+        playerMoves = gc.getGameData().currentPlayerPokemon.getMoveList();
         setupUI();
     }
 
@@ -100,7 +100,7 @@ public class MovesView extends VBox {
     }
 
     public void updateMoves() {
-        playerMoves = gc.getSessionData().currentPlayerPokemon.getMoveList();
+        playerMoves = gc.getGameData().currentPlayerPokemon.getMoveList();
         setupUI();
     }
 }

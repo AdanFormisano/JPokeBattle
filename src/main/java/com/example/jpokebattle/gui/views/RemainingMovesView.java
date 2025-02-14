@@ -19,6 +19,7 @@ public class RemainingMovesView extends AbstractMessageView {
         super(false);
         this.knownMoves = remainingMovesData.knownMoves();
         this.sceneController = sceneController;
+
         String pokemonName = remainingMovesData.pokemonName();
         List<String> toLearnMoves = remainingMovesData.toLearnMoves();
         remainingMovesCount = toLearnMoves.size();
@@ -28,7 +29,7 @@ public class RemainingMovesView extends AbstractMessageView {
             getChildren().add(moveContainer);
         }
 
-        this.setOnMouseClicked(event -> {
+        setOnMouseClicked(event -> {
             if (remainingMovesCount == 0) {
                 finished();
             }

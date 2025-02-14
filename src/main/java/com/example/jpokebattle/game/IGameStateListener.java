@@ -3,6 +3,7 @@ package com.example.jpokebattle.game;
 import com.example.jpokebattle.poke.Pokemon;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public interface IGameStateListener {
     void onGameStart();
@@ -16,4 +17,5 @@ public interface IGameStateListener {
     void onLearnedMoves(String pokemon, List<String> moves);
     void onPokemonEvolved(Pokemon pokemonEvolved, String pokeFromName);
     void onPokeOffer(Pokemon pokemon);
+    void onPokemonSwitch(Consumer<Pokemon> callback);
 }
