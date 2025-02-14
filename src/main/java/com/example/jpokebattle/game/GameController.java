@@ -38,6 +38,10 @@ public class GameController implements IBattleEventListener {
         return gameData;
     }
 
+    public Pokemon getCurrentBattlePokemon() {
+        return currentBattle.getCurrentPlayerPokemon();
+    }
+
     public void setGameStateListener(IGameStateListener gameStateListener) {
         this.gameStateListener = gameStateListener;
     }

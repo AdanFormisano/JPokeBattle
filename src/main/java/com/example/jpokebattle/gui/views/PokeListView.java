@@ -58,7 +58,7 @@ public class PokeListView extends VBox {
             pokeImage.setPreserveRatio(true);
             pokeImage.setFitHeight(50);
 
-            if (pokemon.isFainted) {
+            if (pokemon.isFainted || pokemon == gc.getCurrentBattlePokemon()) {
                 pokeContainer.setDisable(true);
                 pokeContainer.setStyle("-fx-opacity: 0.5;");
             } else {
