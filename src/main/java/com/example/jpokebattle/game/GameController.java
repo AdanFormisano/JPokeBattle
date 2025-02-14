@@ -1,6 +1,7 @@
 package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.Pokemon;
+import com.example.jpokebattle.service.data.DataPokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,17 @@ public class GameController implements IBattleEventListener {
 
     public void setGameStateListener(IGameStateListener gameStateListener) {
         this.gameStateListener = gameStateListener;
+    }
+
+    private void checkEvolution(Pokemon pokemon) {
+        if (pokemon.getStats().getLevel() >= pokemon.getEvoLevel()) {
+            String pokeFromName = pokemon.getName();
+            DataPokemon evolution = gameData.pl.getPokemonByName(pokemon.getEvoTo());
+            if (evolution != null) {
+                pokemon.evolve(evolution);
+                gameStateListener.onPokemonEvolved(pokemon, pokeFromName);
+            }
+        }
     }
 
     private void generateLevel() {
@@ -116,6 +128,8 @@ public class GameController implements IBattleEventListener {
                 gameStateListener.onLearnedMoves(pokemon.getName(), moves);
             }
         }
+
+        checkEvolution(pokemon);
     }
 }
 

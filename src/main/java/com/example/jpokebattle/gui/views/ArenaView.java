@@ -22,10 +22,11 @@ public class ArenaView extends VBox {
         setupUI();
     }
 
-    private void setupUI() {
+    public void setupUI() {
         playerBox = new PlayerBox();
         opponentBox = new OpponentBox();
 
+        getChildren().clear();
         getChildren().addAll(opponentBox, playerBox);
     }
 

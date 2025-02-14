@@ -1,7 +1,6 @@
 package com.example.jpokebattle.poke;
 
 import com.example.jpokebattle.poke.move.AbstractMove;
-import com.example.jpokebattle.poke.move.Move;
 import com.example.jpokebattle.poke.move.MoveFactory;
 import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.data.DataMove;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class Pokemon {
     private final int id;
-    private final String name;
+    private String name;
     private final BaseStats baseStats;
     private final Stats stats;
     private final Nature nature = new Nature();
@@ -24,12 +23,17 @@ public class Pokemon {
     public boolean isFainted = false;
     public Image spriteFront;
     public Image spriteBack;
+    private int evoLevel;
+    private String evoTo;
 
     public Pokemon (DataPokemon dataPokemon, boolean isGUI) {
         id = dataPokemon.getId();
         name = dataPokemon.getName();
         baseStats = new BaseStats(dataPokemon.getHp(), dataPokemon.getAttack(), dataPokemon.getDefense(), dataPokemon.getSpecialAttack(), dataPokemon.getSpecialDefense(), dataPokemon.getSpeed(), dataPokemon.getAbility(), dataPokemon.getType());
         stats = new Stats(baseStats, nature, dataPokemon.getLevelingRate(), dataPokemon.getExpYield());
+        evoLevel = dataPokemon.getEvolution().level();
+        evoTo = dataPokemon.getEvolution().to();
+
         learnMoves(checkNewMoves());
 
         // Load sprites
@@ -72,6 +76,8 @@ public class Pokemon {
     public Stats getStats() { return stats; }
     public Image getSpriteFront() { return spriteFront; }
     public Image getSpriteBack() { return spriteBack; }
+    public int getEvoLevel() { return evoLevel; }
+    public String getEvoTo() { return evoTo; }
 
     // Game methods
     public void takeDamage(double damageTaken) { stats.decreaseCurrentHP(damageTaken); }
@@ -131,5 +137,24 @@ public class Pokemon {
     public void learnAndForgetMove(String toLearn, String toForget) {
         moveList.removeIf(m -> m.getName().equals(toForget));
         learnMove(toLearn);
+    }
+
+    public void evolve(DataPokemon evoData) {
+        name = evoData.getName();
+        baseStats.setType(evoData.getType());
+//        baseStats.setAbility(evoData.getAbility());
+        baseStats.setBaseHP(evoData.getHp());
+        baseStats.setAttack(evoData.getAttack());
+        baseStats.setDefense(evoData.getDefense());
+        baseStats.setSpecialAttack(evoData.getSpecialAttack());
+        baseStats.setSpecialDefense(evoData.getSpecialDefense());
+        baseStats.setSpeed(evoData.getSpeed());
+        evoLevel = evoData.getEvolution().level();
+        evoTo = evoData.getEvolution().to();
+        spriteFront = new Image("file:" + evoData.getSpriteFrontPath(), 128, 128, true, false);
+        spriteBack = new Image("file:" + evoData.getSpriteBackPath(), 128, 128, true, false);
+
+        // Refresh stats
+        stats.calculateAllStats();
     }
 }

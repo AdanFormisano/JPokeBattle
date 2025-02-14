@@ -96,6 +96,12 @@ public class DynamicView extends VBox {
                 remainingMovesView.setOnFinished(this::processNextState);
                 getChildren().add(remainingMovesView);
                 break;
+            case EVOLUTION:
+                EvolvedViewData evolvedData = (EvolvedViewData) nextUIState.getData();
+                EvolvedView evolvedView = new EvolvedView(evolvedData);
+                evolvedView.setOnFinished(this::processNextState);
+                getChildren().add(evolvedView);
+                break;
             }
     }
 

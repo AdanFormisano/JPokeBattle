@@ -7,5 +7,6 @@ public enum DynamicViewStatus {
     BATTLE_WIN,
     LEVEL_UP,
     LEARNED_MOVES,
-    REMAINING_MOVES
+    REMAINING_MOVES,
+    EVOLUTION,
 }

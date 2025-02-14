@@ -1,7 +1,7 @@
 package com.example.jpokebattle.gui.data;
 
 public record FaintedViewData(String faintedPokemon, String playerPokemon, int expGained, boolean isPlayer)
-        implements DynamicViewData {
+        implements IDynamicViewData {
 
     // Used when the player's pokemon faints:
     public FaintedViewData(String faintedPokemon) {

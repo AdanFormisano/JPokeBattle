@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseStats {
-    private final int baseHP;
-    private final int attack;
-    private final int defense;
-    private final int specialAttack;
-    private final int specialDefense;
-    private final int speed;
-    private final String ability;
-    private final List<Type> type = new ArrayList<>();
+    private int baseHP;
+    private int attack;
+    private int defense;
+    private int specialAttack;
+    private int specialDefense;
+    private int speed;
+    private String ability;
+    private List<Type> type = new ArrayList<>();
 
     public BaseStats(int baseHP, int attack, int defense, int specialAttack, int specialDefense, int speed, String ability, List<Type> type) {
         this.baseHP = baseHP;
@@ -33,6 +33,16 @@ public class BaseStats {
     public int getSpeed() { return this.speed; }
     public String getAbility() { return this.ability; }
     public List<Type> getType() { return this.type; }
+
+    // Setters
+    public void setBaseHP(int baseHP) { this.baseHP = baseHP; }
+    public void setAttack(int attack) { this.attack = attack; }
+    public void setDefense(int defense) { this.defense = defense; }
+    public void setSpecialAttack(int specialAttack) { this.specialAttack = specialAttack; }
+    public void setSpecialDefense(int specialDefense) { this.specialDefense = specialDefense; }
+    public void setSpeed(int speed) { this.speed = speed; }
+    public void setAbility(String ability) { this.ability = ability; }
+    public void setType(List<Type> type) { this.type = type; }
 
     @Override
     public String toString() {

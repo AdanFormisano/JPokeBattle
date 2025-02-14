@@ -13,32 +13,40 @@ Minimum:
   ✔ Base pokémon stats @done (25-01-26 20:05)
 
 Tipical:
-  ☐ Implement ALL moves for chosen Pokemons
   ☐ Implement a top 10 leaderboard for the most won battles in a single run
     ☐ Also UI for it
 
+  ✔ Implement ALL moves for chosen Pokemons @done (25-02-14 05:39)
   ✔ Pokemon's persistence across battles @done (25-01-28 18:01)
 Extra:
   Evolution Set:
     ☐ Implement evolutions
-    ✔ Implement learining new moves @done (25-02-13 17:12)
-      ☐  Implement a move effect factory
-       ☐ Json contains details for each move and it's effect
-       ☐ Factory builds the effects
 
+    ✔ Implement learining new moves @done (25-02-13 17:12)
+      ✔  Implement a move effect factory @done (25-02-14 05:39)
+       ✔ Json contains details for each move and it's effect @done (25-02-14 05:39)
+       ✔ Factory builds the effects @done (25-02-14 05:39)
     ✔ Implement level increase @done (25-02-13 17:12)
       ✔ Implement type of exp gain for each pokemon (https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_at_each_level) @done (25-01-27 13:59)
       ✔ When levelup check if new moves need to be learned @done (25-01-28 18:00)
     ✔ Implement IV and EV @done (25-01-27 00:06)
-    
+
   Bot Set:
     ☐ Implement Bot AI
+      For every turn the AI decides the move that could deal most damage -> mainly type concius
   TUI Set:
     ☐ No GUI mode
 
 
  ☐ Go Again button
  ☐ Add someway to make the user gain pokemons
+   Every turn there is a chance the defeated pokemon might join, the player can decided if "accept" the new pokemon.
+   At every turn the chance % gets lower -> pokemon level gets higher
+ ☐ Fix stats refresh
+   Currently completly recalculating every stat => Stats are increasing when they shouldn't
+ ☐ Make StatsView show Effective Stats
+ ☐ Refactor Stats (?)
+ ☐ Enemy move UI
 
  ✔ UI to chose/forget a move @done (25-02-14 02:08)
  ✔ Make stats "dynamic", every time one of its component (eg EV) changes, it needs to be updated @done (25-02-13 17:35)

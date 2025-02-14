@@ -2,6 +2,7 @@ package com.example.jpokebattle.service.data;
 
 import com.example.jpokebattle.poke.EffortValue;
 import com.example.jpokebattle.poke.Type;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class DataPokemon {
     private List<DataMoveBasic> moves;
     private String levelingRate;
     private int expYield;
+    @JsonProperty(required = false)
+    private EvolutionData evolution;
     private String spriteFrontPath;
     private String spriteBackPath;
 
@@ -37,6 +40,7 @@ public class DataPokemon {
     public List<DataMoveBasic> getMoves() { return this.moves; }
     public String getLevelingRate() { return this.levelingRate; }
     public int getExpYield() { return this.expYield; }
+    public EvolutionData getEvolution() { return this.evolution; }
     public String getSpriteFrontPath() { return spriteFrontPath; }
     public String getSpriteBackPath() { return this.spriteBackPath; }
     public EffortValue getEffortValue() {
@@ -64,6 +68,7 @@ public class DataPokemon {
     public void setMoves(List<DataMoveBasic> moves) { this.moves = moves; }
     public void setLevelingRate(String levelingRate) { this.levelingRate = levelingRate; }
     public void setExpYield(int expYield) { this.expYield = expYield; }
+    public void setEvolution(EvolutionData evolution) { this.evolution = evolution; }
     public void setSpriteFrontPath(String spritePath) { this.spriteFrontPath = spritePath; }
     public void setSpriteBackPath(String backSpritePath) { this.spriteBackPath = backSpritePath; }
     public void setEffortValue(EffortValueDTO effortValue) { this.effortValue = effortValue; }

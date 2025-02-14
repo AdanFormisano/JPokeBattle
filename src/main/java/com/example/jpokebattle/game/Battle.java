@@ -1,11 +1,8 @@
 package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.EffortValue;
-import com.example.jpokebattle.poke.StatType;
 import com.example.jpokebattle.poke.move.AbstractMove;
-import com.example.jpokebattle.poke.move.Move;
 import com.example.jpokebattle.poke.Pokemon;
-import com.example.jpokebattle.service.data.DataTypeChart;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
 import java.util.*;
@@ -124,38 +121,6 @@ public class Battle {
                 chosenMove.move.execute(chosenMove.pokeInBattle, chosenMoves.get(chosenMoves.indexOf(chosenMove) == 0 ? 1 : 0).pokeInBattle);
             }
         }
-    }
-
-    // Follow this formula (GEN 3) : https://bulbapedia.bulbagarden.net/wiki/Damage
-    private double calculateDamage(Move move, Pokemon attacker, Pokemon defender, StatStage attackerStatStage, StatStage defenderStatStage) {
-        double damage = 0;
-        var level = attacker.getStats().getLevel();
-        var A = move.getCategory().equals("Physical") ?
-                attacker.getStats().getAttack() * attackerStatStage.getMultiplier(StatType.ATTACK) :
-                attacker.getStats().getSpecialAttack() * attackerStatStage.getMultiplier(StatType.SPECIAL_ATTACK);
-        var D = move.getCategory().equals("Physical") ?
-                defender.getStats().getDefense() * defenderStatStage.getMultiplier(StatType.DEFENSE) :
-                defender.getStats().getSpecialDefense() * defenderStatStage.getMultiplier(StatType.SPECIAL_DEFENSE);
-        var power = move.getPower();
-        // Burn check
-        // Screen check
-        // Targets check (double battle)
-        // Weather check
-        // Flash Fire check
-        // Stockpile check
-        // Critical check
-        // DoubleDmg check
-        // Charge check
-        // Helping Hand check
-        var stab = attacker.getType().contains(move.getType()) ? 1.5 : 1;
-        var type1 = DataTypeChart.getMultiplier(move.getType(), defender.getType().getFirst());
-        var type2 = defender.getType().size() > 1 ? DataTypeChart.getMultiplier(move.getType(), defender.getType().getLast()) : 1;
-        float random = (float) randGen.nextInt(85, 101) / 100;
-
-        damage = (((double) (((level * 2) / 5) + 2) * power * (A / D)) / 50 + 2) * stab * type1 * type2 * random;
-        System.out.printf("Damage: %f, level: %d, A: %f, D: %f, power: %d, stab: %f, type1: %f, type2: %f, random: %f%n", damage, level, A, D, power, stab, type1, type2, random);
-
-        return damage;
     }
 
     private void checkFaintedPokemon() {

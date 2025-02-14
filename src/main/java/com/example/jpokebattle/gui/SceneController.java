@@ -118,4 +118,13 @@
             LearnedMovesViewData data = new LearnedMovesViewData(pokemon, moves);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.LEARNED_MOVES, data));
         }
+
+        @Override
+        public void onPokemonEvolved(Pokemon pokemonEvolved, String pokeFromName) {
+            // Show pokemon evolved message
+            EvolvedViewData data = new EvolvedViewData(pokemonEvolved, pokeFromName);
+            dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.EVOLUTION, data));
+            PlayView pv = (PlayView) playScene.getRoot();
+            pv.arenaView.setupUI();
+        }
     }
