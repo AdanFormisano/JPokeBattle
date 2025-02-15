@@ -1,0 +1,12 @@
+module:com.example.jpokebattle
+com.example.jpokebattle
+com.example.jpokebattle.game
+com.example.jpokebattle.gui
+com.example.jpokebattle.gui.data
+com.example.jpokebattle.gui.views
+com.example.jpokebattle.poke
+com.example.jpokebattle.poke.move
+com.example.jpokebattle.service
+com.example.jpokebattle.service.data
+com.example.jpokebattle.service.loader
+com.example.jpokebattle.service.session

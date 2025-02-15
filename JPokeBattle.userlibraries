@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Maven: org.openjfx:javafx-fxml:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-fxml/23.0.2/javafx-fxml-23.0.2.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-controls:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-controls/23.0.2/javafx-controls-23.0.2.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-databind:2.18.2">
+    <archive path="/home/adan/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-core:2.18.2">
+    <archive path="/home/adan/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar" />
+  </library>
+  <library name="Maven: org.junit.jupiter:junit-jupiter-engine:5.10.2">
+    <archive path="/home/adan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar" />
+  </library>
+  <library name="Maven: org.junit.jupiter:junit-jupiter-api:5.10.2">
+    <archive path="/home/adan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar" />
+  </library>
+  <library name="Maven: org.controlsfx:controlsfx:11.2.1">
+    <archive path="/home/adan/.m2/repository/org/controlsfx/controlsfx/11.2.1/controlsfx-11.2.1.jar" />
+  </library>
+  <library name="Maven: org.opentest4j:opentest4j:1.3.0">
+    <archive path="/home/adan/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-graphics:linux:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-graphics/23.0.2/javafx-graphics-23.0.2-linux.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-base:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-base/23.0.2/javafx-base-23.0.2.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-fxml:linux:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-fxml/23.0.2/javafx-fxml-23.0.2-linux.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-base:linux:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-base/23.0.2/javafx-base-23.0.2-linux.jar" />
+  </library>
+  <library name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.18.2">
+    <archive path="/home/adan/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-graphics:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-graphics/23.0.2/javafx-graphics-23.0.2.jar" />
+  </library>
+  <library name="Maven: org.junit.platform:junit-platform-engine:1.10.2">
+    <archive path="/home/adan/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar" />
+  </library>
+  <library name="Maven: org.openjfx:javafx-controls:linux:23.0.2">
+    <archive path="/home/adan/.m2/repository/org/openjfx/javafx-controls/23.0.2/javafx-controls-23.0.2-linux.jar" />
+  </library>
+  <library name="Maven: org.junit.platform:junit-platform-commons:1.10.2">
+    <archive path="/home/adan/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar" />
+  </library>
+  <library name="Maven: org.apiguardian:apiguardian-api:1.1.2">
+    <archive path="/home/adan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar" />
+  </library>
+</eclipse-userlibraries>
+
