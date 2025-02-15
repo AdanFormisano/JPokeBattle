@@ -64,7 +64,7 @@ public class PlayView extends HBox {
 
         HBox dynamicAndOptionsContainer = new HBox();
         dynamicContainerView = new DynamicView(sceneController, dvModel);
-        optionsView = new OptionsView(sceneController, dvModel);
+        optionsView = new OptionsView(dvModel);
 
         dynamicContainerView.showView(new MovesView(sceneController));
 
