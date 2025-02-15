@@ -34,17 +34,17 @@
 
 Questo progetto è stato sviluppato da una singola persona, come progetto d'esame per *Metodologie di Programmazione* e segue la [traccia](./progetto%20MDP%20A-L%2023_24.pdf) fornita dal professore.
 
-La repository e presente su [GitHub](https://github.com/AdanFormisano/JPokeBattle).
+La repository è presente su [GitHub](https://github.com/AdanFormisano/JPokeBattle).
 
 ## Risorse
 - Java JDK 23
 - JavaFX
-- [Bulbpedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) - Utlizzato per le statistiche del gioco e altre informazioni relative ai giochi *Pokémon*
+- [Bulbpedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) - Utilizzato per le statistiche del gioco e altre informazioni relative ai giochi *Pokémon*
 - [The Cave of Dragonflies](https://www.dragonflycave.com/) - Utilizzato come fonte di informazioni dettagliate sulle meccaniche di gioco da implementare
   
 
 ## Features Implementate
-L'mplementazione realizza **Feature - Comuni** e **Feature - Sviluppatore Singolo** di livello **Minimo**, **Tipico** ed **Extra** (*Set Crescita* e *Set Botness* ???).
+L'implementazione realizza **Feature - Comuni** e **Feature - Sviluppatore Singolo** di livello **Minimo**, **Tipico** ed **Extra** (*Set Crescita*).
 - **Feature - Comuni**
   - *Minimo*
     - Implementare Bulbasaur, Charmander, Squirtle
@@ -55,7 +55,7 @@ L'mplementazione realizza **Feature - Comuni** e **Feature - Sviluppatore Singol
     - Implementare tutte le mosse dei Pokémon scelti, rispettando le loro meccaniche di funzionamento dipendenti dai loro tipi, ma ignorando i cambiamenti di stato come avvelenamento, stordimento, etc.
   - *Extra - Set Crescita*
     - Implementare punti individuali e punti allenamento che migliorino le capacità dei pokémon sulla base delle vittorie, aggregandoli appropriatamente
-    - Implementare i meccanismi di passaggio di livello ed evoluzione dei Pokémon, incluso l’apprendimento di nuove mosse (rispettando il vincolo delle 4 mosse a disposizione di ciascun pokémon nella lotta: l’allenatore deve decidere, nel momento in cui una nuova mossa diventa disponibile ed il pokémon già ne conosce 4, se apprendere la nuova dimenticandone una delle precedenti a scelta)
+    - Implementare i meccanismi di passaggio di livello ed evoluzione dei Pokémon, incluso l’apprendimento di nuove mosse (rispettando il vincolo delle 4 mosse a disposizione di ciascun pokémon nella lotta: l’allenatore deve decidere, nel momento in cui una nuova mossa diventa disponibile ed il pokémon già ne conosce 4, se apprendere la nuova, dimenticandone una delle precedenti a scelta)
 
 - **Feature - Sviluppatore Singolo**
   - *Minimo*
@@ -63,8 +63,6 @@ L'mplementazione realizza **Feature - Comuni** e **Feature - Sviluppatore Singol
   - *Tipico*
     - Preservare lo stato dei pokémon del giocatore nella serie di lotte (e.g., se un Pokémon riceve 10 PS di danno nella prima lotta, partirà con 10 PS in meno nella seguente, etc.)
     - Implementare una schermata leaderboard che mantenga i 10 record migliori (numero di lotte vinte in serie)
-  - *Extra - Set Botness* ???
-    - Implementare strategie per un comportamento “intelligente” degli avversari NPC, per supportare un’esperienza di gioco appagante
 
 
 # Descrizione Generale
@@ -85,7 +83,7 @@ $$
 Stat = floor((2 * B + I + E) * L / 100 + L + 10)
 $$
 
-Dove i simboli sono,
+Dove i simboli rappresentano,
 - $B$: Statistiche base, dalla 3ª Generazione in poi vengono aggiunti anche *Special Attack* e *Special Defense*.
 - $I$: *Individual Value*, una per ogni statistica base, con range di valori $[0, 31]$, vengono però ignorate le [caratteristiche](https://bulbapedia.bulbagarden.net/wiki/Individual_values#Characteristic) dei pokémon.
 - $E$: *Effort Value*, una per ogni statistica base, con range di valori $[0, 255]$; a differenza delle generazioni precedenti, in questa ogni specie pokémon ha un valore che "cede" al pokémon da cui viene sconfitto  (vengono tralasciati gli altri metodi di acquisizione dei punti EV, e.g. vitamine, EXP Share, ecc.).
@@ -96,14 +94,14 @@ Dove i simboli sono,
 Le duelli che l'utente esegue durante una partita seguono le classiche regole dei videogiochi, ignorando però gli effetti di stato (come indicato dalla traccia del progetto); in particolare, è seguita la tabella dei tipi della 3ª generazione
 
 <div align="center">
-	<img src="images/type_chart.png" style="width: 75%">
+	<img src="./images/type_chart.png" style="width: 75%">
 </div>
 
 ### Ordine di Esecuzione
 L'ordine con cui avviene un turno è:
 
 1. Vengono scelte le mosse da eseguire in questo turno
-2. Vengono confrontate le priorità delle mosse scete dall'utente e dal pokémon avversario
+2. Vengono confrontate le priorità delle mosse scelte dall'utente e dal pokémon avversario
 3. In caso di parità ugale tra le due mosse, viene calcata la velocità dei pokémon in battaglia: il più veloce sarà il primo ad eseguire la propria mossa
 4. Viene verificato che la mossa abbia sucesso ed effettivamente riesca a colpire l'avversario, in caso il colpo machi il bersaglio viene eseguita la mossa dell'avversario
 5. Se la mossa colpisce, vengono calcolati e applicati i danni della prima mossa
@@ -121,12 +119,11 @@ $$
     Damage=\Biggl(\Biggl(\frac{(\frac{2 \times Level}{5} + 2)\times Power \times \frac{A}{D}}{50}\Biggl) + 2 \Biggl)\times \text{STAB} \times \text{Type1} \times \text{Type2} \times \text{random}
 $$
 
-Dove i simboli sono,
+Dove i simboli rappresentano,
 - $Level$: Livello del Pokémon attaccante.
 - $Power$: L'effettiva potenza della mossa.
 - $A$: L'effettiva statistica di *Attacco* del Pokémon attaccante, se la mossa è di tipo *fisico*, altrimenti se la mossa è una *mossa speciale* la statistica coincide con *Special Attack*.
 - $D$: L'effettiva statistica di *Difesa* del Pokémon difensore, se la mossa è di tipo *fisico*, altrimenti se la mossa è una *mossa speciale* la statistica coincide con *Special Defense*.
-- $\text{Crit}$: ???
 - $\text{STAB}$: É un bonus pari a $1.5$ nel caso in cui il tipo della mossa sia uguale ad uno dei due tipi del Pokémon attaccante, vale $1$ altrimenti.
 - $\text{Type1}$ e $\text{Type2}$: Sono i valori di "efficacia del tipo" delle mossa contro il primo e secondo tipo del pokémon difensore.
 - $random$: Viene calcolato mediante la moltiplicazione per un numero intero casuale, distribuito uniformemente tra $[85, 100]$, seguita da una divisione intera per $100$.
@@ -140,7 +137,7 @@ Il progetto è strutturato in due macro-sezioni:
   - **Interfaccia Utente**: si occupa dell'interazione tra l'utente e il game engine, offrendo una GUI e implementando i meccanismi necessari per la comunicazione bidirezionale tra le due componenti.
 
 ## Game Engine
-Il *"game engine"* che gestisce il back-end del gioco ed è in grado di gestire la creazione ed esecuzione delle battaglie tra pokémon, generando ogni volta che sia necessario una nuova battglia.
+Il *"game engine"* gestisce il back-end del gioco ed è in grado di creare ed eseguire delle battaglie tra pokémon, generando ogni volta che sia necessario una nuova battaglia.
 
 I componenti principali sono: `GameController`, `GameData`, `Pokemon`, `Battle`.
 
@@ -161,7 +158,7 @@ La classe `GameController` contiene le istanze fondamentali per la corretta esec
 La maggior parte degli eventi che la classe riceve dal `currentBattle` devono poi essere propagati all'interfaccia utente, mediante lo `gameStateListener`.
 
 ### `Pokemon`
-I *Pokémon* vengono rappresentati dall'omonima classe che ne implementa gli aspetti fondamentali, in particolare:
+I *Pokémon* sono rappresentati dall'omonima classe che ne implementa gli aspetti fondamentali, in particolare:
 
 - ID, Nome, Natura;
 - `BaseStats`: Ossia le statistiche intrinsiche di una specie di Pokèmon;
@@ -263,7 +260,7 @@ Il progetto implementa diversi pattern di programmazione, principalmente:
 - ***Singleton***: Utilizzato per `GameController` e `SceneController`.
 - ***Observer***: Le interfacce `IGameStateListener` e `IBattleEventListener` permettono l'osservazione degli stati di gioco.
 - ***Factory***: Utilizzato per la creazione delle mosse tramite `MoveFactory`.
-- ***State***: Permette a `DynamicView` di cambiare interfaccia e comportamento in base allo stato impostato da `SceneController`.
+- ***State***: Consente a `DynamicView` di adattare interfaccia e comportamento in base allo stato impostato da `SceneController`.
 - ***Command***: Implementa la gestione degli input dell'utente nel gioco.
 - ***Strategy***: Move utilizza `MoveStrategy`, permettendo una separazione tra il comportamento delle mosse di danno (`MoveDamageStrategy`) e delle mosse di status (`MoveStatusStrategy`).
 

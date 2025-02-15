@@ -52,11 +52,12 @@ public class LoseView extends HBox {
 
         Text playerPokemonLabel = new Text("Your Pokemon:");
         Text battleWinsLabel = new Text("Battle Wins:");
+        Text lostLabel = new Text("YOU LOST!");
         Text opponentPokemonLabel = new Text("Opponent Pokemon:");
 
         playerPokemonContainer.getChildren().add(playerPokemonLabel);
         battleWinsContainer.getChildren().add(battleWinsLabel);
-        opponentPokemonContainer.getChildren().add(opponentPokemonLabel);
+        opponentPokemonContainer.getChildren().addAll(lostLabel, opponentPokemonLabel);
 
 //        setStyle("-fx-border-color: transparent gray gray transparent; " +
 //                "-fx-border-width: 1;");

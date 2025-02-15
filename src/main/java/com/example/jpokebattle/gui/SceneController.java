@@ -16,6 +16,7 @@
     import java.util.function.Consumer;
 
     public class SceneController implements IGameStateListener {
+        private static SceneController instance; // Istanza Singleton
         private Stage stage;
         private Scene menuScene;
         private Scene playScene;
@@ -24,13 +25,27 @@
         private final BooleanProperty canNextLevel = new SimpleBooleanProperty(false);
         public Consumer<Pokemon> subSelectionCallback;
 
-        public SceneController(Stage stage, DynamicViewModel dynamicViewModel) {
+        private SceneController(Stage stage, DynamicViewModel dynamicViewModel) {
             this.stage = stage;
             this.dvModel = dynamicViewModel;
             gc.setGameStateListener(this);
 
             menuScene = new Scene(new MenuView(this), 900, 600);
             stage.setScene(menuScene);
+        }
+
+        public static SceneController getInstance(Stage stage, DynamicViewModel dynamicViewModel) {
+            if (instance == null) {
+                instance = new SceneController(stage, dynamicViewModel);
+            }
+            return instance;
+        }
+
+        public static SceneController getInstance() {
+            if (instance == null) {
+                throw new IllegalStateException("SceneController non è stato inizializzato. Chiama getInstance(Stage, DynamicViewModel) prima.");
+            }
+            return instance;
         }
 
         public DynamicViewModel getDynamicViewModel() { return dvModel; }
@@ -122,14 +137,12 @@
 
         @Override
         public void onLearnedMoves(String pokemon, List<String> moves) {
-            // Show new moves learned message
             LearnedMovesViewData data = new LearnedMovesViewData(pokemon, moves);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.LEARNED_MOVES, data));
         }
 
         @Override
         public void onPokemonEvolved(Pokemon pokemonEvolved, String pokeFromName) {
-            // Show pokemon evolved message
             EvolvedViewData data = new EvolvedViewData(pokemonEvolved, pokeFromName);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.EVOLUTION, data));
             PlayView pv = (PlayView) playScene.getRoot();
@@ -138,7 +151,6 @@
 
         @Override
         public void onPokeOffer(Pokemon pokemon) {
-            // Show pokemon offer message
             PokeOfferViewData data = new PokeOfferViewData(pokemon);
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.POKEMON_OFFER, data));
         }

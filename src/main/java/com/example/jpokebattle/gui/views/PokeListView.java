@@ -71,7 +71,7 @@ public class PokeListView extends VBox {
                 });
 
                 pokeContainer.setOnMouseClicked(e -> {
-                    sceneController.subSelectionCallback.accept(pokemon);
+                    sceneController.onPokemonSwitch(pokemon);
                     sceneController.onBattleStart();
                 });
             }

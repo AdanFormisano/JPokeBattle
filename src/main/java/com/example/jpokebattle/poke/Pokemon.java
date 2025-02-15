@@ -1,8 +1,7 @@
 package com.example.jpokebattle.poke;
 
-import com.example.jpokebattle.poke.move.AbstractMove;
+import com.example.jpokebattle.poke.move.Move;
 import com.example.jpokebattle.poke.move.MoveFactory;
-import com.example.jpokebattle.service.PositiveInt;
 import com.example.jpokebattle.service.data.DataMove;
 import com.example.jpokebattle.service.data.DataMoveBasic;
 import com.example.jpokebattle.service.data.DataPokemon;
@@ -19,7 +18,7 @@ public class Pokemon {
     private final BaseStats baseStats;
     private final Stats stats;
     private final Nature nature = new Nature();
-    private List<AbstractMove> moveList = new ArrayList<>();
+    private List<Move> moveList = new ArrayList<>();
     public boolean isFainted = false;
     public Image spriteFront;
     public Image spriteBack;
@@ -70,9 +69,9 @@ public class Pokemon {
     public String getName() { return name; }
     public List<Type> getType() { return baseStats.getType(); }
     public BaseStats getBaseStats() { return baseStats; }
-    public List<AbstractMove> getMoveList() { return this.moveList; }
-    public AbstractMove getMove(int index) { return moveList.get(index); }
-    public AbstractMove getMove(String moveName) { return moveList.stream().filter(move -> move.getName().equals(moveName)).findFirst().orElse(null); }
+    public List<Move> getMoveList() { return this.moveList; }
+    public Move getMove(int index) { return moveList.get(index); }
+    public Move getMove(String moveName) { return moveList.stream().filter(move -> move.getName().equals(moveName)).findFirst().orElse(null); }
     public Nature getNature() { return this.nature; }
     public Stats getStats() { return stats; }
     public Image getSpriteFront() { return spriteFront; }
@@ -90,7 +89,7 @@ public class Pokemon {
         List<String> newMoves = new ArrayList<>();
         List<String> knownMoves = new ArrayList<>();
 
-        for (AbstractMove move : moveList) {
+        for (Move move : moveList) {
             knownMoves.add(move.getName());
         }
 
@@ -117,7 +116,7 @@ public class Pokemon {
     public List<String> learnMoves(List<String> toLearn) {
         List<String> remainingMoves = new ArrayList<>();
 
-        for (AbstractMove move : moveList) {
+        for (Move move : moveList) {
             toLearn.remove(move.getName());
         }
 

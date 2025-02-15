@@ -2,8 +2,8 @@ package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.GameController;
 import com.example.jpokebattle.gui.SceneController;
-import com.example.jpokebattle.poke.move.AbstractMove;
-import com.example.jpokebattle.poke.move.MoveDamage;
+import com.example.jpokebattle.poke.move.Move;
+import com.example.jpokebattle.poke.move.MoveDamageStrategy;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -13,7 +13,7 @@ import java.util.List;
 public class MovesView extends VBox {
     SceneController sceneController;
     GameController gc = GameController.getInstance();
-    List<AbstractMove> playerMoves;
+    List<Move> playerMoves;
 
     public MovesView(SceneController sceneController) {
         this.sceneController = sceneController;
@@ -30,7 +30,7 @@ public class MovesView extends VBox {
         HBox firstRow = new HBox();
         HBox secondRow = new HBox();
 
-        for (AbstractMove move : playerMoves) {
+        for (Move move : playerMoves) {
             if (playerMoves.indexOf(move) < 2) {
                 MoveView moveView = new MoveView(move);
                 firstRow.getChildren().add(moveView);
@@ -44,9 +44,9 @@ public class MovesView extends VBox {
     }
 
     private class MoveView extends VBox {
-        AbstractMove move;
+        Move move;
 
-        public MoveView(AbstractMove move) {
+        public MoveView(Move move) {
             this.move = move;
             setupUI();
         }
@@ -66,15 +66,16 @@ public class MovesView extends VBox {
             Text moveAccuracy = new Text("Accuracy: " + move.getAccuracy());
             Text movePP = new Text("PP: " + move.getCurrentPP());
 
-            if (move instanceof MoveDamage moveDamage) {
+            if (move.getStrategy() instanceof MoveDamageStrategy moveDamage) {
                 Text movePower = new Text("Power: " + moveDamage.getPower());
                 rightContainer.getChildren().add(movePower);
             }
 
+
             leftContainer.getChildren().addAll(moveName, moveType, moveCategory);
             rightContainer.getChildren().addAll(moveAccuracy, movePP);
 
-            Text moveDescription = new Text("Lorem Ipsum");
+            // Text moveDescription = new Text("Lorem Ipsum");
 
             moveContainer.getChildren().addAll(leftContainer, rightContainer);
 
@@ -95,7 +96,7 @@ public class MovesView extends VBox {
                 sceneController.choseMove(move.getName());
             });
 
-            getChildren().addAll(moveContainer, moveDescription);
+            getChildren().addAll(moveContainer);
         }
     }
 

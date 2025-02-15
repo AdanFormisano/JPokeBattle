@@ -23,7 +23,7 @@ public class MainApp extends Application {
 
 
     private void setupUI() {
-        sceneController = new SceneController(primaryStage, dvModel);
+        sceneController = SceneController.getInstance(primaryStage, dvModel);
         primaryStage.setResizable(false);
         primaryStage.setTitle("JPokeBattle");
         primaryStage.getIcons().add(new Image("file:src/main/resources/assets/bulbasaur.png"));

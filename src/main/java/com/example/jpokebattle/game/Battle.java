@@ -1,12 +1,11 @@
 package com.example.jpokebattle.game;
 
 import com.example.jpokebattle.poke.EffortValue;
-import com.example.jpokebattle.poke.move.AbstractMove;
 import com.example.jpokebattle.poke.Pokemon;
+import com.example.jpokebattle.poke.move.Move;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
 
 public class Battle {
@@ -61,11 +60,11 @@ public class Battle {
     private static class ChosenMove {
         PokeInBattle pokeInBattle;
         StatStage statStage;
-        AbstractMove move;
+        Move move;
         boolean isPlayer;
         boolean doesHit = true;
 
-        public ChosenMove(PokeInBattle pokeInBattle, AbstractMove move, boolean isPlayer, StatStage statStage) {
+        public ChosenMove(PokeInBattle pokeInBattle, Move move, boolean isPlayer, StatStage statStage) {
             this.pokeInBattle = pokeInBattle;
             this.statStage = statStage;
             this.move = move;

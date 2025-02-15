@@ -7,15 +7,16 @@ public class PokeFaintedView extends AbstractMessageView {
 
     public PokeFaintedView(FaintedViewData faintedViewData) {
         super(false);
-        Label message = new Label(faintedViewData.faintedPokemon() + "(player) has fainted!");
 
         if (faintedViewData.isPlayer()) {
+            Label message = new Label(faintedViewData.faintedPokemon() + "(player) has fainted!");
             getChildren().add(message);
 
             this.setOnMouseClicked(event -> {
                 finished();
             });
         } else {
+            Label message = new Label(faintedViewData.faintedPokemon() + "(opponent) has fainted!");
             Label message2 = new Label(faintedViewData.playerPokemon() +
                     " has gained " + faintedViewData.expGained() + " experience points!");
 
