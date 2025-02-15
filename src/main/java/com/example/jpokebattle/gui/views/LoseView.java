@@ -1,8 +1,10 @@
 package com.example.jpokebattle.gui.views;
 
 import com.example.jpokebattle.game.BattleOutcome;
+import com.example.jpokebattle.gui.SceneController;
 import com.example.jpokebattle.poke.Pokemon;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -92,7 +94,9 @@ public class LoseView extends HBox {
     private void setOpponentPokemonContainer(VBox opponentPokemonContainer) {
         Text opponentPokemonText = new Text(opponentPokemon.getName());
         ImageView opponentPokemonImage = new ImageView(opponentPokemon.getSpriteFront());
-        opponentPokemonContainer.getChildren().addAll(opponentPokemonText, opponentPokemonImage);
+        Button leaderboardButton = new Button("Leaderboard");
+        leaderboardButton.setOnAction(e -> SceneController.getInstance().onLeaderboardShow());
+        opponentPokemonContainer.getChildren().addAll(opponentPokemonText, opponentPokemonImage, leaderboardButton);
     }
 
     private void setBattleOutcomesContainer(VBox battleWinsContainer) {

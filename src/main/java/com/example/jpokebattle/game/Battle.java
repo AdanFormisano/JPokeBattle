@@ -3,6 +3,7 @@ package com.example.jpokebattle.game;
 import com.example.jpokebattle.poke.EffortValue;
 import com.example.jpokebattle.poke.Pokemon;
 import com.example.jpokebattle.poke.move.Move;
+import com.example.jpokebattle.service.data.LeaderboardEntry;
 import com.example.jpokebattle.service.loader.PokeLoader;
 
 import java.util.*;
@@ -131,8 +132,6 @@ public class Battle {
 
             // Notify pkm fainted
             notifyPokemonFainted(currentPlayerPokemon.pokemon.getName());
-
-
 
             if (checkEndCondition(GameController.getInstance().gameData.getAlivePokemons(playerPokemons))) {
                 outcome.setPlayerWon(false);

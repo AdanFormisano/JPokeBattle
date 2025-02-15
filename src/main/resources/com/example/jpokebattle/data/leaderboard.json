@@ -1,31 +1,118 @@
-[
-  {
-    "team": [
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      },
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      },
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      },
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      },
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      },
-      {
-        "name": "Bulbasaur",
-        "level": 69
-      }
-    ],
-    "level": 100
-  }
-]
+[ {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 69
+  }, {
+    "name" : "Bulbasaur",
+    "level" : 69
+  }, {
+    "name" : "Bulbasaur",
+    "level" : 69
+  }, {
+    "name" : "Bulbasaur",
+    "level" : 69
+  }, {
+    "name" : "Bulbasaur",
+    "level" : 69
+  }, {
+    "name" : "Bulbasaur",
+    "level" : 69
+  } ],
+  "level" : 100
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 100
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Charmander",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Charmander",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Charmander",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Charmander",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Charmander",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+}, {
+  "team" : [ {
+    "name" : "Bulbasaur",
+    "level" : 2
+  } ],
+  "level" : 2
+} ]

@@ -137,6 +137,18 @@ public class GameController implements IBattleEventListener {
 
     @Override
     public void onBattleEnd(BattleOutcome outcome) {
+        if (!outcome.getPlayerWon()) {
+            // Add team to leaderboard
+            List<LeaderboardEntry.LeaderboardPokeEntry> team = new ArrayList<>();
+
+            for (Pokemon pokemon : outcome.getPlayerPokemons()) {
+                team.add(new LeaderboardEntry.LeaderboardPokeEntry(pokemon.getName(), pokemon.getStats().getLevel()));
+            }
+
+            LeaderboardEntry entry = new LeaderboardEntry(team, outcome.getLevel());
+            gameData.leaderboardLoader.addEntry(entry);
+        }
+
         if (gameStateListener != null) {
             gameStateListener.onBattleEnd(outcome);
         }

@@ -160,4 +160,8 @@
             subSelectionCallback = callback;
             dvModel.setUIState(new DynamicViewUIState(DynamicViewStatus.SUB_SELECTION, null));
         }
+
+        public void onLeaderboardShow() {
+            stage.setScene(new Scene(new LeaderboardView(), 900, 600));
+        }
     }
