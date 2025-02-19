@@ -1,12 +1,11 @@
-<div align="center">
-	<b style="font-size: 2.5em;">JPokeBattle</b>
-	<br>
-	Adan Formisano 1813917
-</div>
+
+# JPokeBattle
+Adan Giulio Formisano - 1813917
 
 # Indice
-- [Indice](#indice)
 - [JPokeBattle](#jpokebattle)
+- [Indice](#indice)
+- [JPokeBattle](#jpokebattle-1)
   - [Risorse](#risorse)
   - [Features Implementate](#features-implementate)
 - [Descrizione Generale](#descrizione-generale)
@@ -93,9 +92,7 @@ Dove i simboli rappresentano,
 ## Battaglia tra Pokémon
 Le duelli che l'utente esegue durante una partita seguono le classiche regole dei videogiochi, ignorando però gli effetti di stato (come indicato dalla traccia del progetto); in particolare, è seguita la tabella dei tipi della 3ª generazione
 
-<div align="center">
-	<img src="./images/type_chart.png" style="width: 75%">
-</div>
+![type_chart](./images/type_chart.png)
 
 ### Ordine di Esecuzione
 L'ordine con cui avviene un turno è:

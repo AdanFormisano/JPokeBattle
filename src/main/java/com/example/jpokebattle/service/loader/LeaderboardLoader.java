@@ -15,9 +15,7 @@ import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class LeaderboardLoader {
-//    private static final Logger LOGGER = Logger.getLogger(LeaderboardLoader.class.getName());
     private static final int MAX_TEAM_SIZE = 6;
-
     private final Path leaderboardPath;
     private final ObjectMapper objectMapper;
     private final ReentrantReadWriteLock lock;
@@ -25,20 +23,12 @@ public class LeaderboardLoader {
 
     public LeaderboardLoader(String leaderboardPath) throws IOException {
         this.leaderboardPath = Paths.get(leaderboardPath);
-        this.objectMapper = configureObjectMapper();
+        this.objectMapper = new ObjectMapper();
         this.lock = new ReentrantReadWriteLock();
 
-        // Ensure parent directories exist
         Files.createDirectories(this.leaderboardPath.getParent());
 
-        // Initialize cache
         loadLeaderboard();
-    }
-
-    private ObjectMapper configureObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        return mapper;
     }
 
     public Leaderboard loadLeaderboard() {
@@ -53,11 +43,9 @@ public class LeaderboardLoader {
 
         lock.writeLock().lock();
         try {
-            // Double-check if cache was initialized while waiting for write lock
             if (leaderboardCache != null) {
                 return leaderboardCache;
             }
-
             if (!Files.exists(leaderboardPath)) {
                 leaderboardCache = new Leaderboard(new ArrayList<>());
                 saveLeaderboard();
@@ -68,7 +56,6 @@ public class LeaderboardLoader {
             }
             return leaderboardCache;
         } catch (IOException e) {
-//            LOGGER.severe("Failed to load leaderboard: " + e.getMessage());
             leaderboardCache = new Leaderboard(new ArrayList<>());
             return leaderboardCache;
         } finally {
@@ -76,12 +63,6 @@ public class LeaderboardLoader {
         }
     }
 
-    /**
-     * Adds a new team entry to the leaderboard.
-     * @param entry The team entry to add
-     * @throws IllegalArgumentException if the team size is invalid
-     * @return The position (1-based) where the entry was inserted
-     */
     public int addEntry(LeaderboardEntry entry) {
         if (entry.team() == null || entry.team().size() > MAX_TEAM_SIZE) {
             throw new IllegalArgumentException("Team must contain between 1 and " + MAX_TEAM_SIZE + " Pokemon");
@@ -91,8 +72,6 @@ public class LeaderboardLoader {
         try {
             List<LeaderboardEntry> currentEntries = new ArrayList<>(loadLeaderboard().entries());
             currentEntries.add(entry);
-
-            // Sort by level in descending order
             currentEntries.sort(Comparator.comparing(LeaderboardEntry::level).reversed());
 
             leaderboardCache = new Leaderboard(currentEntries);
@@ -104,11 +83,6 @@ public class LeaderboardLoader {
         }
     }
 
-    /**
-     * Gets the entries sorted by level in descending order
-     * @param limit Maximum number of entries to return (0 for all)
-     * @return List of entries
-     */
     public List<LeaderboardEntry> getTopEntries(int limit) {
         List<LeaderboardEntry> entries = loadLeaderboard().entries();
         if (limit <= 0 || limit > entries.size()) {
@@ -121,21 +95,7 @@ public class LeaderboardLoader {
         try {
             objectMapper.writeValue(leaderboardPath.toFile(), leaderboardCache.entries());
         } catch (IOException e) {
-//            LOGGER.severe("Failed to save leaderboard: " + e.getMessage());
             throw new RuntimeException("Failed to save leaderboard", e);
-        }
-    }
-
-    /**
-     * Forces a reload of the leaderboard from disk.
-     */
-    public void forceReload() {
-        lock.writeLock().lock();
-        try {
-            leaderboardCache = null;
-            loadLeaderboard();
-        } finally {
-            lock.writeLock().unlock();
         }
     }
 }
